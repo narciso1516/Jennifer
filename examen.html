@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examen EXANI-II Jennifer</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#eef6ff;color:#1f2937}header{background:#102a43;color:white;padding:15px}main{max-width:760px;margin:auto;padding:14px}.card{background:white;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 12px 32px #0002}h1,h2{color:#102a43}.btn{background:#2563eb;color:white;border:0;border-radius:14px;padding:13px 18px;font-weight:800;font-size:16px}.op{display:block;width:100%;text-align:left;margin:10px 0;padding:14px;border-radius:14px;border:2px solid #cbd5e1;background:white;font-weight:700}.ok{background:#dcfce7!important;border-color:#16a34a!important}.bad{background:#fee2e2!important;border-color:#dc2626!important}.hide{display:none}.bar{height:12px;background:#e5e7eb;border-radius:99px;overflow:hidden}.prog{height:100%;background:linear-gradient(90deg,#2563eb,#f59e0b,#10b981);width:0}.tag{display:inline-block;padding:6px 10px;border-radius:99px;background:#dbeafe;color:#1d4ed8;font-weight:800}.fb{margin-top:14px;padding:14px;border-radius:14px;background:#f8fafc}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f8fafc;border-radius:16px;padding:14px;text-align:center}.stat b{font-size:25px;color:#102a43}.rev{background:#f8fafc;border-radius:14px;padding:12px;margin:10px 0}@media(max-width:650px){.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><b>Examen Interactivo EXANI-II · Jennifer</b><br>Inferencias y relaciones causa-efecto</header>
+<main>
+<section id="start" class="card">
+<span class="tag">50 preguntas · 5 opciones</span>
+<h1>Examen de práctica</h1>
+<p>Jennifer, responde una pregunta a la vez. Al tocar una opción sabrás si es correcta y verás una explicación.</p>
+<div class="stats"><div class="stat"><b>15</b><br>Básicas</div><div class="stat"><b>20</b><br>Intermedias</div><div class="stat"><b>15</b><br>Avanzadas</div></div><br>
+<button class="btn" onclick="startExam()">Comenzar</button>
+</section>
+<section id="exam" class="card hide">
+<p><b id="num"></b> <span id="nivel" class="tag"></span></p>
+<div class="bar"><div id="prog" class="prog"></div></div>
+<h2 id="q"></h2>
+<div id="ops"></div>
+<div id="fb" class="fb hide"></div><br>
+<button id="next" class="btn hide" onclick="nextQ()">Siguiente</button>
+</section>
+<section id="end" class="card hide">
+<h1>Resultado final</h1>
+<div class="stats"><div class="stat"><b id="score"></b><br>Correctas</div><div class="stat"><b id="pct"></b><br>Porcentaje</div><div class="stat"><b id="msg"></b><br>Nivel</div></div>
+<p id="advice" class="fb"></p>
+<button class="btn" onclick="restart()">Reiniciar</button>
+<button class="btn" onclick="showReview()">Ver revisión</button>
+<div id="review"></div>
+</section>
+</main>
+<script>
+const preguntas=[
+['Básico','¿Qué es una inferencia?',['Una copia literal','Una conclusión con pistas','Una opinión sin evidencia','Una palabra difícil','Un título'],1,'Inferir es concluir usando pistas del texto.'],
+['Básico','La información explícita es:',['La que se deduce','La que está escrita directamente','La que se imagina','La que no aparece','La menos importante'],1,'Explícito significa escrito de forma clara.'],
+['Básico','La información implícita es:',['La que se deduce','La que se copia','La que siempre es falsa','La primera frase','El título'],0,'Implícito significa que debe interpretarse.'],
+['Básico','La causa responde a:',['¿Qué ocurrió después?','¿Por qué ocurrió?','¿Cuántas opciones hay?','¿Quién imprime?','¿Qué letra es?'],1,'La causa explica el motivo.'],
+['Básico','El efecto responde a:',['¿Qué ocurrió como resultado?','¿Quién lo escribió?','¿Qué palabra rima?','¿Cuál opción es larga?','¿Qué color tiene?'],0,'El efecto es la consecuencia.'],
+['Básico','“Porque” suele indicar:',['Causa','Efecto','Título','Personaje','Lugar'],0,'Porque introduce motivo.'],
+['Básico','“Por lo tanto” suele indicar:',['Causa','Consecuencia','Duda','Nombre','Ejemplo visual'],1,'Por lo tanto introduce resultado.'],
+['Básico','Si una planta no recibe agua y se marchita, el efecto es:',['No recibe agua','Se marchita','Hay maceta','Hay tierra','Alguien mira'],1,'Marchitarse es consecuencia.'],
+['Básico','Si Jennifer practica y mejora, la causa es:',['Mejora','Practica','Termina','Descansa','Lee el título'],1,'La práctica produce la mejora.'],
+['Básico','Una inferencia válida debe tener:',['Evidencia','Adivinanza','Exageración','Opinión sin base','Decoración'],0,'Debe apoyarse en evidencias.'],
+['Básico','“Debido a” indica normalmente:',['Causa','Efecto','Cierre','Título','Pregunta'],0,'Debido a introduce causa.'],
+['Básico','“En consecuencia” indica normalmente:',['Causa','Resultado','Autor','Sinónimo','Lugar'],1,'En consecuencia introduce efecto.'],
+['Básico','Leer con atención ayuda a:',['Adivinar','Identificar pistas','Ignorar el texto','Responder sin pensar','Elegir siempre C'],1,'Las pistas permiten razonar.'],
+['Básico','Inferir NO significa:',['Concluir','Analizar pistas','Adivinar sin evidencia','Relacionar ideas','Comprender'],2,'Inferir no es inventar.'],
+['Básico','Una pista textual es:',['Dato útil del texto','Idea inventada','Opción decorativa','Ruido','Dibujo externo'],0,'Una pista está dentro del texto.'],
+['Intermedio','“Sofía estudió, pero no leyó instrucciones y falló”. ¿Qué se infiere?',['No estudió','Falló por falta de atención','El examen era imposible','No hubo examen','La maestra falló'],1,'El problema fue no leer instrucciones.'],
+['Intermedio','“Luis llegó tarde porque el autobús se retrasó”. Causa:',['Llegó tarde','Autobús retrasado','Clase terminada','Tarea perdida','Examen fácil'],1,'El retraso del autobús causó la tardanza.'],
+['Intermedio','“Ana durmió poco y olvidó una tarea”. Inferencia:',['Estaba cansada','No estudia nunca','No hubo tarea','Odia la escuela','Ganó premio'],0,'Dormir poco puede afectar concentración.'],
+['Intermedio','Opción mejor sustentada:',['La más larga','La más bonita','La que tiene evidencia textual','La primera','La última'],2,'La evidencia decide la respuesta.'],
+['Intermedio','“Debido al tráfico, la reunión inició tarde”. Efecto:',['Tráfico','Reunión tarde','Calle','Personas','Hora'],1,'La reunión tarde es consecuencia.'],
+['Intermedio','Responder con datos externos no sustentados es:',['Correcto','Un error','Obligatorio','Una inferencia fuerte','Una causa'],1,'El EXANI-II exige basarse en el texto.'],
+['Intermedio','“El médico recomendó reposo”. Se infiere que:',['Detectó algo que requiere descanso','No revisó','Era fiesta','No había paciente','Era deporte'],0,'El reposo sugiere necesidad de cuidado.'],
+['Intermedio','Causa-efecto correcto:',['No estudiar → baja calificación','Baja calificación → no estudiar siempre','Resultado → motivo','Consecuencia → causa','Final → inicio'],0,'No estudiar puede causar baja calificación.'],
+['Intermedio','“Entrenó meses y mejoró coordinación”. Relación:',['Entrenamiento → mejora','Mejora → nunca entrenó','Torneo → sueño','Equipo → nada','Meses → error'],0,'Entrenar explica la mejora.'],
+['Intermedio','Si dos opciones parecen correctas, elige:',['La más corta','La que tenga más apoyo textual','La C','La más rara','La última'],1,'Debe sostenerse con pistas.'],
+['Intermedio','“Sabía el tema, pero se apresuró”. Inferencia:',['Falló por precipitación','No sabía nada','No presentó','No estudió nunca','No leyó el texto'],0,'El texto indica prisa, no ignorancia.'],
+['Intermedio','“Batería en 1%; luego se apagó”. Causa:',['Se apagó','Batería agotada','Pantalla grande','Llamada','Marca'],1,'La batería baja causó el apagado.'],
+['Intermedio','“Leyó y corrigió errores antes de entregar”. Inferencia:',['La revisión ayudó','No leyó','Copió','Entregó vacío','No entendió'],0,'Revisar mejora respuestas.'],
+['Intermedio','Una conclusión exagerada es:',['Probablemente llovió','Es posible','Todos mintieron sin evidencia','Puede ser','El texto sugiere'],2,'Es absoluta y sin sustento.'],
+['Intermedio','“No desayunó y sintió debilidad”. Relación:',['No desayunar → debilidad','Debilidad → desayuno','Examen → comida','Sin relación','Dormir → título'],0,'La falta de alimento puede explicar debilidad.'],
+['Intermedio','“Mejoró al revisar errores”. Inferencia:',['La retroalimentación ayudó','No aprendió','No hubo mejora','No estudió','Fue suerte segura'],0,'Revisar errores ayuda a aprender.'],
+['Intermedio','Distractor peligroso:',['Imposible','Posible pero sin evidencia','Vacío','Sin texto','Con símbolos'],1,'Puede sonar bien, pero no se prueba.'],
+['Intermedio','Justificar una respuesta sirve para:',['Demostrar evidencia','Escribir más','Evitar leer','Adivinar','Decorar'],0,'La justificación muestra razonamiento.'],
+['Avanzado','“Pidió carpas, revisó pronóstico y cambió a patio techado”. Inferencia:',['Prevé mal clima','Canceló todo','Olvidó evento','No hay asistentes','No habrá clases'],0,'Las pistas apuntan a prevención por clima.'],
+['Avanzado','“Mejoró al explicar procedimientos, no al memorizar”. Causa:',['Memorizar','Comprender procedimientos','No estudiar','Cambiar lápiz','Dormir'],1,'La comprensión explica la mejora.'],
+['Avanzado','“Informe rechazado por no citar fuentes, aunque era claro”. Inferencia:',['Faltó evidencia','La redacción era mala','Fue aceptado','Nadie leyó','Fuentes no importan'],0,'La falta de fuentes fue decisiva.'],
+['Avanzado','“Quejas por retrasos; empresa modificó rutas”. Inferencia:',['Respondió a problema operativo','Cerró','Ignoró quejas','No hubo retrasos','Era comida'],0,'Las acciones responden al problema.'],
+['Avanzado','“Básicos bien, intermedios duda, avanzados falla”. Conclusión:',['Debe reforzar análisis progresivo','No sabe nada','Debe dejar estudio','Solo memorizar','No leer'],0,'Necesita subir de nivel gradualmente.'],
+['Avanzado','“No curó, solo redujo síntomas en algunos”. Inferencia:',['Resultado limitado','Curó a todos','No tuvo efecto','No hubo pacientes','Era matemáticas'],0,'El alcance es parcial.'],
+['Avanzado','“No perdió por esfuerzo, sino por coordinación”. Causa principal:',['Falta de esfuerzo','Errores de coordinación','Clima','Público','Comida'],1,'El texto señala coordinación.'],
+['Avanzado','“Bajo desempeño; escuela amplió asesorías”. Relación:',['Problema → asesorías','Asesorías → problema inicial','Horario → vacaciones','Lectura → cierre','Sin relación'],0,'El problema motivó la acción.'],
+['Avanzado','“Mejoró, pero sigue en observación”. Inferencia prudente:',['Hay mejora con seguimiento','Ya no requiere nada','Fracasó todo','Nunca enfermó','No hubo médico'],0,'Mejora no elimina seguimiento.'],
+['Avanzado','“Simulador evalúa aplicación, no memoria”. Jennifer debe:',['Aplicar conceptos','Memorizar sin practicar','Leer títulos','Adivinar','Ignorar ejemplos'],0,'Debe transferir conceptos.'],
+['Avanzado','“Muchos clics, sin ventas”. Inferencia:',['Clics no garantizan clientes útiles','No hubo clics','Ventas subieron','Sin datos','Campaña perfecta'],0,'Clics sin ventas indican baja calidad.'],
+['Avanzado','“Justificar respuestas con evidencia”. Habilidad:',['Razonamiento basado en evidencia','Memoria mecánica','Velocidad sin leer','Copia literal','Caligrafía'],0,'Busca razonar con sustento.'],
+['Avanzado','“Avenida dañada dificulta transporte; piden reparación”. Causa:',['Dificultad de transporte','Fiestas','Celulares','Clima','Escuelas'],0,'El problema vial causa la petición.'],
+['Avanzado','“Antes subrayaba todo; ahora identifica ideas clave”. Inferencia:',['Estudio más estratégico','Ya no lee','No repasa','Subrayar todo era perfecto','No entiende'],0,'Identificar ideas clave mejora método.'],
+['Avanzado','“Laura llegó tarde por falla del transporte”. Opción correcta:',['Tardanza por causa externa','Fue irresponsable seguro','No salió','No hay causa','Transporte nunca falla'],0,'La causa externa está indicada.']
+];
+let i=0,score=0,selected=[];
+function startExam(){start.classList.add('hide');exam.classList.remove('hide');show();}
+function show(){let p=preguntas[i];num.textContent='Pregunta '+(i+1)+' de '+preguntas.length;nivel.textContent=p[0];prog.style.width=(i/preguntas.length*100)+'%';q.textContent=p[1];ops.innerHTML='';fb.classList.add('hide');next.classList.add('hide');p[2].forEach((txt,k)=>{let b=document.createElement('button');b.className='op';b.textContent=String.fromCharCode(65+k)+') '+txt;b.onclick=()=>answer(k,b);ops.appendChild(b);});}
+function answer(k,b){let p=preguntas[i];document.querySelectorAll('.op').forEach((x,n)=>{x.disabled=true;if(n===p[3])x.classList.add('ok');});if(k===p[3])score++;else b.classList.add('bad');selected[i]=k;fb.classList.remove('hide');fb.innerHTML=(k===p[3]?'✅ Correcto. ':'❌ No es correcta. ')+p[4];prog.style.width=((i+1)/preguntas.length*100)+'%';next.classList.remove('hide');}
+function nextQ(){i++;if(i>=preguntas.length)finish();else show();}
+function finish(){exam.classList.add('hide');end.classList.remove('hide');let percent=Math.round(score/preguntas.length*100);scoreEl=score;score.textContent;document.getElementById('score').textContent=score+'/'+preguntas.length;pct.textContent=percent+'%';let m='Inicial',a='Jennifer, repasa pistas, causas y efectos con calma.';if(percent>=85){m='Excelente';a='Tu razonamiento inferencial es muy sólido.'}else if(percent>=70){m='Bueno';a='Vas muy bien. Refuerza preguntas avanzadas.'}else if(percent>=55){m='En proceso';a='Vas avanzando. Practica con más ejemplos.'}msg.textContent=m;advice.textContent=a;}
+function restart(){i=0;score=0;selected=[];end.classList.add('hide');exam.classList.add('hide');review.innerHTML='';start.classList.remove('hide');}
+function showReview(){review.innerHTML='<h2>Revisión</h2>';preguntas.forEach((p,n)=>{let k=selected[n];review.innerHTML+='<div class="rev"><b>'+(n+1)+'. '+p[1]+'</b><br>Tu respuesta: '+(p[2][k]||'Sin responder')+'<br>Correcta: <b>'+p[2][p[3]]+'</b><br>'+p[4]+'</div>';});}
+</script>
+</body>
+</html>
