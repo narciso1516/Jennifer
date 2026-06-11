@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Examen CIPRO Jennifer | Intención y Tono del Autor</title>
+<style>
+:root{
+  --g-blue:#4285F4; --g-red:#EA4335; --g-yellow:#FBBC05; --g-green:#34A853;
+  --gemini:#7C3AED; --cyan:#06B6D4; --ink:#111827; --muted:#667085;
+  --card:rgba(255,255,255,.78); --line:rgba(120,130,150,.22);
+  --shadow:0 24px 70px rgba(15,23,42,.14);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+  background:radial-gradient(circle at 12% 8%,rgba(66,133,244,.25),transparent 31%),
+             radial-gradient(circle at 88% 5%,rgba(124,58,237,.25),transparent 34%),
+             radial-gradient(circle at 80% 80%,rgba(52,168,83,.16),transparent 34%),
+             linear-gradient(135deg,#f8fbff,#f6f3ff 50%,#fffdf5);
+  min-height:100vh;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.42) 1px,transparent 1px);background-size:34px 34px;opacity:.28}
+.app{width:min(980px,94%);margin:auto;padding:22px 0 70px}
+.hero,.panel{
+  border:1px solid rgba(255,255,255,.75);border-radius:34px;background:var(--card);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:var(--shadow);padding:28px;margin:22px 0;position:relative;overflow:hidden;
+}
+.hero::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-90px;top:-90px;background:conic-gradient(from 45deg,var(--g-blue),var(--gemini),var(--g-red),var(--g-yellow),var(--g-green),var(--g-blue));filter:blur(40px);opacity:.18}
+.logo{width:48px;height:48px;border-radius:16px;background:conic-gradient(from 40deg,var(--g-blue),var(--gemini),var(--g-red),var(--g-yellow),var(--g-green),var(--g-blue));box-shadow:0 14px 32px rgba(66,133,244,.25)}
+.brand{display:flex;gap:12px;align-items:center;font-weight:950}
+h1{font-size:clamp(2.3rem,6vw,5rem);letter-spacing:-.07em;line-height:.95;margin:42px 0 10px;position:relative;z-index:2}
+.grad{background:linear-gradient(90deg,var(--g-blue),var(--gemini),var(--g-red),var(--g-yellow),var(--g-green));-webkit-background-clip:text;background-clip:text;color:transparent}
+p{line-height:1.6;color:#344054}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.stat{background:rgba(255,255,255,.74);border:1px solid var(--line);border-radius:22px;padding:16px;text-align:center}
+.stat b{display:block;font-size:30px;color:#111827}
+.btn{
+  border:0;border-radius:18px;padding:14px 18px;font-weight:950;font-size:16px;cursor:pointer;color:white;
+  background:linear-gradient(135deg,var(--g-blue),var(--gemini));box-shadow:0 16px 34px rgba(66,133,244,.26);
+  transition:.2s transform,.2s filter;
+}
+.btn:hover{transform:translateY(-2px);filter:saturate(1.08)}
+.btn.secondary{background:rgba(255,255,255,.78);color:#1d4ed8;border:1px solid rgba(66,133,244,.22);box-shadow:none}
+.btn.danger{background:linear-gradient(135deg,var(--g-red),#f97316)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;margin-top:18px}
+.hidden{display:none!important}
+.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.badge{padding:8px 12px;border-radius:999px;background:rgba(66,133,244,.12);color:#1d4ed8;font-weight:950;border:1px solid rgba(66,133,244,.18)}
+.level{padding:8px 12px;border-radius:999px;font-weight:950}
+.Básico{background:#dbeafe;color:#1d4ed8} .Intermedio{background:#fef3c7;color:#92400e} .Avanzado{background:#fee2e2;color:#991b1b}
+.progressWrap{height:14px;background:rgba(226,232,240,.8);border-radius:999px;overflow:hidden;margin:16px 0}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--g-blue),var(--gemini),var(--g-yellow),var(--g-green));transition:.45s cubic-bezier(.2,.8,.2,1)}
+.question{font-size:1.35rem;font-weight:950;line-height:1.35;margin:18px 0;color:#102a43}
+.options{display:grid;gap:12px;margin-top:18px}
+.option{
+  width:100%;text-align:left;border:2px solid rgba(148,163,184,.35);background:rgba(255,255,255,.82);
+  border-radius:20px;padding:16px;font-weight:850;font-size:15.5px;cursor:pointer;transition:.2s transform,.2s box-shadow,.2s border-color;
+}
+.option:hover{transform:translateY(-2px);border-color:var(--g-blue);box-shadow:0 14px 28px rgba(15,23,42,.10)}
+.option.correct{background:#ecfdf5;border-color:var(--g-green);color:#065f46}
+.option.wrong{background:#fef2f2;border-color:var(--g-red);color:#991b1b}
+.feedback{display:none;margin-top:18px;padding:16px;border-radius:20px;font-weight:750;line-height:1.55}
+.feedback.ok{display:block;background:#ecfdf5;border-left:8px solid var(--g-green)}
+.feedback.bad{display:block;background:#fef2f2;border-left:8px solid var(--g-red)}
+.reviewItem{border:1px solid rgba(148,163,184,.28);background:rgba(248,250,252,.78);border-radius:18px;padding:16px;margin:12px 0;line-height:1.5}
+.small{font-size:13px;color:var(--muted)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.chip{border:1px solid var(--line);background:rgba(255,255,255,.75);padding:9px 12px;border-radius:999px;font-weight:900;color:#344054}
+@keyframes pop{0%{transform:scale(.98);opacity:.3}100%{transform:scale(1);opacity:1}}
+.panel{animation:pop .35s ease both}
+@media(max-width:640px){.hero,.panel{padding:20px;border-radius:26px}h1{margin-top:28px}.question{font-size:1.15rem}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="start" class="hero">
+    <div class="topbar">
+      <div class="brand"><div class="logo"></div><span>CIPRO · Jennifer</span></div>
+      <span class="badge">50 preguntas · 4 opciones</span>
+    </div>
+    <h1><span class="grad">Examen interactivo</span><br>Intención y tono</h1>
+    <p>Querida Jennifer, resolverás preguntas tipo EXANI-II sobre <b>intención del autor</b> y <b>tono del autor</b>. Cada pregunta tiene 4 opciones. Al responder, recibirás retroalimentación inmediata.</p>
+    <div class="stats">
+      <div class="stat"><b>15</b><span>Básicas</span></div>
+      <div class="stat"><b>20</b><span>Intermedias</span></div>
+      <div class="stat"><b>15</b><span>Avanzadas</span></div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="startExam()">Comenzar examen</button>
+      <button class="btn secondary" onclick="showStudyTips()">Ver estrategia</button>
+    </div>
+  </section>
+
+  <section id="tips" class="panel hidden">
+    <span class="badge">Estrategia CIPRO</span>
+    <h2>Antes de responder</h2>
+    <p><b>Intención:</b> pregúntate “¿para qué escribió esto el autor?”</p>
+    <p><b>Tono:</b> pregúntate “¿con qué actitud lo escribió?”</p>
+    <p>Busca palabras pista: preocupante, urgente, conviene, datos, cifras, podría provocar, debemos, resulta necesario.</p>
+    <div class="actions"><button class="btn secondary" onclick="hideStudyTips()">Cerrar</button></div>
+  </section>
+
+  <section id="exam" class="panel hidden">
+    <div class="topbar">
+      <span id="counter" class="badge"></span>
+      <span id="level" class="level"></span>
+    </div>
+    <div class="progressWrap"><div id="progress" class="progress"></div></div>
+    <div id="question" class="question"></div>
+    <div id="options" class="options"></div>
+    <div id="feedback" class="feedback"></div>
+    <div class="actions">
+      <button class="btn danger" onclick="resetExam()">Reset</button>
+      <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Siguiente</button>
+    </div>
+  </section>
+
+  <section id="result" class="panel hidden">
+    <h2>Resultado final</h2>
+    <div class="stats">
+      <div class="stat"><b id="scoreNum">0</b><span>Correctas</span></div>
+      <div class="stat"><b id="percentNum">0%</b><span>Porcentaje</span></div>
+      <div class="stat"><b id="levelMsg">---</b><span>Nivel</span></div>
+    </div>
+    <div id="finalAdvice" class="feedback ok" style="display:block"></div>
+    <div class="actions">
+      <button class="btn danger" onclick="resetExam()">Reset total</button>
+      <button class="btn secondary" onclick="toggleReview()">Ver revisión</button>
+    </div>
+    <div id="review" class="hidden"></div>
+  </section>
+</div>
+
+<script>
+const questions = [{"level": "Básico", "q": "¿Qué evalúa una pregunta sobre intención del autor?", "opts": ["El número de palabras del texto", "El propósito con el que fue escrito el texto", "El nombre del personaje principal", "La extensión de cada párrafo"], "ans": 1, "exp": "La intención del autor responde a: ¿para qué escribió el texto?"}, {"level": "Básico", "q": "¿Cuál es una intención común de un texto informativo?", "opts": ["Dar datos o explicar un tema", "Contar chistes", "Ocultar información", "Confundir al lector"], "ans": 0, "exp": "Un texto informativo busca comunicar datos, hechos o explicaciones."}, {"level": "Básico", "q": "¿Qué pregunta ayuda a identificar el tono del autor?", "opts": ["¿Cuántos párrafos tiene?", "¿Con qué actitud escribe?", "¿Qué letra se repite?", "¿Cuántas opciones hay?"], "ans": 1, "exp": "El tono se refiere a la actitud del autor: neutral, crítico, reflexivo, persuasivo, etc."}, {"level": "Básico", "q": "Texto: “El examen se aplicará el viernes a las 8:00.” ¿Qué tono predomina?", "opts": ["Neutral", "Alarmista", "Irónico", "Festivo"], "ans": 0, "exp": "Solo se presenta un dato sin emoción ni juicio."}, {"level": "Básico", "q": "Texto: “Es urgente reducir el desperdicio de agua antes de que el problema empeore.” ¿Cuál es la intención principal?", "opts": ["Entretener", "Advertir", "Narrar", "Describir un paisaje"], "ans": 1, "exp": "La palabra “urgente” y la consecuencia futura indican advertencia."}, {"level": "Básico", "q": "¿Cuál opción corresponde a un tono crítico?", "opts": ["El texto presenta datos sin opinar", "El autor señala fallas o problemas", "El autor cuenta una aventura", "El autor enumera fechas"], "ans": 1, "exp": "El tono crítico aparece cuando el autor evalúa o señala problemas."}, {"level": "Básico", "q": "Texto: “Leer diariamente fortalece el vocabulario y mejora la comprensión.” ¿Qué intención predomina?", "opts": ["Explicar un beneficio", "Burlarse del lector", "Narrar una historia fantástica", "Amenazar al estudiante"], "ans": 0, "exp": "El texto explica beneficios de la lectura."}, {"level": "Básico", "q": "¿Qué significa tono persuasivo?", "opts": ["Que busca convencer al lector", "Que solo da fechas", "Que no expresa ninguna idea", "Que siempre cuenta una historia"], "ans": 0, "exp": "El tono persuasivo intenta influir en la opinión o conducta del lector."}, {"level": "Básico", "q": "Texto: “Todos deberían separar la basura para cuidar el ambiente.” ¿Cuál es la intención?", "opts": ["Convencer", "Ocultar", "Burlar", "Enumerar nombres"], "ans": 0, "exp": "La frase “todos deberían” busca persuadir al lector."}, {"level": "Básico", "q": "¿Cuál palabra puede indicar tono alarmista?", "opts": ["Probablemente", "Grave", "Además", "Primero"], "ans": 1, "exp": "“Grave” puede expresar preocupación intensa o advertencia."}, {"level": "Básico", "q": "¿Qué NO pertenece al análisis de tono?", "opts": ["Actitud del autor", "Palabras valorativas", "Emoción transmitida", "Cantidad exacta de letras"], "ans": 3, "exp": "La cantidad de letras no ayuda a determinar el tono."}, {"level": "Básico", "q": "Texto: “La educación transforma la vida de las personas.” ¿Qué tono predomina?", "opts": ["Motivador", "Agresivo", "Burlón", "Confuso"], "ans": 0, "exp": "La frase transmite una valoración positiva y motivadora."}, {"level": "Básico", "q": "¿Qué opción define mejor intención del autor?", "opts": ["La finalidad del texto", "La letra más usada", "El tamaño de la hoja", "El color del título"], "ans": 0, "exp": "La intención del autor es la finalidad o propósito del texto."}, {"level": "Básico", "q": "Texto: “El calentamiento global ha aumentado la temperatura promedio del planeta.” ¿Qué intención tiene?", "opts": ["Informar", "Entretener", "Ironizar", "Burlarse"], "ans": 0, "exp": "Presenta un dato sobre un fenómeno ambiental."}, {"level": "Básico", "q": "¿Cuál tono predomina en un texto que presenta ventajas y desventajas sin exagerar?", "opts": ["Neutral o equilibrado", "Alarmista", "Agresivo", "Sarcástico"], "ans": 0, "exp": "Un texto equilibrado presenta información sin postura extrema."}, {"level": "Intermedio", "q": "Texto: “Aunque la tecnología facilita el aprendizaje, su uso sin límites puede afectar la concentración.” ¿Cuál es la intención principal?", "opts": ["Prohibir toda tecnología", "Explicar beneficios y riesgos del uso tecnológico", "Narrar la historia de una computadora", "Convencer de abandonar la escuela"], "ans": 1, "exp": "El autor presenta una visión equilibrada: beneficios y riesgos."}, {"level": "Intermedio", "q": "Texto: “Resulta preocupante que muchos jóvenes compartan información sin verificar su origen.” ¿Qué tono predomina?", "opts": ["Preocupado y crítico", "Festivo", "Neutral absoluto", "Humorístico"], "ans": 0, "exp": "“Resulta preocupante” muestra una valoración crítica."}, {"level": "Intermedio", "q": "¿Cuál opción es un distractor típico en preguntas de intención?", "opts": ["Una opción que se basa en una frase secundaria", "La opción sustentada por todo el texto", "La respuesta con evidencia global", "La idea central del autor"], "ans": 0, "exp": "Los distractores suelen tomar detalles secundarios y hacerlos parecer propósito principal."}, {"level": "Intermedio", "q": "Texto: “El ejercicio no solo mejora la condición física; también reduce estrés y favorece la disciplina.” ¿Qué busca el autor?", "opts": ["Explicar beneficios del ejercicio", "Criticar a los deportistas", "Narrar una competencia", "Advertir que el ejercicio es peligroso"], "ans": 0, "exp": "El autor enumera y explica beneficios."}, {"level": "Intermedio", "q": "Texto: “Si no protegemos los bosques, muchas especies perderán su hábitat.” ¿Cuál es el tono?", "opts": ["De advertencia", "Festivo", "Irónico", "Indiferente"], "ans": 0, "exp": "Plantea una consecuencia negativa futura, por eso advierte."}, {"level": "Intermedio", "q": "Texto: “Algunas políticas públicas han sido insuficientes para resolver el problema de vivienda.” ¿Qué tono predomina?", "opts": ["Crítico", "Humorístico", "Fantasioso", "Celebratorio"], "ans": 0, "exp": "Señala una insuficiencia en políticas públicas."}, {"level": "Intermedio", "q": "¿Qué debes revisar primero para identificar la intención del autor?", "opts": ["El mensaje global del texto", "La opción más larga", "La primera palabra únicamente", "La cantidad de comas"], "ans": 0, "exp": "La intención se obtiene del texto completo, no de un detalle aislado."}, {"level": "Intermedio", "q": "Texto: “Estudiar con anticipación permite distribuir mejor el tiempo y reducir la ansiedad antes del examen.” ¿Qué intención tiene?", "opts": ["Orientar sobre un hábito de estudio", "Burlarse de quien estudia", "Narrar un recuerdo familiar", "Criticar todos los exámenes"], "ans": 0, "exp": "El texto ofrece una recomendación útil de estudio."}, {"level": "Intermedio", "q": "Texto: “La situación no es menor: miles de personas carecen de acceso a agua potable.” ¿Qué tono se percibe?", "opts": ["Serio y preocupado", "Infantil", "Irónico", "Indiferente"], "ans": 0, "exp": "El autor enfatiza la gravedad del problema."}, {"level": "Intermedio", "q": "¿Cuál opción combina correctamente intención y tono? Texto: “Usar casco al viajar en motocicleta disminuye el riesgo de lesiones graves.”", "opts": ["Intención: advertir; tono: preventivo", "Intención: entretener; tono: festivo", "Intención: narrar; tono: misterioso", "Intención: ocultar; tono: irónico"], "ans": 0, "exp": "El texto advierte y previene sobre un riesgo."}, {"level": "Intermedio", "q": "Texto: “No se trata de estudiar más horas, sino de estudiar con mejor estrategia.” ¿Cuál es la intención?", "opts": ["Corregir una idea común y orientar", "Informar una fecha", "Describir un paisaje", "Contar una biografía"], "ans": 0, "exp": "El autor orienta sobre cómo estudiar mejor."}, {"level": "Intermedio", "q": "Texto: “Sorprende que, teniendo tanta información disponible, aún se difundan rumores sin fundamento.” ¿Qué tono predomina?", "opts": ["Crítico", "Neutral", "Festivo", "Admirativo"], "ans": 0, "exp": "La palabra “sorprende” y la crítica a rumores muestran juicio crítico."}, {"level": "Intermedio", "q": "¿Cuál opción indica intención persuasiva?", "opts": ["El autor da razones para cambiar una conducta", "El autor solo define un concepto", "El autor enumera fechas históricas", "El autor describe colores"], "ans": 0, "exp": "Persuadir implica convencer o modificar una conducta."}, {"level": "Intermedio", "q": "Texto: “La lectura es una herramienta poderosa para desarrollar pensamiento crítico.” ¿Qué tono predomina?", "opts": ["Valorativo y positivo", "Agresivo", "Burlón", "Pesimista"], "ans": 0, "exp": "El autor valora positivamente la lectura."}, {"level": "Intermedio", "q": "Texto: “El autor presenta datos de distintas fuentes y evita expresar juicios personales.” ¿Qué tono es más probable?", "opts": ["Neutral", "Alarmista", "Irónico", "Enojado"], "ans": 0, "exp": "La ausencia de juicios personales indica neutralidad."}, {"level": "Intermedio", "q": "Texto: “Debemos actuar ahora para evitar consecuencias irreversibles.” ¿Qué intención principal tiene?", "opts": ["Convencer y advertir", "Entretener", "Narrar una leyenda", "Describir un objeto"], "ans": 0, "exp": "El texto impulsa una acción y advierte consecuencias."}, {"level": "Intermedio", "q": "¿Qué señal puede indicar tono irónico?", "opts": ["Contraste entre lo que se dice y lo que realmente se quiere comunicar", "Uso exclusivo de fechas", "Definiciones técnicas sin opinión", "Lista de nombres"], "ans": 0, "exp": "La ironía implica doble sentido o contraste intencional."}, {"level": "Intermedio", "q": "Texto: “Qué excelente idea fue no estudiar para el examen y esperar un milagro.” ¿Qué tono predomina?", "opts": ["Irónico", "Neutral", "Científico", "Informativo"], "ans": 0, "exp": "La frase dice algo aparentemente positivo para criticar una conducta."}, {"level": "Intermedio", "q": "Texto: “Los datos muestran una reducción del 12% en el consumo de energía.” ¿Qué intención predomina?", "opts": ["Informar", "Amenazar", "Entretener", "Ridiculizar"], "ans": 0, "exp": "Presenta un dato cuantitativo de manera objetiva."}, {"level": "Intermedio", "q": "¿Cuál es la mejor estrategia para responder preguntas de tono?", "opts": ["Buscar palabras con carga emocional o valorativa", "Elegir siempre la opción C", "Responder sin leer el texto", "Tomar solo el título"], "ans": 0, "exp": "El tono se detecta por palabras y actitud del autor."}, {"level": "Avanzado", "q": "Texto: “El autor reconoce que la inteligencia artificial ofrece oportunidades educativas, pero insiste en establecer límites éticos para proteger la privacidad.” ¿Cuál es su intención?", "opts": ["Analizar beneficios y riesgos de la IA", "Rechazar toda innovación tecnológica", "Promover el uso ilimitado de datos personales", "Narrar una historia de ciencia ficción"], "ans": 0, "exp": "El autor presenta una postura equilibrada: oportunidades y límites éticos."}, {"level": "Avanzado", "q": "En el texto anterior, ¿qué tono predomina?", "opts": ["Analítico y prudente", "Alarmista extremo", "Burlón", "Festivo"], "ans": 0, "exp": "Reconoce beneficios, pero advierte límites; por eso es analítico y prudente."}, {"level": "Avanzado", "q": "Texto: “No basta con abrir una biblioteca; es necesario formar lectores capaces de cuestionar, comparar y argumentar.” ¿Qué intención tiene?", "opts": ["Reflexionar sobre el sentido profundo de la lectura", "Describir muebles de una biblioteca", "Informar horarios de servicio", "Contar una anécdota infantil"], "ans": 0, "exp": "El autor reflexiona sobre el papel crítico de la lectura."}, {"level": "Avanzado", "q": "Texto: “La medida fue anunciada como solución definitiva, aunque los datos disponibles apenas muestran resultados iniciales.” ¿Qué tono predomina?", "opts": ["Crítico y cauteloso", "Ingenuo y festivo", "Neutral sin postura", "Humorístico"], "ans": 0, "exp": "El autor cuestiona la idea de “solución definitiva” y pide cautela."}, {"level": "Avanzado", "q": "Texto: “Al presentar solo los beneficios del proyecto y omitir sus costos, el informe ofrece una visión incompleta.” ¿Qué busca el autor?", "opts": ["Criticar la falta de equilibrio del informe", "Promocionar el proyecto sin reservas", "Narrar cómo se imprimió el informe", "Celebrar todos los resultados"], "ans": 0, "exp": "El autor señala una limitación: omitir costos."}, {"level": "Avanzado", "q": "Texto: “Los jóvenes no necesitan menos tecnología, sino más criterio para utilizarla.” ¿Cuál es la intención?", "opts": ["Matizar una postura sobre tecnología y educación", "Prohibir el internet", "Eliminar dispositivos móviles", "Defender el uso sin límites"], "ans": 0, "exp": "El autor no rechaza la tecnología; propone usarla con criterio."}, {"level": "Avanzado", "q": "Texto: “Decir que todos los estudiantes fracasan por falta de disciplina ignora factores sociales, económicos y emocionales.” ¿Qué tono predomina?", "opts": ["Crítico y argumentativo", "Festivo", "Neutral absoluto", "Misterioso"], "ans": 0, "exp": "El autor critica una explicación simplista y aporta otros factores."}, {"level": "Avanzado", "q": "Texto: “La propuesta puede ser útil, pero requiere evaluación constante para evitar efectos no deseados.” ¿Cuál es el tono?", "opts": ["Prudente", "Alarmista extremo", "Burlón", "Triunfalista"], "ans": 0, "exp": "El autor no rechaza la propuesta, pero recomienda cuidado y evaluación."}, {"level": "Avanzado", "q": "Texto: “Afirmar que una sola aplicación resolverá todos los problemas educativos es una simplificación peligrosa.” ¿Qué intención tiene?", "opts": ["Advertir contra una visión exagerada de la tecnología", "Vender una aplicación", "Narrar la historia de una escuela", "Informar una fecha de lanzamiento"], "ans": 0, "exp": "El texto advierte contra una solución simplista y exagerada."}, {"level": "Avanzado", "q": "Texto: “El autor usa preguntas como: ‘¿Qué tipo de sociedad queremos construir?’ ¿Qué tono suele generar este recurso?", "opts": ["Reflexivo", "Burlón", "Festivo", "Indiferente"], "ans": 0, "exp": "Las preguntas profundas invitan a pensar."}, {"level": "Avanzado", "q": "Texto: “Aunque los resultados son prometedores, todavía no permiten afirmar una mejora definitiva.” ¿Qué tono predomina?", "opts": ["Cauteloso y académico", "Alarmista", "Celebratorio sin límites", "Sarcástico"], "ans": 0, "exp": "El autor evita conclusiones absolutas y mantiene prudencia."}, {"level": "Avanzado", "q": "Texto: “La campaña logró visibilidad, pero no modificó de manera significativa los hábitos de la población.” ¿Qué intención tiene?", "opts": ["Evaluar críticamente los alcances de una campaña", "Celebrar un triunfo total", "Entretener al lector", "Describir colores de anuncios"], "ans": 0, "exp": "El autor distingue visibilidad de cambio real, evaluando críticamente."}, {"level": "Avanzado", "q": "Texto: “El problema no está en que los estudiantes lean poco, sino en que rara vez se les enseña a dialogar con lo que leen.” ¿Qué intención tiene?", "opts": ["Replantear la causa de una dificultad lectora", "Culpar exclusivamente a los estudiantes", "Negar la importancia de la lectura", "Narrar un cuento escolar"], "ans": 0, "exp": "El autor cambia el enfoque del problema: no solo cantidad, sino calidad de lectura."}, {"level": "Avanzado", "q": "Texto: “La decisión parece eficiente en términos económicos, pero podría generar costos sociales difíciles de medir.” ¿Qué tono predomina?", "opts": ["Analítico y crítico", "Festivo", "Ingenuo", "Humorístico"], "ans": 0, "exp": "Evalúa ventajas y riesgos, con atención crítica a costos sociales."}, {"level": "Avanzado", "q": "Texto: “No se trata de aceptar o rechazar la tecnología, sino de aprender a usarla con responsabilidad.” ¿Cuál opción integra intención y tono?", "opts": ["Intención: orientar; tono: equilibrado", "Intención: alarmar; tono: desesperado", "Intención: narrar; tono: fantástico", "Intención: ridiculizar; tono: burlón"], "ans": 0, "exp": "El autor orienta hacia un uso responsable con postura equilibrada."}];
+let index=0, score=0, answered=false, userAnswers=[];
+
+function showStudyTips(){document.getElementById('tips').classList.remove('hidden');}
+function hideStudyTips(){document.getElementById('tips').classList.add('hidden');}
+
+function startExam(){
+  document.getElementById('start').classList.add('hidden');
+  document.getElementById('tips').classList.add('hidden');
+  document.getElementById('exam').classList.remove('hidden');
+  showQuestion();
+}
+function showQuestion(){
+  answered=false;
+  const q=questions[index];
+  document.getElementById('counter').textContent=`Pregunta ${index+1} de ${questions.length}`;
+  const level=document.getElementById('level');
+  level.textContent=q.level; level.className='level '+q.level;
+  document.getElementById('progress').style.width=((index)/questions.length*100)+'%';
+  document.getElementById('question').textContent=q.q;
+  const options=document.getElementById('options');
+  options.innerHTML='';
+  q.opts.forEach((op,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option';
+    btn.innerHTML=`${String.fromCharCode(65+i)}) ${op}`;
+    btn.onclick=()=>selectAnswer(i,btn);
+    options.appendChild(btn);
+  });
+  const fb=document.getElementById('feedback');
+  fb.className='feedback'; fb.innerHTML='';
+  document.getElementById('nextBtn').classList.add('hidden');
+}
+function selectAnswer(i,btn){
+  if(answered)return;
+  answered=true;
+  const q=questions[index];
+  const all=document.querySelectorAll('.option');
+  all.forEach((b,k)=>{b.disabled=true;if(k===q.ans)b.classList.add('correct');});
+  const correct=i===q.ans;
+  if(correct)score++; else btn.classList.add('wrong');
+  userAnswers.push({selected:i,correct});
+  const fb=document.getElementById('feedback');
+  fb.className='feedback '+(correct?'ok':'bad');
+  fb.innerHTML=(correct?'✅ <b>Correcto, Jennifer.</b> ':'❌ <b>No es correcta, Jennifer.</b> ')+q.exp;
+  document.getElementById('nextBtn').classList.remove('hidden');
+  document.getElementById('progress').style.width=((index+1)/questions.length*100)+'%';
+}
+function nextQuestion(){
+  index++;
+  if(index>=questions.length)finishExam();
+  else showQuestion();
+}
+function finishExam(){
+  document.getElementById('exam').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  const pct=Math.round(score/questions.length*100);
+  document.getElementById('scoreNum').textContent=score+'/'+questions.length;
+  document.getElementById('percentNum').textContent=pct+'%';
+  let lvl='Inicial',advice='Jennifer, conviene repasar intención y tono con ejemplos resueltos. Enfócate en justificar con evidencia textual.';
+  if(pct>=90){lvl='Excelente';advice='Excelente, Jennifer. Ya distingues intención y tono con gran precisión. Practica textos más largos tipo EXANI-II.';}
+  else if(pct>=75){lvl='Muy bueno';advice='Muy bien, Jennifer. Tu base es sólida. Refuerza preguntas avanzadas y distractores parecidos.';}
+  else if(pct>=60){lvl='En proceso';advice='Vas avanzando. Repasa diferencias entre intención, tono y tema central.';}
+  document.getElementById('levelMsg').textContent=lvl;
+  document.getElementById('finalAdvice').innerHTML='<b>Consejo final:</b> '+advice;
+}
+function resetExam(){
+  index=0; score=0; answered=false; userAnswers=[];
+  document.getElementById('exam').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('review').classList.add('hidden');
+  document.getElementById('review').innerHTML='';
+  document.getElementById('start').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleReview(){
+  const review=document.getElementById('review');
+  if(!review.classList.contains('hidden')){review.classList.add('hidden');return;}
+  review.classList.remove('hidden');
+  review.innerHTML='<h2>Revisión completa</h2>';
+  questions.forEach((q,i)=>{
+    const ua=userAnswers[i];
+    const selected=ua?q.opts[ua.selected]:'Sin responder';
+    const ok=ua&&ua.correct;
+    review.innerHTML+=`<div class="reviewItem"><b>${i+1}. ${q.q}</b><br><span class="small">Nivel: ${q.level}</span><br>Tu respuesta: <b>${selected}</b><br>Correcta: <b>${q.opts[q.ans]}</b><br>${ok?'✅':'❌'} ${q.exp}</div>`;
+  });
+}
+</script>
+</body>
+</html>
