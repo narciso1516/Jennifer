@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CIPRO EXANI-II · Unidades 3 y 4 | Jennifer</title>
+<style>
+:root{
+  --g-blue:#4285F4;
+  --g-red:#EA4335;
+  --g-yellow:#FBBC05;
+  --g-green:#34A853;
+  --gemini-1:#7C3AED;
+  --gemini-2:#4F46E5;
+  --gemini-3:#06B6D4;
+  --ios-bg:#F5F7FB;
+  --ios-card:rgba(255,255,255,.78);
+  --ios-line:rgba(120,130,150,.22);
+  --text:#111827;
+  --muted:#667085;
+  --shadow:0 24px 70px rgba(15,23,42,.14);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(66,133,244,.24), transparent 32%),
+    radial-gradient(circle at 88% 4%, rgba(124,58,237,.25), transparent 32%),
+    radial-gradient(circle at 78% 74%, rgba(52,168,83,.17), transparent 30%),
+    linear-gradient(135deg,#f8fbff,#f6f3ff 45%,#fffdf5);
+  line-height:1.65;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.45) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.45) 1px,transparent 1px);
+  background-size:34px 34px;
+  opacity:.28;
+}
+header{
+  min-height:92vh;
+  display:grid;
+  place-items:center;
+  padding:32px 5%;
+  position:relative;
+}
+.hero{
+  width:min(1160px,100%);
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:42px;
+  padding:42px;
+  background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.55));
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;border-radius:50%;
+  background:conic-gradient(from 40deg,var(--g-blue),var(--gemini-1),var(--g-red),var(--g-yellow),var(--g-green),var(--g-blue));
+  filter:blur(42px);
+  opacity:.22;
+  right:-110px;top:-120px;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:-.02em;
+}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  background:conic-gradient(from 30deg,var(--g-blue),var(--gemini-1),var(--g-red),var(--g-yellow),var(--g-green),var(--g-blue));
+  box-shadow:0 12px 28px rgba(66,133,244,.28);
+}
+.badge{
+  padding:9px 14px;
+  border-radius:999px;
+  background:rgba(66,133,244,.10);
+  border:1px solid rgba(66,133,244,.18);
+  color:#1d4ed8;
+  font-weight:800;
+  font-size:.9rem;
+}
+h1{
+  position:relative;
+  z-index:2;
+  margin:70px 0 16px;
+  font-size:clamp(2.7rem,7vw,6.6rem);
+  letter-spacing:-.07em;
+  line-height:.93;
+}
+.gradient-text{
+  background:linear-gradient(90deg,var(--g-blue),var(--gemini-1),var(--g-red),var(--g-yellow),var(--g-green));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero p{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  font-size:1.25rem;
+  color:#344054;
+}
+.ctas{
+  position:relative;z-index:2;
+  display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;
+}
+.btn{
+  border:0;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 18px;border-radius:18px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,var(--g-blue),var(--gemini-1));
+  box-shadow:0 16px 36px rgba(66,133,244,.28);
+}
+.btn.secondary{
+  color:#111827;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(120,130,150,.25);
+  box-shadow:none;
+}
+main{
+  width:min(1160px,94%);
+  margin:0 auto 90px;
+}
+.ios-nav{
+  position:sticky;
+  top:14px;
+  z-index:40;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:12px;
+  border-radius:24px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.75);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:0 14px 40px rgba(15,23,42,.12);
+  margin-bottom:26px;
+}
+.ios-nav a{
+  text-decoration:none;
+  color:#344054;
+  background:rgba(245,247,251,.75);
+  border:1px solid var(--ios-line);
+  padding:10px 13px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:.93rem;
+}
+.section{
+  margin:24px 0;
+  padding:28px;
+  border-radius:var(--radius);
+  background:var(--ios-card);
+  border:1px solid rgba(255,255,255,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 20px 60px rgba(15,23,42,.10);
+}
+.kicker{
+  display:inline-flex;gap:8px;align-items:center;
+  font-weight:950;
+  color:#1d4ed8;
+  background:rgba(66,133,244,.12);
+  border:1px solid rgba(66,133,244,.18);
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+h2{
+  font-size:clamp(2rem,3vw,3.2rem);
+  letter-spacing:-.045em;
+  line-height:1.05;
+  margin:16px 0 12px;
+}
+h3{
+  font-size:1.32rem;
+  letter-spacing:-.02em;
+  margin:18px 0 8px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+.card{
+  padding:20px;
+  border-radius:24px;
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(120,130,150,.18);
+  box-shadow:0 8px 28px rgba(15,23,42,.07);
+}
+.card h3{margin-top:0}
+.glow-blue{border-top:6px solid var(--g-blue)}
+.glow-purple{border-top:6px solid var(--gemini-1)}
+.glow-green{border-top:6px solid var(--g-green)}
+.glow-yellow{border-top:6px solid var(--g-yellow)}
+.callout{
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(66,133,244,.11),rgba(124,58,237,.11));
+  border:1px solid rgba(66,133,244,.18);
+  margin:16px 0;
+}
+.teacher{
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(52,168,83,.12),rgba(6,182,212,.11));
+  border:1px solid rgba(52,168,83,.22);
+  margin:16px 0;
+}
+.warning{
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(251,188,5,.15),rgba(234,67,53,.08));
+  border:1px solid rgba(251,188,5,.32);
+  margin:16px 0;
+}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  margin:16px 0;
+  overflow:hidden;
+  border-radius:22px;
+  background:white;
+  box-shadow:0 8px 28px rgba(15,23,42,.07);
+}
+th{
+  text-align:left;
+  padding:14px;
+  color:white;
+  background:linear-gradient(90deg,var(--g-blue),var(--gemini-1));
+}
+td{
+  padding:14px;
+  border-bottom:1px solid #eef2f7;
+  vertical-align:top;
+}
+tr:last-child td{border-bottom:0}
+.map{
+  margin:18px 0;
+  display:grid;
+  gap:12px;
+}
+.node{
+  text-align:center;
+  padding:14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(120,130,150,.18);
+  font-weight:950;
+}
+.node.main{
+  color:white;
+  background:linear-gradient(135deg,var(--g-blue),var(--gemini-1));
+  box-shadow:0 14px 30px rgba(66,133,244,.22);
+}
+.arrow{
+  text-align:center;
+  font-size:2rem;
+  font-weight:900;
+  color:var(--gemini-1);
+}
+.textbox{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:22px;
+  padding:18px;
+  font-size:1.03rem;
+}
+.question{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(120,130,150,.18);
+  border-radius:26px;
+  padding:20px;
+  margin:18px 0;
+  box-shadow:0 10px 32px rgba(15,23,42,.08);
+}
+.options{display:grid;gap:10px;margin:10px 0}
+.opt{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:12px;
+  font-weight:750;
+}
+.answer{
+  margin-top:12px;
+  padding:14px;
+  border-radius:18px;
+  background:rgba(52,168,83,.12);
+  border-left:7px solid var(--g-green);
+}
+.just{
+  margin-top:10px;
+  padding:14px;
+  border-radius:18px;
+  background:rgba(251,188,5,.14);
+  border-left:7px solid var(--g-yellow);
+}
+.exercise{
+  background:rgba(255,255,255,.66);
+  border:2px dashed rgba(66,133,244,.45);
+  border-radius:26px;
+  padding:20px;
+  margin:18px 0;
+}
+.blank{
+  display:block;
+  height:42px;
+  border-radius:14px;
+  background:rgba(248,250,252,.82);
+  border:1px solid #d0d5dd;
+  margin:8px 0 14px;
+}
+.tag{
+  display:inline-block;
+  padding:6px 11px;
+  border-radius:999px;
+  font-weight:950;
+  background:rgba(124,58,237,.12);
+  color:var(--gemini-1);
+}
+.famous{
+  padding:20px;
+  border-radius:26px;
+  background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(248,250,252,.76));
+  border:1px solid rgba(120,130,150,.18);
+  margin:14px 0;
+}
+.footer{
+  text-align:center;
+  color:var(--muted);
+  padding:40px 0;
+}
+.floating{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:30;
+  width:60px;height:60px;
+  border-radius:22px;
+  display:grid;place-items:center;
+  color:white;text-decoration:none;
+  background:conic-gradient(from 50deg,var(--g-blue),var(--gemini-1),var(--g-red),var(--g-yellow),var(--g-green),var(--g-blue));
+  box-shadow:0 18px 38px rgba(66,133,244,.28);
+  font-size:1.4rem;
+}
+@media(max-width:720px){
+  header{min-height:auto;padding:22px 4%}
+  .hero{padding:26px;border-radius:30px}
+  h1{margin-top:44px}
+  .section{padding:20px}
+  .ios-nav{position:relative;top:0}
+}
+</style>
+</head>
+<body id="top">
+
+<header>
+  <div class="hero">
+    <div class="topbar">
+      <div class="brand"><div class="logo"></div><span>CIPRO · Jennifer</span></div>
+      <span class="badge">UI estilo iOS · Google + Gemini</span>
+    </div>
+    <h1><span class="gradient-text">Unidades 3 y 4</span><br>EXANI-II</h1>
+    <p>Material didáctico para dominar <b>Intención del autor</b> y <b>Tono del autor</b>. Incluye ejemplos cotidianos, mapas mentales, tablas, textos conocidos, ejercicios resueltos y práctica para Jennifer.</p>
+    <div class="ctas">
+      <a class="btn" href="#unidad3">Empezar unidad 3</a>
+      <a class="btn secondary" href="#resueltos">Ver ejercicios resueltos</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<nav class="ios-nav">
+  <a href="#ruta">Ruta</a>
+  <a href="#unidad3">Unidad 3</a>
+  <a href="#unidad4">Unidad 4</a>
+  <a href="#tablas">Tablas</a>
+  <a href="#famosos">Textos conocidos</a>
+  <a href="#teoria-ampliada">Teoría+</a><a href="#texto-grande-resuelto">Texto resuelto</a><a href="#resueltos">Resueltos</a>
+  <a href="#practica">Práctica</a>
+</nav>
+
+<section id="ruta" class="section">
+  <span class="kicker">Ruta de aprendizaje</span>
+  <h2>Objetivos de las unidades</h2>
+  <div class="grid">
+    <div class="card glow-blue">
+      <h3>Unidad 3 · Intención del autor</h3>
+      <p><b>Objetivo:</b> identificar para qué fue escrito un texto: informar, explicar, convencer, criticar, advertir o entretener.</p>
+    </div>
+    <div class="card glow-purple">
+      <h3>Unidad 4 · Tono del autor</h3>
+      <p><b>Objetivo:</b> reconocer la actitud del autor: neutral, crítico, persuasivo, alarmista, reflexivo, motivador o irónico.</p>
+    </div>
+    <div class="card glow-green">
+      <h3>Meta CIPRO</h3>
+      <p>Que Jennifer no responda por intuición, sino con <b>evidencia textual</b> y justificación clara.</p>
+    </div>
+  </div>
+</section>
+
+<section id="unidad3" class="section">
+  <span class="kicker">Unidad 3</span>
+  <h2>Intención del autor</h2>
+
+  <div class="teacher"><b>Jennifer, recuerda:</b> la intención responde: <b>¿para qué escribió esto el autor?</b></div>
+
+  <h3>Definición</h3>
+  <p>La intención del autor es el propósito principal de un texto. En el EXANI-II puede aparecer en preguntas como: “¿Cuál es la intención principal del autor?”, “¿Qué busca lograr el texto?” o “¿Para qué se escribió el fragmento?”.</p>
+
+  <div class="map">
+    <div class="node main">Texto</div>
+    <div class="arrow">↓</div>
+    <div class="node">¿Para qué fue escrito?</div>
+    <div class="arrow">↓</div>
+    <div class="grid">
+      <div class="node">Informar</div>
+      <div class="node">Explicar</div>
+      <div class="node">Convencer</div>
+      <div class="node">Criticar</div>
+      <div class="node">Advertir</div>
+      <div class="node">Entretener</div>
+    </div>
+  </div>
+
+  <h3>Ejemplos cotidianos</h3>
+  <table>
+    <tr><th>Texto</th><th>Intención</th><th>Justificación</th></tr>
+    <tr><td>“Mañana no habrá clases por mantenimiento.”</td><td>Informar</td><td>Comunica un dato concreto.</td></tr>
+    <tr><td>“Usa cinturón; puede salvarte la vida.”</td><td>Advertir / persuadir</td><td>Busca modificar una conducta.</td></tr>
+    <tr><td>“Leer diariamente mejora el vocabulario.”</td><td>Explicar</td><td>Presenta un beneficio y lo desarrolla.</td></tr>
+    <tr><td>“Es preocupante la falta de hábitos de estudio.”</td><td>Criticar</td><td>Señala un problema.</td></tr>
+  </table>
+</section>
+
+<section id="unidad4" class="section">
+  <span class="kicker">Unidad 4</span>
+  <h2>Tono del autor</h2>
+
+  <div class="teacher"><b>Consejo para Jennifer:</b> la intención es el propósito; el tono es la actitud. No son lo mismo.</div>
+
+  <h3>Definición</h3>
+  <p>El tono del autor es la actitud que transmite al escribir. Se reconoce por las palabras, el énfasis, los juicios y la forma en que presenta la información.</p>
+
+  <div class="map">
+    <div class="node main">Tono del autor</div>
+    <div class="arrow">↓</div>
+    <div class="grid">
+      <div class="node">Neutral: presenta datos</div>
+      <div class="node">Crítico: señala errores</div>
+      <div class="node">Persuasivo: busca convencer</div>
+      <div class="node">Alarmista: enfatiza riesgos</div>
+      <div class="node">Reflexivo: invita a pensar</div>
+      <div class="node">Motivador: anima al lector</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Enunciado</th><th>Tono</th><th>Justificación</th></tr>
+    <tr><td>“El examen consta de reactivos de opción múltiple.”</td><td>Neutral</td><td>Solo informa.</td></tr>
+    <tr><td>“Resulta preocupante responder sin leer instrucciones.”</td><td>Crítico / preocupado</td><td>Emite valoración.</td></tr>
+    <tr><td>“Con constancia puedes mejorar tu resultado.”</td><td>Motivador</td><td>Anima a seguir practicando.</td></tr>
+    <tr><td>“Si no actuamos, las consecuencias serán graves.”</td><td>Alarmista / advertencia</td><td>Resalta riesgo.</td></tr>
+  </table>
+</section>
+
+<section id="tablas" class="section">
+  <span class="kicker">Tablas clave</span>
+  <h2>No confundas intención y tono</h2>
+  <table>
+    <tr><th>Concepto</th><th>Pregunta clave</th><th>Respuesta esperada</th></tr>
+    <tr><td>Intención del autor</td><td>¿Para qué escribe?</td><td>Para informar, convencer, explicar, advertir, criticar o entretener.</td></tr>
+    <tr><td>Tono del autor</td><td>¿Con qué actitud escribe?</td><td>Neutral, crítico, persuasivo, alarmista, reflexivo, motivador.</td></tr>
+  </table>
+
+  <h3>Palabras pista</h3>
+  <table>
+    <tr><th>Si aparece...</th><th>Puede indicar...</th><th>Ejemplo</th></tr>
+    <tr><td>Fechas, cifras, datos</td><td>Intención informativa</td><td>“En 2022 aumentó...”</td></tr>
+    <tr><td>Beneficios y razones</td><td>Intención persuasiva</td><td>“Conviene estudiar porque...”</td></tr>
+    <tr><td>Riesgos y consecuencias</td><td>Advertencia</td><td>“Podría provocar...”</td></tr>
+    <tr><td>Preguntas profundas</td><td>Tono reflexivo</td><td>“¿Qué queremos lograr?”</td></tr>
+    <tr><td>Exageraciones</td><td>Tono alarmista</td><td>“Nada podrá evitarlo...”</td></tr>
+  </table>
+</section>
+
+<section id="famosos" class="section">
+  <span class="kicker">Cultura general</span>
+  <h2>Textos conocidos para analizar</h2>
+
+  <div class="famous">
+    <h3>Don Quijote de la Mancha</h3>
+    <div class="textbox">“En un lugar de la Mancha, de cuyo nombre no quiero acordarme...”</div>
+    <p><b>Intención:</b> iniciar una narración literaria.</p>
+    <p><b>Tono:</b> narrativo, literario, ligeramente irónico.</p>
+    <p><b>Justificación:</b> introduce una historia con voz narrativa particular.</p>
+  </div>
+
+  <div class="famous">
+    <h3>El Principito</h3>
+    <div class="textbox">“Lo esencial es invisible a los ojos.”</div>
+    <p><b>Intención:</b> provocar reflexión.</p>
+    <p><b>Tono:</b> filosófico y reflexivo.</p>
+    <p><b>Justificación:</b> invita a pensar más allá de lo evidente.</p>
+  </div>
+
+  <div class="famous">
+    <h3>Texto cívico</h3>
+    <div class="textbox">“La educación fortalece a las personas y transforma a la sociedad.”</div>
+    <p><b>Intención:</b> valorar y promover la educación.</p>
+    <p><b>Tono:</b> formal, positivo y motivador.</p>
+  </div>
+</section>
+
+<section id="teoria-ampliada" class="section">
+  <span class="kicker">Teoría ampliada</span>
+  <h2>Cómo piensa una lectora experta</h2>
+
+  <div class="callout">
+    <b>Jennifer, una lectora experta no solo pregunta “¿qué dice el texto?”.</b>
+    También pregunta: “¿para qué lo dice?”, “¿cómo lo dice?” y “¿qué efecto quiere provocar en mí como lectora?”.
+  </div>
+
+  <h3>1. Tres niveles de lectura</h3>
+  <table>
+    <tr><th>Nivel</th><th>Pregunta guía</th><th>Qué debes hacer</th></tr>
+    <tr>
+      <td><b>Literal</b></td>
+      <td>¿Qué dice el texto?</td>
+      <td>Localizar información explícita: datos, hechos, nombres, fechas o acciones.</td>
+    </tr>
+    <tr>
+      <td><b>Inferencial</b></td>
+      <td>¿Qué puedo deducir?</td>
+      <td>Unir pistas del texto para llegar a una conclusión lógica.</td>
+    </tr>
+    <tr>
+      <td><b>Crítico</b></td>
+      <td>¿Cuál es la intención y postura del autor?</td>
+      <td>Analizar propósito, tono, argumentos, énfasis y posibles sesgos.</td>
+    </tr>
+  </table>
+
+  <h3>2. Método docente CIPRO para intención y tono</h3>
+  <div class="map">
+    <div class="node main">Lee el texto completo</div>
+    <div class="arrow">↓</div>
+    <div class="node">Identifica el tema principal</div>
+    <div class="arrow">↓</div>
+    <div class="node">Busca palabras con carga emocional o valorativa</div>
+    <div class="arrow">↓</div>
+    <div class="node">Pregunta: ¿quiere informar, convencer, criticar, advertir o reflexionar?</div>
+    <div class="arrow">↓</div>
+    <div class="node">Justifica con una frase del texto</div>
+  </div>
+
+  <h3>3. Errores comunes que Jennifer debe evitar</h3>
+  <div class="grid">
+    <div class="card glow-yellow">
+      <h3>Error 1: confundir tema con intención</h3>
+      <p>El tema es de qué habla el texto. La intención es para qué lo escribió el autor.</p>
+      <p><b>Ejemplo:</b> Tema: redes sociales. Intención: advertir sobre su uso excesivo.</p>
+    </div>
+    <div class="card glow-blue">
+      <h3>Error 2: confundir tono con opinión personal</h3>
+      <p>El tono no es lo que tú sientes al leer; es la actitud que transmite el autor.</p>
+      <p><b>Ejemplo:</b> si usa “preocupante”, “grave” o “urgente”, probablemente hay tono de advertencia o preocupación.</p>
+    </div>
+    <div class="card glow-purple">
+      <h3>Error 3: elegir respuestas exageradas</h3>
+      <p>En EXANI-II suelen aparecer distractores con palabras como “siempre”, “nunca”, “todos” o “nadie”.</p>
+      <p>Generalmente son incorrectos si el texto no los sostiene.</p>
+    </div>
+  </div>
+
+  <h3>4. Cuadro rápido de decisión</h3>
+  <table>
+    <tr><th>Si el texto...</th><th>Probable intención</th><th>Probable tono</th></tr>
+    <tr><td>Presenta datos sin opinar</td><td>Informar</td><td>Neutral</td></tr>
+    <tr><td>Explica causas, procesos o consecuencias</td><td>Explicar</td><td>Didáctico / informativo</td></tr>
+    <tr><td>Da razones para aceptar una idea</td><td>Convencer</td><td>Persuasivo</td></tr>
+    <tr><td>Señala fallas o problemas</td><td>Criticar</td><td>Crítico</td></tr>
+    <tr><td>Habla de riesgos futuros</td><td>Advertir</td><td>Preocupado / alarmista si exagera</td></tr>
+    <tr><td>Invita a pensar sobre un valor o dilema</td><td>Reflexionar</td><td>Reflexivo</td></tr>
+  </table>
+</section>
+
+<section id="texto-grande-resuelto" class="section">
+  <span class="kicker">Ejemplo largo resuelto</span>
+  <h2>Texto informativo tipo EXANI-II</h2>
+
+  <div class="textbox">
+    <p><b>Lectura:</b></p>
+    <p>En los últimos años, el uso de dispositivos móviles se ha convertido en una práctica cotidiana entre adolescentes. Estos aparatos permiten comunicarse, consultar información, tomar clases en línea y organizar actividades escolares. Sin embargo, diversos especialistas han señalado que el uso excesivo del celular puede afectar la concentración, el descanso y la convivencia familiar.</p>
+
+    <p>Uno de los problemas más frecuentes es la dificultad para mantener la atención durante periodos prolongados. Cuando una estudiante revisa constantemente notificaciones, mensajes o redes sociales, interrumpe su proceso de aprendizaje. Aunque cada interrupción parezca breve, la repetición de estas pausas reduce la calidad del estudio y aumenta el tiempo necesario para completar una tarea.</p>
+
+    <p>Otro aspecto importante es el sueño. Muchas personas utilizan el teléfono antes de dormir, lo que puede retrasar el descanso y disminuir la energía al día siguiente. Esta situación puede afectar el rendimiento escolar, especialmente cuando se combina con jornadas académicas extensas o periodos de evaluación.</p>
+
+    <p>No obstante, el problema no está en la tecnología por sí misma, sino en la forma en que se utiliza. Un celular puede ser una herramienta valiosa si se emplea para investigar, organizar tareas, escuchar clases o practicar ejercicios. Por ello, algunos docentes recomiendan establecer horarios de uso, silenciar notificaciones durante el estudio y colocar el dispositivo lejos del área de trabajo cuando no sea necesario.</p>
+
+    <p>La educación digital no consiste en rechazar la tecnología, sino en aprender a usarla con criterio. Formar hábitos responsables permite aprovechar sus beneficios sin descuidar la concentración, la salud y la convivencia. En este sentido, el reto principal para los estudiantes no es abandonar los dispositivos, sino desarrollar autocontrol y tomar decisiones conscientes sobre su uso.</p>
+  </div>
+
+  <div class="question">
+    <span class="tag">Reactivo 1 · Intención del autor</span>
+    <p><b>¿Cuál es la intención principal del texto?</b></p>
+    <div class="options">
+      <div class="opt">A) Prohibir completamente el uso de celulares entre adolescentes.</div>
+      <div class="opt">B) Explicar los riesgos del uso excesivo del celular y proponer un uso responsable.</div>
+      <div class="opt">C) Narrar una historia personal sobre estudiantes y tecnología.</div>
+      <div class="opt">D) Convencer al lector de que la tecnología no tiene beneficios.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> B</div>
+    <div class="just"><b>Justificación:</b> el texto reconoce beneficios del celular, pero advierte sobre problemas como concentración y sueño. Además, propone hábitos responsables. No busca prohibir ni rechazar la tecnología.</div>
+  </div>
+
+  <div class="question">
+    <span class="tag">Reactivo 2 · Tono del autor</span>
+    <p><b>¿Qué tono predomina en el texto?</b></p>
+    <div class="options">
+      <div class="opt">A) Neutral, explicativo y orientador.</div>
+      <div class="opt">B) Agresivo y burlón.</div>
+      <div class="opt">C) Alarmista, porque afirma que todos los celulares destruyen la educación.</div>
+      <div class="opt">D) Festivo, porque celebra el uso recreativo de redes sociales.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> A</div>
+    <div class="just"><b>Justificación:</b> el autor presenta ventajas y riesgos de forma equilibrada. Usa expresiones como “puede afectar”, “algunos docentes recomiendan” y “uso responsable”, lo que muestra un tono explicativo y orientador.</div>
+  </div>
+
+  <div class="question">
+    <span class="tag">Reactivo 3 · Detalle que apoya la intención</span>
+    <p><b>¿Qué elemento del texto ayuda a sostener la idea de usar la tecnología con responsabilidad?</b></p>
+    <div class="options">
+      <div class="opt">A) La afirmación de que los celulares deben desaparecer de las escuelas.</div>
+      <div class="opt">B) La recomendación de establecer horarios de uso y silenciar notificaciones.</div>
+      <div class="opt">C) La idea de que todos los adolescentes tienen bajo rendimiento.</div>
+      <div class="opt">D) La descripción de una familia específica.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> B</div>
+    <div class="just"><b>Justificación:</b> esta opción aparece directamente como una solución práctica. Las demás opciones no son sostenidas por el texto o son exageradas.</div>
+  </div>
+
+  <div class="question">
+    <span class="tag">Reactivo 4 · Inferencia</span>
+    <p><b>¿Qué puede inferirse del último párrafo?</b></p>
+    <div class="options">
+      <div class="opt">A) El autor considera que la tecnología debe eliminarse de la vida escolar.</div>
+      <div class="opt">B) El autor cree que los estudiantes pueden beneficiarse de la tecnología si aprenden a regular su uso.</div>
+      <div class="opt">C) El autor piensa que los docentes no deben intervenir en hábitos digitales.</div>
+      <div class="opt">D) El autor afirma que el celular solo sirve para entretenimiento.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> B</div>
+    <div class="just"><b>Justificación:</b> el último párrafo dice que el reto no es abandonar los dispositivos, sino desarrollar autocontrol. Esto permite inferir que el autor apoya un uso regulado y consciente.</div>
+  </div>
+
+  <div class="teacher">
+    <b>Conclusión docente:</b> este texto combina intención informativa, explicativa y orientadora. El tono no es alarmista porque no exagera; tampoco es negativo porque reconoce beneficios. Es un ejemplo ideal para practicar preguntas tipo EXANI-II.
+  </div>
+</section>
+
+<section id="resueltos" class="section">
+  <span class="kicker">Ejercicios resueltos</span>
+  <h2>Aprender con justificación</h2>
+
+  <div class="question">
+    <span class="tag">Ejercicio 1 · Intención</span>
+    <p class="textbox">La contaminación del aire afecta la salud respiratoria. Por ello, diversas instituciones recomiendan reducir el uso del automóvil y fortalecer el transporte público.</p>
+    <p><b>Pregunta:</b> ¿Cuál es la intención principal del autor?</p>
+    <div class="options">
+      <div class="opt">A) Narrar una historia.</div>
+      <div class="opt">B) Informar y advertir sobre un problema ambiental.</div>
+      <div class="opt">C) Entretener con una anécdota.</div>
+      <div class="opt">D) Describir tipos de transporte.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> B</div>
+    <div class="just"><b>Justificación:</b> presenta un problema, consecuencias y recomendación. Por eso informa y advierte.</div>
+  </div>
+
+  <div class="question">
+    <span class="tag">Ejercicio 2 · Tono</span>
+    <p class="textbox">Resulta preocupante que muchos estudiantes respondan sin leer cuidadosamente las instrucciones.</p>
+    <p><b>Pregunta:</b> ¿Qué tono predomina?</p>
+    <div class="options">
+      <div class="opt">A) Humorístico.</div>
+      <div class="opt">B) Crítico y preocupado.</div>
+      <div class="opt">C) Neutral.</div>
+      <div class="opt">D) Festivo.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> B</div>
+    <div class="just"><b>Justificación:</b> “preocupante” muestra valoración y preocupación.</div>
+  </div>
+
+  <div class="question">
+    <span class="tag">Ejercicio 3 · Integración</span>
+    <p class="textbox">Estudiar veinte minutos diarios puede ser más efectivo que estudiar muchas horas un solo día, porque la práctica constante fortalece la memoria.</p>
+    <p><b>Pregunta:</b> ¿Cuál es la intención y el tono?</p>
+    <div class="options">
+      <div class="opt">A) Persuadir; tono orientador.</div>
+      <div class="opt">B) Entretener; tono humorístico.</div>
+      <div class="opt">C) Criticar; tono agresivo.</div>
+      <div class="opt">D) Narrar; tono misterioso.</div>
+    </div>
+    <div class="answer"><b>Respuesta correcta:</b> A</div>
+    <div class="just"><b>Justificación:</b> busca convencer sobre un método de estudio y usa tono de consejo.</div>
+  </div>
+</section>
+
+<section id="practica" class="section">
+  <span class="kicker">Práctica para Jennifer</span>
+  <h2>Resolver y justificar</h2>
+
+  <div class="exercise">
+    <h3>Ejercicio A</h3>
+    <p class="textbox">El uso excesivo de redes sociales puede afectar la concentración. Por ello, especialistas recomiendan establecer horarios de uso.</p>
+    <p><b>1. Intención del autor:</b></p><span class="blank"></span>
+    <p><b>2. Tono del autor:</b></p><span class="blank"></span>
+    <p><b>3. Pista textual:</b></p><span class="blank"></span>
+  </div>
+
+  <div class="exercise">
+    <h3>Ejercicio B</h3>
+    <p class="textbox">La lectura no solo amplía el vocabulario; también permite comprender mejor distintos puntos de vista.</p>
+    <p><b>1. ¿El texto informa, convence, critica o entretiene?</b></p><span class="blank"></span>
+    <p><b>2. ¿Qué tono predomina?</b></p><span class="blank"></span>
+    <p><b>3. Justificación:</b></p><span class="blank"></span>
+  </div>
+
+  <div class="warning">
+    <b>Regla final:</b> antes de responder, Jennifer debe preguntarse:
+    <br><br>
+    <b>1.</b> ¿Para qué escribió esto el autor? → intención.
+    <br>
+    <b>2.</b> ¿Qué actitud transmite? → tono.
+  </div>
+</section>
+
+<div class="footer">Material CIPRO · Preparación EXANI-II · Jennifer Merino Sosa</div>
+</main>
+<a class="floating" href="#top">↑</a>
+</body>
+</html>
