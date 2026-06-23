@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jennifer | Menú maestro EXANI-II</title>
+<style>
+:root{
+  --blue:#1a73e8;--purple:#9334e6;--pink:#d93075;--yellow:#f9ab00;--green:#188038;--red:#d93025;
+  --ink:#eaf1ff;--text:#202124;--muted:#64748b;--card:rgba(255,255,255,.82);--line:rgba(226,232,240,.88);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);background:
+  radial-gradient(circle at 10% 0%,rgba(26,115,232,.42),transparent 34%),
+  radial-gradient(circle at 88% 8%,rgba(217,48,117,.32),transparent 33%),
+  radial-gradient(circle at 50% 110%,rgba(249,171,0,.26),transparent 34%),
+  linear-gradient(135deg,#07111f 0%,#172554 36%,#4c1d95 66%,#831843 100%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.42;
+  background-image:radial-gradient(#fff 1px,transparent 1px);background-size:34px 34px;
+  mask-image:linear-gradient(to bottom,#000,transparent 78%);
+}
+.wrap{width:min(1180px,100%);margin:auto;padding:24px 18px 56px;position:relative}
+.hero{
+  border:1px solid rgba(255,255,255,.22);background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  color:#fff;border-radius:34px;padding:30px;box-shadow:0 30px 90px rgba(0,0,0,.35);backdrop-filter:blur(18px);overflow:hidden;position:relative;
+}
+.hero:after{content:"";position:absolute;inset:-80px;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.33),transparent 28%),radial-gradient(circle at 76% 20%,rgba(255,255,255,.20),transparent 30%);animation:float 10s ease-in-out infinite alternate}
+@keyframes float{to{transform:translateY(24px) scale(1.04)}}
+.hero>*{position:relative;z-index:1}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.18);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.05em}
+h1{font-size:clamp(42px,8vw,88px);line-height:.88;margin:18px 0 12px;letter-spacing:-.075em;max-width:850px}
+.hero p{font-size:clamp(16px,2vw,20px);line-height:1.5;color:rgba(255,255,255,.88);max-width:820px;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+a.btn,button.btn{appearance:none;border:0;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple),var(--pink));border-radius:18px;padding:13px 16px;font-weight:950;box-shadow:0 16px 34px rgba(147,52,230,.35);cursor:pointer;font-size:14px}
+a.btn.secondary,button.btn.secondary{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);box-shadow:none}
+.panel{margin-top:16px;background:var(--card);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:16px;box-shadow:0 22px 60px rgba(15,23,42,.18);backdrop-filter:blur(18px)}
+.toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;position:sticky;top:10px;z-index:20}
+.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:18px;min-height:52px;padding:0 16px;font-size:15px;font-weight:800;outline:none;box-shadow:0 12px 28px rgba(15,23,42,.08)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{border:1px solid var(--line);background:#fff;color:#174ea6;border-radius:999px;padding:10px 12px;font-size:12px;font-weight:950;cursor:pointer}
+.chip.active{color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:15px}
+.stat b{display:block;font-size:28px;letter-spacing:-.05em}
+.stat span{font-size:11px;text-transform:uppercase;font-weight:950;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:0 14px 36px rgba(15,23,42,.10);transition:.25s transform,.25s box-shadow,.25s border-color;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 58px rgba(15,23,42,.16);border-color:rgba(26,115,232,.35)}
+.card:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink),var(--yellow),var(--green))}
+.badge{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef3fe;color:#174ea6;font-size:11px;font-weight:950;margin-bottom:10px}
+.card h2{font-size:21px;line-height:1.05;margin:0 0 9px;letter-spacing:-.045em}
+.meta{color:var(--muted);font-size:12px;font-weight:850;line-height:1.35;margin-bottom:12px}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.links a{text-align:center;text-decoration:none;border-radius:15px;padding:11px 10px;font-size:12px;font-weight:950}
+.open{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
+.commit{background:#f8fafc;color:#334155;border:1px solid var(--line)}
+.note{font-size:13px;line-height:1.45;color:#475569;background:#f8fbff;border:1px dashed #c7d2fe;border-radius:18px;padding:12px;margin-top:12px}
+.section-title{color:#fff;margin:30px 0 10px;font-size:28px;letter-spacing:-.04em}
+.footer{color:rgba(255,255,255,.72);font-size:13px;line-height:1.5;margin-top:24px;text-align:center}
+.hidden{display:none!important}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr}}
+@media(max-width:580px){.wrap{padding:12px 10px 40px}.hero{padding:22px;border-radius:28px}.grid{grid-template-columns:1fr}.links{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <span class="kicker">📚 Jennifer · EXANI-II · UPV Pedagogía</span>
+    <h1>Menú maestro de estudio</h1>
+    <p>Acceso rápido a las versiones y materiales interactivos que se han ido construyendo en el repositorio. El archivo actual del repo sigue siendo <b>index.html</b>; las versiones anteriores se abren desde su commit para recuperar cada recurso.</p>
+    <div class="actions">
+      <a class="btn" href="https://narciso1516.github.io/Jennifer/" target="_blank" rel="noopener">Abrir página actual</a>
+      <a class="btn secondary" href="https://github.com/narciso1516/Jennifer" target="_blank" rel="noopener">Ver repositorio</a>
+    </div>
+  </section>
+
+  <section class="panel toolbar">
+    <input id="q" class="search" placeholder="Buscar: simulacro, matemáticas, lectura, porcentajes, lengua..." oninput="render()">
+    <button class="btn" onclick="clearSearch()">Limpiar</button>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b id="countAll">32</b><span>recursos detectados</span></div>
+    <div class="stat"><b>1</b><span>archivo vivo: index.html</span></div>
+    <div class="stat"><b>2026</b><span>historial recuperado</span></div>
+    <div class="stat"><b>UPV</b><span>ruta pedagogía</span></div>
+  </section>
+
+  <h2 class="section-title">Recursos</h2>
+  <section class="grid" id="grid"></section>
+
+  <div class="footer">
+    Menú generado para ordenar el repositorio <b>narciso1516/Jennifer</b>. Para conservar cada página como archivo independiente, conviene duplicar las versiones históricas en archivos como <b>quiz-mental.html</b>, <b>simulacro-upv.html</b> y <b>guia-matematicas.html</b>.
+  </div>
+</div>
+<script>
+const resources = [{"sha": "f4e2e7a89964aa2433eaf091b665302edd897e8f", "message": "Subir quiz mental Jennifer con temporizador", "title": "quiz mental con temporizador", "date": "2026-06-22 22:00", "category": "Quiz / Calentamiento", "preview": "https://raw.githack.com/narciso1516/Jennifer/f4e2e7a89964aa2433eaf091b665302edd897e8f/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/f4e2e7a89964aa2433eaf091b665302edd897e8f", "blob": "https://github.com/narciso1516/Jennifer/blob/f4e2e7a89964aa2433eaf091b665302edd897e8f/index.html"}, {"sha": "ddfae327d56deacf0563bdf08edd3a80ddd1530a", "message": "Subir ejercicios resueltos Jennifer", "title": "ejercicios resueltos", "date": "2026-06-22 20:20", "category": "Ejercicios resueltos", "preview": "https://raw.githack.com/narciso1516/Jennifer/ddfae327d56deacf0563bdf08edd3a80ddd1530a/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/ddfae327d56deacf0563bdf08edd3a80ddd1530a", "blob": "https://github.com/narciso1516/Jennifer/blob/ddfae327d56deacf0563bdf08edd3a80ddd1530a/index.html"}, {"sha": "b0f335c3832501a370f9e40e370eaff38f32e697", "message": "Subir taller Jennifer interfaz iPhone", "title": "taller interfaz iPhone", "date": "2026-06-22 19:51", "category": "Taller iPhone", "preview": "https://raw.githack.com/narciso1516/Jennifer/b0f335c3832501a370f9e40e370eaff38f32e697/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/b0f335c3832501a370f9e40e370eaff38f32e697", "blob": "https://github.com/narciso1516/Jennifer/blob/b0f335c3832501a370f9e40e370eaff38f32e697/index.html"}, {"sha": "2ff63ac6d53bff015f5197905cc08b6a74a5f565", "message": "Subir examen Jennifer modo reto", "title": "examen modo reto", "date": "2026-06-22 17:32", "category": "Examen modo reto", "preview": "https://raw.githack.com/narciso1516/Jennifer/2ff63ac6d53bff015f5197905cc08b6a74a5f565/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/2ff63ac6d53bff015f5197905cc08b6a74a5f565", "blob": "https://github.com/narciso1516/Jennifer/blob/2ff63ac6d53bff015f5197905cc08b6a74a5f565/index.html"}, {"sha": "6b4cdee03fe17a28c0362cfb4920afe03a0d508b", "message": "Actualizar examen aritmética Jennifer modo reto", "title": "examen aritmética modo reto", "date": "2026-06-22 17:18", "category": "Aritmética", "preview": "https://raw.githack.com/narciso1516/Jennifer/6b4cdee03fe17a28c0362cfb4920afe03a0d508b/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/6b4cdee03fe17a28c0362cfb4920afe03a0d508b", "blob": "https://github.com/narciso1516/Jennifer/blob/6b4cdee03fe17a28c0362cfb4920afe03a0d508b/index.html"}, {"sha": "ce4fea6fce21191c92998512686cb438d462a48e", "message": "Agregar guia de fracciones y porcentajes para Jennifer", "title": "guia de fracciones y porcentajes", "date": "2026-06-22 15:38", "category": "Guía", "preview": "https://raw.githack.com/narciso1516/Jennifer/ce4fea6fce21191c92998512686cb438d462a48e/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/ce4fea6fce21191c92998512686cb438d462a48e", "blob": "https://github.com/narciso1516/Jennifer/blob/ce4fea6fce21191c92998512686cb438d462a48e/index.html"}, {"sha": "b94f66df6a0d122bb7ee06ec21c57367601d58e0", "message": "Agregar guia ampliada de matematicas para Jennifer", "title": "guia ampliada de matematicas", "date": "2026-06-22 07:14", "category": "Matemáticas", "preview": "https://raw.githack.com/narciso1516/Jennifer/b94f66df6a0d122bb7ee06ec21c57367601d58e0/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/b94f66df6a0d122bb7ee06ec21c57367601d58e0", "blob": "https://github.com/narciso1516/Jennifer/blob/b94f66df6a0d122bb7ee06ec21c57367601d58e0/index.html"}, {"sha": "a15cf1b05110e11802d915bd9e7d3165de6067d7", "message": "Agregar simulacro cuento testimonial para Jennifer", "title": "simulacro cuento testimonial", "date": "2026-06-21 10:41", "category": "Lectura", "preview": "https://raw.githack.com/narciso1516/Jennifer/a15cf1b05110e11802d915bd9e7d3165de6067d7/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/a15cf1b05110e11802d915bd9e7d3165de6067d7", "blob": "https://github.com/narciso1516/Jennifer/blob/a15cf1b05110e11802d915bd9e7d3165de6067d7/index.html"}, {"sha": "d99bcf22e668d675acd037ee518858cdb3d1ddd6", "message": "Agregar refuerzo explicado de 15 preguntas para Jennifer", "title": "refuerzo explicado de 15 preguntas", "date": "2026-06-21 08:29", "category": "Refuerzo", "preview": "https://raw.githack.com/narciso1516/Jennifer/d99bcf22e668d675acd037ee518858cdb3d1ddd6/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/d99bcf22e668d675acd037ee518858cdb3d1ddd6", "blob": "https://github.com/narciso1516/Jennifer/blob/d99bcf22e668d675acd037ee518858cdb3d1ddd6/index.html"}, {"sha": "5d65ef5084f24aee0e8516ec66d7799092415144", "message": "Agregar refuerzo interactivo de errores para Jennifer", "title": "refuerzo interactivo de errores", "date": "2026-06-20 16:19", "category": "Errores", "preview": "https://raw.githack.com/narciso1516/Jennifer/5d65ef5084f24aee0e8516ec66d7799092415144/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/5d65ef5084f24aee0e8516ec66d7799092415144", "blob": "https://github.com/narciso1516/Jennifer/blob/5d65ef5084f24aee0e8516ec66d7799092415144/index.html"}, {"sha": "7b3fded490d1b79002b3f6eb52a5cb1fd3922268", "message": "Actualizar simulacro interactivo para Jennifer", "title": "simulacro interactivo", "date": "2026-06-20 13:59", "category": "Simulacro", "preview": "https://raw.githack.com/narciso1516/Jennifer/7b3fded490d1b79002b3f6eb52a5cb1fd3922268/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/7b3fded490d1b79002b3f6eb52a5cb1fd3922268", "blob": "https://github.com/narciso1516/Jennifer/blob/7b3fded490d1b79002b3f6eb52a5cb1fd3922268/index.html"}, {"sha": "ced269cb9f86640c97fd6b4531c17b95b76fe037", "message": "Agregar examen interactivo de estructura de la lengua para Jennifer", "title": "examen interactivo de estructura de la lengua", "date": "2026-06-19 22:50", "category": "Lengua", "preview": "https://raw.githack.com/narciso1516/Jennifer/ced269cb9f86640c97fd6b4531c17b95b76fe037/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/ced269cb9f86640c97fd6b4531c17b95b76fe037", "blob": "https://github.com/narciso1516/Jennifer/blob/ced269cb9f86640c97fd6b4531c17b95b76fe037/index.html"}, {"sha": "c219c4471a85597281a3ff1788abd751fd1130fa", "message": "Agregar simulacro UPV dificil para Jennifer", "title": "simulacro UPV dificil", "date": "2026-06-19 19:24", "category": "Simulacro UPV", "preview": "https://raw.githack.com/narciso1516/Jennifer/c219c4471a85597281a3ff1788abd751fd1130fa/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/c219c4471a85597281a3ff1788abd751fd1130fa", "blob": "https://github.com/narciso1516/Jennifer/blob/c219c4471a85597281a3ff1788abd751fd1130fa/index.html"}, {"sha": "b3a8d9c719bdf9f9cc4bec83ff6629ea99de0470", "message": "Agregar simulacro UPV Jennifer optimizado para iPhone", "title": "simulacro UPV optimizado para iPhone", "date": "2026-06-19 15:59", "category": "UPV iPhone", "preview": "https://raw.githack.com/narciso1516/Jennifer/b3a8d9c719bdf9f9cc4bec83ff6629ea99de0470/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/b3a8d9c719bdf9f9cc4bec83ff6629ea99de0470", "blob": "https://github.com/narciso1516/Jennifer/blob/b3a8d9c719bdf9f9cc4bec83ff6629ea99de0470/index.html"}, {"sha": "6c46e9e70626ea3d3b19ba978c9238e865804696", "message": "Prueba de carga Jennifer", "title": "Prueba de carga", "date": "2026-06-19 14:11", "category": "Prueba", "preview": "https://raw.githack.com/narciso1516/Jennifer/6c46e9e70626ea3d3b19ba978c9238e865804696/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/6c46e9e70626ea3d3b19ba978c9238e865804696", "blob": "https://github.com/narciso1516/Jennifer/blob/6c46e9e70626ea3d3b19ba978c9238e865804696/index.html"}, {"sha": "576eebbb1ca32617bf636d73356ddbaac4967a59", "message": "Upload exact Jennifer EXANI-II game file", "title": "Jennifer EXANI-II game file", "date": "2026-06-19 13:29", "category": "Juego EXANI", "preview": "https://raw.githack.com/narciso1516/Jennifer/576eebbb1ca32617bf636d73356ddbaac4967a59/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/576eebbb1ca32617bf636d73356ddbaac4967a59", "blob": "https://github.com/narciso1516/Jennifer/blob/576eebbb1ca32617bf636d73356ddbaac4967a59/index.html"}, {"sha": "e4572e29343c430fe7d1e78348474efb7f5bf912", "message": "Set Jennifer EXANI Quest as homepage", "title": "EXANI Quest as homepage", "date": "2026-06-19 13:26", "category": "Homepage Quest", "preview": "https://raw.githack.com/narciso1516/Jennifer/e4572e29343c430fe7d1e78348474efb7f5bf912/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/e4572e29343c430fe7d1e78348474efb7f5bf912", "blob": "https://github.com/narciso1516/Jennifer/blob/e4572e29343c430fe7d1e78348474efb7f5bf912/index.html"}, {"sha": "ae61e5ca37e434681c9e61c2a2883a9de6bab035", "message": "Add Jennifer EXANI-II iPhone game", "title": "EXANI-II iPhone game", "date": "2026-06-19 13:22", "category": "Juego iPhone", "preview": "https://raw.githack.com/narciso1516/Jennifer/ae61e5ca37e434681c9e61c2a2883a9de6bab035/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/ae61e5ca37e434681c9e61c2a2883a9de6bab035", "blob": "https://github.com/narciso1516/Jennifer/blob/ae61e5ca37e434681c9e61c2a2883a9de6bab035/index.html"}, {"sha": "dc18e596553c13546f078d5da3973c77cb0f5a10", "message": "Agregar clase temas 14 15 16 para Jennifer", "title": "clase temas 14 15 16", "date": "2026-06-18 15:45", "category": "Clase 14-16", "preview": "https://raw.githack.com/narciso1516/Jennifer/dc18e596553c13546f078d5da3973c77cb0f5a10/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/dc18e596553c13546f078d5da3973c77cb0f5a10", "blob": "https://github.com/narciso1516/Jennifer/blob/dc18e596553c13546f078d5da3973c77cb0f5a10/index.html"}, {"sha": "02e478b8fec45057c13f81796b02f3370c72a273", "message": "Agregar examen seleccion modo 100 para Jennifer", "title": "examen seleccion modo 100", "date": "2026-06-17 16:14", "category": "Examen 100", "preview": "https://raw.githack.com/narciso1516/Jennifer/02e478b8fec45057c13f81796b02f3370c72a273/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/02e478b8fec45057c13f81796b02f3370c72a273", "blob": "https://github.com/narciso1516/Jennifer/blob/02e478b8fec45057c13f81796b02f3370c72a273/index.html"}, {"sha": "b3c03968b0b4071c9115f3b5e4d7813c157279d8", "message": "Agregar clase completa temas 11 12 13 para Jennifer", "title": "clase completa temas 11 12 13", "date": "2026-06-16 21:28", "category": "Clase 11-13", "preview": "https://raw.githack.com/narciso1516/Jennifer/b3c03968b0b4071c9115f3b5e4d7813c157279d8/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/b3c03968b0b4071c9115f3b5e4d7813c157279d8", "blob": "https://github.com/narciso1516/Jennifer/blob/b3c03968b0b4071c9115f3b5e4d7813c157279d8/index.html"}, {"sha": "fc1a9c27374da4da9edab0545a3b6e6ce051f493", "message": "Agregar material temas 11 12 13 para Jennifer", "title": "material temas 11 12 13", "date": "2026-06-16", "category": "Material 11-13", "preview": "https://raw.githack.com/narciso1516/Jennifer/fc1a9c27374da4da9edab0545a3b6e6ce051f493/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/fc1a9c27374da4da9edab0545a3b6e6ce051f493", "blob": "https://github.com/narciso1516/Jennifer/blob/fc1a9c27374da4da9edab0545a3b6e6ce051f493/index.html"}, {"sha": "8a7797d2bae8bfba5c9ec0d23d57e9241a9a040a", "message": "Agregar examen 51-75 con reinicio al fallar para Jennifer", "title": "examen 51-75 con reinicio al fallar", "date": "2026-06-16", "category": "Examen 51-75", "preview": "https://raw.githack.com/narciso1516/Jennifer/8a7797d2bae8bfba5c9ec0d23d57e9241a9a040a/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/8a7797d2bae8bfba5c9ec0d23d57e9241a9a040a", "blob": "https://github.com/narciso1516/Jennifer/blob/8a7797d2bae8bfba5c9ec0d23d57e9241a9a040a/index.html"}, {"sha": "d6a7fb0193b6d57c17f5fbd67ca45eecc7274837", "message": "Agregar examen 100 preguntas temas 8 9 10 para Jennifer", "title": "examen 100 preguntas temas 8 9 10", "date": "2026-06-16", "category": "Examen 8-10", "preview": "https://raw.githack.com/narciso1516/Jennifer/d6a7fb0193b6d57c17f5fbd67ca45eecc7274837/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/d6a7fb0193b6d57c17f5fbd67ca45eecc7274837", "blob": "https://github.com/narciso1516/Jennifer/blob/d6a7fb0193b6d57c17f5fbd67ca45eecc7274837/index.html"}, {"sha": "20e42859ce5ed91aedaa19ae4b332a89748f7386", "message": "Agregar material explicado temas 8 9 10 CENEVAL para Jennifer", "title": "material explicado temas 8 9 10 CENEVAL", "date": "2026-06-16", "category": "Material 8-10", "preview": "https://raw.githack.com/narciso1516/Jennifer/20e42859ce5ed91aedaa19ae4b332a89748f7386/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/20e42859ce5ed91aedaa19ae4b332a89748f7386", "blob": "https://github.com/narciso1516/Jennifer/blob/20e42859ce5ed91aedaa19ae4b332a89748f7386/index.html"}, {"sha": "34b277564d2a9570c95f8241a8075d151696ca37", "message": "Agregar refuerzo de 25 preguntas para errores de Jennifer", "title": "refuerzo de 25 preguntas para errores", "date": "2026-06-16", "category": "Refuerzo errores", "preview": "https://raw.githack.com/narciso1516/Jennifer/34b277564d2a9570c95f8241a8075d151696ca37/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/34b277564d2a9570c95f8241a8075d151696ca37", "blob": "https://github.com/narciso1516/Jennifer/blob/34b277564d2a9570c95f8241a8075d151696ca37/index.html"}, {"sha": "2bd0dd732594814fbce8ac3a21541cb3fa25804a", "message": "Agregar examen 80 preguntas temas 6 y 7 para Jennifer", "title": "examen 80 preguntas temas 6 y 7", "date": "2026-06-16", "category": "Examen 6-7", "preview": "https://raw.githack.com/narciso1516/Jennifer/2bd0dd732594814fbce8ac3a21541cb3fa25804a/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/2bd0dd732594814fbce8ac3a21541cb3fa25804a", "blob": "https://github.com/narciso1516/Jennifer/blob/2bd0dd732594814fbce8ac3a21541cb3fa25804a/index.html"}, {"sha": "f967188ff44550429d831066800edeb22f1e4dd4", "message": "Agregar temas 6 y 7 con texto interactivo para Jennifer", "title": "temas 6 y 7 con texto interactivo", "date": "2026-06-16", "category": "Temas 6-7", "preview": "https://raw.githack.com/narciso1516/Jennifer/f967188ff44550429d831066800edeb22f1e4dd4/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/f967188ff44550429d831066800edeb22f1e4dd4", "blob": "https://github.com/narciso1516/Jennifer/blob/f967188ff44550429d831066800edeb22f1e4dd4/index.html"}, {"sha": "a9eac27c2d095afd564a4530b50fce3009662996", "message": "Agregar menu de 3 lecturas EXANI para Jennifer", "title": "menu de 3 lecturas EXANI", "date": "2026-06-16", "category": "Lecturas", "preview": "https://raw.githack.com/narciso1516/Jennifer/a9eac27c2d095afd564a4530b50fce3009662996/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/a9eac27c2d095afd564a4530b50fce3009662996", "blob": "https://github.com/narciso1516/Jennifer/blob/a9eac27c2d095afd564a4530b50fce3009662996/index.html"}, {"sha": "0ea8d8ecb2f3cc6c7d0f875c2587fe4fd72590e1", "message": "Agregar lecturas latinoamericanas adaptadas para Jennifer", "title": "lecturas latinoamericanas adaptadas", "date": "2026-06-16", "category": "Lecturas", "preview": "https://raw.githack.com/narciso1516/Jennifer/0ea8d8ecb2f3cc6c7d0f875c2587fe4fd72590e1/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/0ea8d8ecb2f3cc6c7d0f875c2587fe4fd72590e1", "blob": "https://github.com/narciso1516/Jennifer/blob/0ea8d8ecb2f3cc6c7d0f875c2587fe4fd72590e1/index.html"}, {"sha": "68ba575fcdd5496313a5ad9dea02984631eb97ff", "message": "Agregar examen interactivo para Jennifer", "title": "examen interactivo", "date": "2026-06-16", "category": "Examen interactivo", "preview": "https://raw.githack.com/narciso1516/Jennifer/68ba575fcdd5496313a5ad9dea02984631eb97ff/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/68ba575fcdd5496313a5ad9dea02984631eb97ff", "blob": "https://github.com/narciso1516/Jennifer/blob/68ba575fcdd5496313a5ad9dea02984631eb97ff/index.html"}, {"sha": "26cfcc854c43b668b0ecd1a0005b8f98bb72fe95", "message": "Agregar guía EXANI-II para Jennifer", "title": "guía EXANI-II", "date": "2026-06-16", "category": "Guía EXANI", "preview": "https://raw.githack.com/narciso1516/Jennifer/26cfcc854c43b668b0ecd1a0005b8f98bb72fe95/index.html", "commit": "https://github.com/narciso1516/Jennifer/commit/26cfcc854c43b668b0ecd1a0005b8f98bb72fe95", "blob": "https://github.com/narciso1516/Jennifer/blob/26cfcc854c43b668b0ecd1a0005b8f98bb72fe95/index.html"}];
+let active = "Todos";
+const categories = ["Todos","Quiz / Calentamiento","Ejercicios resueltos","Simulacro","Matemáticas","Lectura","Lengua","Guía","Refuerzo","Examen"];
+function norm(s){return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function categoryMatch(item, cat){
+  if(cat==="Todos") return true;
+  const hay = norm(item.category+" "+item.message+" "+item.title);
+  if(cat==="Simulacro") return hay.includes("simulacro") || hay.includes("upv");
+  if(cat==="Matemáticas") return hay.includes("matemat") || hay.includes("aritmet") || hay.includes("fracciones") || hay.includes("porcentajes");
+  if(cat==="Lectura") return hay.includes("lectura") || hay.includes("cuento") || hay.includes("latinoamerican");
+  if(cat==="Lengua") return hay.includes("lengua") || hay.includes("estructura");
+  if(cat==="Guía") return hay.includes("guia");
+  if(cat==="Refuerzo") return hay.includes("refuerzo") || hay.includes("errores");
+  if(cat==="Examen") return hay.includes("examen");
+  return item.category===cat;
+}
+function renderChips(){
+  document.getElementById("chips").innerHTML = categories.map(c=>`<button class="chip ${c===active?'active':''}" onclick="active='${c}';render()">${c}</button>`).join("");
+}
+function render(){
+  renderChips();
+  const q = norm(document.getElementById("q").value);
+  const filtered = resources.filter(item => categoryMatch(item, active) && norm(item.title+" "+item.message+" "+item.category+" "+item.date).includes(q));
+  document.getElementById("countAll").textContent = filtered.length;
+  document.getElementById("grid").innerHTML = filtered.map((item,idx)=>`
+    <article class="card">
+      <span class="badge">${item.category}</span>
+      <h2>${item.title}</h2>
+      <div class="meta">🗓️ ${item.date} · SHA ${item.sha.slice(0,7)} · versión histórica de index.html</div>
+      <div class="note">Recurso recuperado del historial: <b>${item.message}</b>.</div>
+      <div class="links">
+        <a class="open" href="${item.preview}" target="_blank" rel="noopener">Abrir interactivo</a>
+        <a class="commit" href="${item.commit}" target="_blank" rel="noopener">Ver commit</a>
+      </div>
+      <div class="links">
+        <a class="commit" href="${item.blob}" target="_blank" rel="noopener">Ver código HTML</a>
+        <a class="commit" href="https://github.com/narciso1516/Jennifer/tree/${item.sha}" target="_blank" rel="noopener">Ver repo aquí</a>
+      </div>
+    </article>`).join("") || `<article class="card"><h2>No encontré resultados</h2><p class="meta">Prueba con otra palabra: simulacro, examen, lectura, matemáticas o guía.</p></article>`;
+}
+function clearSearch(){document.getElementById("q").value="";active="Todos";render();}
+render();
+</script>
+</body>
+</html>
