@@ -3,645 +3,272 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juanito | Fracciones y valor de x</title>
+  <title>Juanito | 50 ejercicios de fracciones con x</title>
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --ink: #111827;
-      --muted: #64748b;
-      --navy: #101827;
-      --blue: #2563eb;
-      --blue-soft: #e8f0ff;
-      --green: #16a34a;
-      --green-soft: #e9f9ee;
-      --orange: #ea580c;
-      --orange-soft: #fff2e8;
-      --red: #dc2626;
-      --red-soft: #fee2e2;
-      --line: #d9e0ea;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
-      --radius: 24px;
+    :root{
+      --bg:#f5f7fb;--card:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#d9e0ea;
+      --navy:#101827;--blue:#2563eb;--blue-soft:#e8f0ff;--green:#16a34a;--green-soft:#e9f9ee;
+      --red:#dc2626;--red-soft:#fee2e2;--amber:#d97706;--amber-soft:#fff7ed;--shadow:0 18px 45px rgba(15,23,42,.10);--radius:24px;
     }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #eaf2ff, transparent 35%), var(--bg);
-      color: var(--ink);
-      line-height: 1.55;
-    }
-
-    .page {
-      width: min(1120px, calc(100% - 32px));
-      margin: 32px auto 56px;
-    }
-
-    header.hero {
-      background: linear-gradient(135deg, #0f172a, #172554);
-      color: white;
-      border-radius: 32px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header.hero::after {
-      content: "";
-      width: 300px;
-      height: 300px;
-      background: rgba(255,255,255,.08);
-      border-radius: 50%;
-      position: absolute;
-      right: -80px;
-      top: -100px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.12);
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: .78rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 4.2rem);
-      line-height: 1.02;
-      margin: 18px 0 14px;
-      letter-spacing: -0.05em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero p {
-      max-width: 780px;
-      margin: 0;
-      color: #dbeafe;
-      font-size: 1.1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 850;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.10);
-      padding: 9px 12px;
-      border-radius: 999px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 22px;
-      margin-top: 24px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 12px 30px rgba(15,23,42,.06);
-    }
-
-    .card h2,
-    .card h3 {
-      margin: 0 0 12px;
-      letter-spacing: -0.03em;
-    }
-
-    .note {
-      border-left: 6px solid var(--blue);
-      background: var(--blue-soft);
-      padding: 18px;
-      border-radius: 18px;
-      color: #172554;
-      font-weight: 650;
-    }
-
-    .warning {
-      border-left: 6px solid var(--red);
-      background: var(--red-soft);
-      padding: 18px;
-      border-radius: 18px;
-      color: #7f1d1d;
-      font-weight: 700;
-    }
-
-    .success {
-      border-left: 6px solid var(--green);
-      background: var(--green-soft);
-      padding: 18px;
-      border-radius: 18px;
-      color: #14532d;
-      font-weight: 700;
-    }
-
-    .mini-title {
-      color: var(--muted);
-      text-transform: uppercase;
-      font-weight: 900;
-      letter-spacing: .08em;
-      font-size: .78rem;
-      margin-bottom: 8px;
-    }
-
-    .fraction {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      vertical-align: middle;
-      font-weight: 900;
-      line-height: 1;
-      margin: 0 .14em;
-      min-width: 1.7em;
-    }
-
-    .fraction .top {
-      padding: 0 .35em .16em;
-      border-bottom: 3px solid currentColor;
-      width: 100%;
-      text-align: center;
-    }
-
-    .fraction .bottom {
-      padding: .16em .35em 0;
-      width: 100%;
-      text-align: center;
-    }
-
-    .equation-bar {
-      background: var(--navy);
-      color: white;
-      border-radius: 22px;
-      padding: 22px 26px;
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      font-weight: 950;
-      letter-spacing: .04em;
-      display: flex;
-      align-items: center;
-      gap: .25em;
-      min-height: 92px;
-      overflow-x: auto;
-    }
-
-    .wrong-diagonal {
-      display: inline-block;
-      color: var(--red);
-      font-weight: 950;
-      padding: 8px 14px;
-      border: 2px dashed var(--red);
-      border-radius: 14px;
-      transform: rotate(-3deg);
-      background: white;
-    }
-
-    .right-fraction-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f8fafc;
-      border: 2px solid #dbeafe;
-      border-radius: 20px;
-      padding: 22px;
-      min-height: 135px;
-      font-size: 3rem;
-      color: #172554;
-    }
-
-    .map {
-      display: grid;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .map-row {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 14px;
-      background: #f8fafc;
-      border-radius: 16px;
-      border: 1px solid #e2e8f0;
-    }
-
-    .badge {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #1d4ed8;
-      font-weight: 950;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      font-size: .78rem;
-    }
-
-    .exercise {
-      margin-top: 24px;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .exercise-head { padding: 22px 22px 0; }
-
-    .difficulty {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: #164e63;
-      background: #ecfeff;
-    }
-
-    .exercise h2 {
-      margin: 12px 0 16px;
-      font-size: 1.5rem;
-    }
-
-    .steps {
-      padding: 0 22px 22px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 46px 1fr;
-      gap: 14px;
-      align-items: start;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .num {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: var(--navy);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 950;
-    }
-
-    .math-line {
-      display: block;
-      width: fit-content;
-      max-width: 100%;
-      background: white;
-      border: 1px solid #dbeafe;
-      color: #172554;
-      border-radius: 14px;
-      padding: 10px 14px;
-      margin: 8px 0;
-      font-size: 1.35rem;
-      font-weight: 900;
-      overflow-x: auto;
-    }
-
-    .answer {
-      margin-top: 10px;
-      background: var(--green-soft);
-      color: #14532d;
-      border: 1px solid #bbf7d0;
-      border-radius: 16px;
-      padding: 14px 16px;
-      font-weight: 950;
-      font-size: 1.1rem;
-    }
-
-    .practice-box {
-      margin: 16px 22px 22px;
-      padding: 18px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-    }
-
-    label {
-      font-weight: 850;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input[type="number"] {
-      width: min(260px, 100%);
-      padding: 14px 16px;
-      border: 2px solid #cbd5e1;
-      border-radius: 14px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      outline: none;
-      background: white;
-    }
-
-    input[type="number"]:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-      font-weight: 950;
-      border-radius: 14px;
-      padding: 13px 17px;
-      margin: 10px 8px 0 0;
-      font-size: .98rem;
-    }
-
-    .btn-primary { background: var(--blue); color: white; }
-    .btn-secondary { background: #e2e8f0; color: #0f172a; }
-
-    .feedback {
-      margin-top: 12px;
-      font-weight: 850;
-      min-height: 26px;
-    }
-
-    .feedback.ok { color: var(--green); }
-    .feedback.no { color: var(--red); }
-
-    .checklist {
-      list-style: none;
-      padding: 0;
-      margin: 14px 0 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .checklist li {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 12px 14px;
-      font-weight: 750;
-    }
-
-    .footer-card {
-      margin-top: 24px;
-      background: #0f172a;
-      color: white;
-      border-radius: 26px;
-      padding: 26px;
-    }
-
-    .footer-card h2 { margin: 0 0 10px; }
-    .footer-card p { color: #dbeafe; margin: 0; }
-
-    @media (max-width: 800px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .map-row { grid-template-columns: 1fr; }
-      header.hero { padding: 26px; }
-      .equation-bar { font-size: 2rem; }
-      .step { grid-template-columns: 1fr; }
-    }
-
-    @media print {
-      body { background: white; }
-      .page { width: 100%; margin: 0; }
-      header.hero, .card, .exercise, .footer-card { box-shadow: none; break-inside: avoid; }
-      button, .practice-box, .nav { display: none; }
-    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,#eaf2ff,transparent 35%),var(--bg);color:var(--ink);line-height:1.55}
+    .page{width:min(1120px,calc(100% - 32px));margin:28px auto 56px}
+    .hero{background:linear-gradient(135deg,#0f172a,#172554);color:#fff;border-radius:32px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero:after{content:"";width:320px;height:320px;background:rgba(255,255,255,.08);border-radius:50%;position:absolute;right:-80px;top:-120px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:.76rem;position:relative;z-index:1}
+    h1{font-size:clamp(2rem,5vw,4rem);line-height:1.02;margin:18px 0 12px;letter-spacing:-.05em;position:relative;z-index:1}
+    .hero p{max-width:860px;margin:0;color:#dbeafe;font-size:1.08rem;position:relative;z-index:1}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;position:relative;z-index:1}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.10);color:#fff;border-radius:999px;padding:9px 12px;font-weight:850;font-size:.92rem}
+    .layout{display:grid;grid-template-columns:310px 1fr;gap:22px;margin-top:24px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 30px rgba(15,23,42,.06)}
+    .sidebar{padding:20px;position:sticky;top:18px;align-self:start}
+    .sidebar h2,.trainer h2{margin:0 0 12px;letter-spacing:-.03em}
+    .rule{border-left:6px solid var(--blue);background:var(--blue-soft);padding:14px;border-radius:16px;color:#172554;font-weight:750;margin:12px 0}
+    .warning{border-left:6px solid var(--red);background:var(--red-soft);padding:14px;border-radius:16px;color:#7f1d1d;font-weight:800;margin:12px 0}
+    .section-list{display:grid;gap:10px;margin-top:14px}
+    .section-item{border:1px solid #e2e8f0;background:#f8fafc;border-radius:16px;padding:12px}
+    .section-item strong{display:block;font-size:.92rem}
+    .section-item span{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
+    .section-item.active{border-color:#93c5fd;background:#eff6ff;color:#172554}
+    .trainer{padding:0;overflow:hidden}
+    .progress-wrap{padding:22px 22px 0}
+    .progress-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .badge{display:inline-flex;align-items:center;width:fit-content;padding:8px 12px;border-radius:999px;background:#eef2ff;color:#1d4ed8;font-weight:950;letter-spacing:.06em;text-transform:uppercase;font-size:.76rem}
+    .counter{font-weight:950;color:#334155}
+    .progress{height:14px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,#2563eb,#16a34a);border-radius:999px;transition:.25s}
+    .exercise-area{padding:22px}
+    .equation-card{background:linear-gradient(135deg,#101827,#172554);color:#fff;border-radius:26px;padding:28px;min-height:150px;display:grid;place-items:center;text-align:center;box-shadow:0 18px 42px rgba(15,23,42,.16)}
+    .equation{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:950;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:.22em;flex-wrap:wrap}
+    .fraction{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;font-weight:950;line-height:1;margin:0 .08em;min-width:1.7em}
+    .fraction .top{padding:0 .35em .16em;border-bottom:4px solid currentColor;width:100%;text-align:center}
+    .fraction .bottom{padding:.16em .35em 0;width:100%;text-align:center}
+    .prompt{margin:16px 0 0;color:#dbeafe;font-weight:650;font-size:1rem}
+    .answer-box{margin-top:18px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:22px;padding:20px}
+    label{display:block;font-weight:900;margin-bottom:8px;color:#0f172a}
+    input[type="number"]{width:min(300px,100%);padding:16px;border:2px solid #cbd5e1;border-radius:16px;font-size:1.1rem;font-weight:900;outline:none;background:white}
+    input[type="number"]:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+    .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    button{border:0;cursor:pointer;font-weight:950;border-radius:16px;padding:14px 18px;font-size:1rem}
+    .btn-primary{background:var(--blue);color:#fff}.btn-secondary{background:#e2e8f0;color:#0f172a}.btn-danger{background:#fee2e2;color:#991b1b}
+    .feedback{min-height:32px;margin-top:14px;font-weight:900}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}.feedback.info{color:#1d4ed8}
+    .mini-help{margin-top:16px;display:grid;gap:10px}
+    details{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:13px 15px}summary{cursor:pointer;font-weight:950;color:#172554}details p{margin:10px 0 0;color:#334155}
+    .lock-note{margin-top:16px;border-left:6px solid var(--amber);background:var(--amber-soft);color:#7c2d12;padding:14px;border-radius:16px;font-weight:800}
+    .complete{display:none;padding:22px}.complete.active{display:block}.complete-card{background:var(--green-soft);border:1px solid #bbf7d0;color:#14532d;border-radius:24px;padding:24px;font-weight:850}
+    .complete-card h2{margin-top:0}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static}.equation-card{padding:22px}.equation{font-size:2.6rem}}
+    @media print{body{background:white}.page{width:100%;margin:0}.hero,.card{box-shadow:none}.sidebar,.answer-box,.top-actions{display:none}.layout{display:block}.exercise-area{break-inside:avoid}}
   </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
-      <span class="eyebrow">Guía para Juanito</span>
-      <h1>Fracciones y valor de x</h1>
-      <p>Objetivo: que Juanito aprenda a escribir la fracción correctamente, identificar qué número está dividiendo a la x y resolver paso a paso sin acomodar la fracción en diagonal.</p>
-      <nav class="nav" aria-label="Navegación de ejercicios">
-        <a href="#regla">Regla</a>
-        <a href="#e1">Ejercicio 1</a>
-        <a href="#e2">Ejercicio 2</a>
-        <a href="#e3">Ejercicio 3</a>
-        <a href="#e4">Ejercicio 4</a>
-        <a href="#e5">Ejercicio 5</a>
-      </nav>
+      <span class="eyebrow">Práctica bloqueada</span>
+      <h1>50 ejercicios de fracciones con x</h1>
+      <p>Juanito resolverá un ejercicio a la vez. Solo puede avanzar si escribe la respuesta correcta. Si se equivoca, el juego regresa automáticamente al ejercicio 1 y no muestra la respuesta correcta.</p>
+      <div class="top-actions">
+        <span class="pill">Fracciones verticales</span>
+        <span class="pill">Sin opciones múltiples</span>
+        <span class="pill">Dificultad gradual</span>
+      </div>
     </header>
 
-    <section id="regla" class="grid-2">
-      <article class="card">
-        <h2>Regla principal</h2>
-        <div class="note">Una fracción siempre se escribe con un número arriba, una raya horizontal y un número abajo.</div>
-        <div class="map">
-          <div class="map-row"><strong>Arriba</strong><span>Va el numerador: puede ser <strong>x</strong>, <strong>x - 4</strong> o cualquier cantidad.</span></div>
-          <div class="map-row"><strong>Raya</strong><span>La raya significa <strong>división</strong>.</span></div>
-          <div class="map-row"><strong>Abajo</strong><span>Va el denominador: es el número que está dividiendo a lo de arriba.</span></div>
+    <section class="layout">
+      <aside class="card sidebar">
+        <h2>Regla base</h2>
+        <div class="rule">La fracción se escribe con número arriba, raya horizontal y número abajo.</div>
+        <div class="warning">No acomodar en diagonal. La diagonal confunde qué está arriba y qué está abajo.</div>
+        <p><strong>Frase guía:</strong> si el número está abajo dividiendo, se quita multiplicando.</p>
+        <h2 style="margin-top:18px;">Secciones</h2>
+        <div class="section-list" id="sectionList"></div>
+        <div class="lock-note">Regla del juego: un error reinicia todo desde el ejercicio 1.</div>
+      </aside>
+
+      <section class="card trainer">
+        <div class="progress-wrap">
+          <div class="progress-top">
+            <span class="badge" id="sectionBadge">Sección 1</span>
+            <span class="counter" id="counter">Ejercicio 1 de 50</span>
+          </div>
+          <div class="progress" aria-label="Progreso"><div class="bar" id="bar"></div></div>
         </div>
-      </article>
 
-      <article class="card">
-        <h2>No escribir en diagonal</h2>
-        <p class="warning">Evita escribir <span class="wrong-diagonal">x / 4 = 7</span> cuando Juanito está aprendiendo, porque puede confundirse y no distinguir qué está arriba y qué está abajo.</p>
-        <div class="mini-title">Forma correcta</div>
-        <div class="right-fraction-box">
-          <span class="fraction"><span class="top">x</span><span class="bottom">4</span></span>
-          <span>= 7</span>
+        <div class="exercise-area" id="exerciseArea">
+          <div class="equation-card">
+            <div>
+              <div class="equation" id="equation"></div>
+              <div class="prompt" id="prompt"></div>
+            </div>
+          </div>
+
+          <div class="answer-box">
+            <label for="answer">Escribe el valor de x:</label>
+            <input id="answer" type="number" inputmode="numeric" autocomplete="off" placeholder="Solo número" />
+            <div class="buttons">
+              <button class="btn-primary" id="checkBtn">Revisar y avanzar</button>
+              <button class="btn-secondary" id="restartBtn">Reiniciar</button>
+            </div>
+            <div class="feedback info" id="feedback">Empieza con calma. Mira bien el número de abajo.</div>
+          </div>
+
+          <div class="mini-help">
+            <details>
+              <summary>Recordatorio sin respuesta</summary>
+              <p id="helpText">Lee la fracción como “arriba entre abajo”. Luego usa la operación contraria.</p>
+            </details>
+          </div>
         </div>
-      </article>
-    </section>
 
-    <section class="card" style="margin-top:24px;">
-      <h2>Idea que debe memorizar</h2>
-      <p>Cuando Juanito vea una ecuación como esta:</p>
-      <div class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">4</span></span> = 7</div>
-      <p>Debe leerla así: <strong>x entre 4 es igual a 7</strong>.</p>
-      <p>La x está dividida entre 4. Para quitar ese 4, hacemos la operación contraria: <strong>multiplicar por 4</strong>.</p>
-      <div class="success">Frase guía: “Si el número está abajo dividiendo, lo quito multiplicando”.</div>
-    </section>
-
-    <section id="e1" class="exercise card">
-      <div class="exercise-head">
-        <span class="difficulty">Ejercicio 1 · Fácil</span>
-        <h2>Encuentra el valor de x</h2>
-        <div class="equation-bar"><span class="fraction"><span class="top">x</span><span class="bottom">4</span></span><span>= 7</span></div>
-      </div>
-      <div class="practice-box">
-        <label for="p1">Escribe tu respuesta:</label>
-        <input id="p1" type="number" placeholder="Ej. 28" />
-        <button class="btn-primary" onclick="checkAnswer('p1', 28, 'f1')">Revisar</button>
-        <button class="btn-secondary" onclick="showHint('f1', 'Pista: x está dividida entre 4. Multiplica 7 × 4.')">Pista</button>
-        <div id="f1" class="feedback"></div>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><strong>Leer la fracción.</strong><span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">4</span></span> = 7</span>Se lee: <strong>x entre 4 es igual a 7</strong>.</div></div>
-        <div class="step"><div class="num">2</div><div><strong>Identificar qué le pasa a la x.</strong> La x está siendo <strong>dividida entre 4</strong>.</div></div>
-        <div class="step"><div class="num">3</div><div><strong>Hacer lo contrario.</strong> Lo contrario de dividir entre 4 es multiplicar por 4.<span class="math-line">4 × <span class="fraction"><span class="top">x</span><span class="bottom">4</span></span> = 7 × 4</span></div></div>
-        <div class="step"><div class="num">4</div><div><strong>Resolver.</strong> El 4 cancela al 4.<span class="math-line">x = 28</span><div class="answer">Respuesta: x = 28</div></div></div>
-      </div>
-    </section>
-
-    <section id="e2" class="exercise card">
-      <div class="exercise-head">
-        <span class="difficulty">Ejercicio 2 · Fácil</span>
-        <h2>Encuentra el valor de x</h2>
-        <div class="equation-bar"><span class="fraction"><span class="top">x</span><span class="bottom">5</span></span><span>= 6</span></div>
-      </div>
-      <div class="practice-box">
-        <label for="p2">Escribe tu respuesta:</label>
-        <input id="p2" type="number" placeholder="Ej. 30" />
-        <button class="btn-primary" onclick="checkAnswer('p2', 30, 'f2')">Revisar</button>
-        <button class="btn-secondary" onclick="showHint('f2', 'Pista: el 5 está abajo; está dividiendo. Multiplica 6 × 5.')">Pista</button>
-        <div id="f2" class="feedback"></div>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><strong>Leer correctamente.</strong><span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">5</span></span> = 6</span>Se lee: <strong>x entre 5 es igual a 6</strong>.</div></div>
-        <div class="step"><div class="num">2</div><div><strong>Ver el número de abajo.</strong> El número de abajo es <strong>5</strong>. Eso significa que x está dividida entre 5.</div></div>
-        <div class="step"><div class="num">3</div><div><strong>Quitar el 5.</strong> Como divide, hacemos lo contrario: multiplicar por 5.<span class="math-line">5 × <span class="fraction"><span class="top">x</span><span class="bottom">5</span></span> = 6 × 5</span></div></div>
-        <div class="step"><div class="num">4</div><div><strong>Resolver.</strong><span class="math-line">x = 30</span><div class="answer">Respuesta: x = 30</div></div></div>
-      </div>
-    </section>
-
-    <section id="e3" class="exercise card">
-      <div class="exercise-head">
-        <span class="difficulty">Ejercicio 3 · Medio</span>
-        <h2>Encuentra el valor de x</h2>
-        <div class="equation-bar"><span class="fraction"><span class="top">x</span><span class="bottom">8</span></span><span>= 9</span></div>
-      </div>
-      <div class="practice-box">
-        <label for="p3">Escribe tu respuesta:</label>
-        <input id="p3" type="number" placeholder="Ej. 72" />
-        <button class="btn-primary" onclick="checkAnswer('p3', 72, 'f3')">Revisar</button>
-        <button class="btn-secondary" onclick="showHint('f3', 'Pista: x está dividida entre 8. Entonces multiplica 9 × 8.')">Pista</button>
-        <div id="f3" class="feedback"></div>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><strong>Leer la fracción.</strong><span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">8</span></span> = 9</span>Significa: <strong>x entre 8</strong>.</div></div>
-        <div class="step"><div class="num">2</div><div><strong>Identificar el denominador.</strong> El denominador es el número de abajo. Aquí es <strong>8</strong>.</div></div>
-        <div class="step"><div class="num">3</div><div><strong>Hacer la operación contraria.</strong> Como el 8 divide, multiplicamos por 8.<span class="math-line">8 × <span class="fraction"><span class="top">x</span><span class="bottom">8</span></span> = 9 × 8</span></div></div>
-        <div class="step"><div class="num">4</div><div><strong>Resolver.</strong><span class="math-line">x = 72</span><div class="answer">Respuesta: x = 72</div></div></div>
-      </div>
-    </section>
-
-    <section id="e4" class="exercise card">
-      <div class="exercise-head">
-        <span class="difficulty">Ejercicio 4 · Más complicado</span>
-        <h2>Encuentra el valor de x</h2>
-        <div class="equation-bar"><span class="fraction"><span class="top">x</span><span class="bottom">3</span></span><span>+ 2 = 10</span></div>
-      </div>
-      <div class="practice-box">
-        <label for="p4">Escribe tu respuesta:</label>
-        <input id="p4" type="number" placeholder="Ej. 24" />
-        <button class="btn-primary" onclick="checkAnswer('p4', 24, 'f4')">Revisar</button>
-        <button class="btn-secondary" onclick="showHint('f4', 'Pista: primero quita el +2 restando 2. Después multiplica por 3.')">Pista</button>
-        <div id="f4" class="feedback"></div>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><strong>Separar la fracción.</strong> Primero quitamos el <strong>+2</strong>.<span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">3</span></span> + 2 = 10</span></div></div>
-        <div class="step"><div class="num">2</div><div><strong>Hacer lo contrario de sumar 2.</strong> Restamos 2 en los dos lados.<span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">3</span></span> + 2 - 2 = 10 - 2</span></div></div>
-        <div class="step"><div class="num">3</div><div><strong>Resolver lo que queda.</strong><span class="math-line"><span class="fraction"><span class="top">x</span><span class="bottom">3</span></span> = 8</span></div></div>
-        <div class="step"><div class="num">4</div><div><strong>Quitar el 3.</strong> Como el 3 divide, multiplicamos por 3.<span class="math-line">3 × <span class="fraction"><span class="top">x</span><span class="bottom">3</span></span> = 8 × 3</span></div></div>
-        <div class="step"><div class="num">5</div><div><strong>Resolver.</strong><span class="math-line">x = 24</span><div class="answer">Respuesta: x = 24</div></div></div>
-      </div>
-    </section>
-
-    <section id="e5" class="exercise card">
-      <div class="exercise-head">
-        <span class="difficulty">Ejercicio 5 · Más complicado</span>
-        <h2>Encuentra el valor de x</h2>
-        <div class="equation-bar"><span class="fraction"><span class="top">x - 4</span><span class="bottom">5</span></span><span>= 6</span></div>
-      </div>
-      <div class="practice-box">
-        <label for="p5">Escribe tu respuesta:</label>
-        <input id="p5" type="number" placeholder="Ej. 34" />
-        <button class="btn-primary" onclick="checkAnswer('p5', 34, 'f5')">Revisar</button>
-        <button class="btn-secondary" onclick="showHint('f5', 'Pista: todo lo de arriba, x - 4, está dividido entre 5. Primero multiplica 6 × 5.')">Pista</button>
-        <div id="f5" class="feedback"></div>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><strong>Leer la fracción completa.</strong><span class="math-line"><span class="fraction"><span class="top">x - 4</span><span class="bottom">5</span></span> = 6</span>Se lee: <strong>x menos 4, todo dividido entre 5</strong>.</div></div>
-        <div class="step"><div class="num">2</div><div><strong>Entender qué está arriba.</strong> Arriba no está solo la x. Arriba está el grupo completo <strong>x - 4</strong>. Todo ese grupo está dividido entre 5.</div></div>
-        <div class="step"><div class="num">3</div><div><strong>Quitar el denominador.</strong> Como el 5 divide, multiplicamos ambos lados por 5.<span class="math-line">5 × <span class="fraction"><span class="top">x - 4</span><span class="bottom">5</span></span> = 6 × 5</span></div></div>
-        <div class="step"><div class="num">4</div><div><strong>Cancelar el 5.</strong><span class="math-line">x - 4 = 30</span></div></div>
-        <div class="step"><div class="num">5</div><div><strong>Despejar x.</strong> Para quitar el -4, sumamos 4 en los dos lados.<span class="math-line">x - 4 + 4 = 30 + 4</span></div></div>
-        <div class="step"><div class="num">6</div><div><strong>Resolver.</strong><span class="math-line">x = 34</span><div class="answer">Respuesta: x = 34</div></div></div>
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:24px;">
-      <h2>Checklist antes de contestar</h2>
-      <ul class="checklist">
-        <li>1. Escribo la fracción vertical: número arriba, raya, número abajo.</li>
-        <li>2. Leo la fracción: “arriba entre abajo”.</li>
-        <li>3. Identifico qué número está dividiendo a la x.</li>
-        <li>4. Hago lo contrario: si divide, multiplico.</li>
-        <li>5. Si hay suma o resta fuera de la fracción, primero la quito con la operación contraria.</li>
-      </ul>
-    </section>
-
-    <section class="footer-card">
-      <h2>Frase para repetir</h2>
-      <p>“La fracción no va en diagonal. La fracción va arriba, raya y abajo. Si el número de abajo divide a la x, lo quito multiplicando.”</p>
+        <div class="complete" id="complete">
+          <div class="complete-card">
+            <h2>Bloque terminado</h2>
+            <p>Juanito completó los 50 ejercicios sin fallar en el último intento. Puede reiniciar para practicar otra vez.</p>
+            <button class="btn-primary" onclick="restartGame()">Practicar de nuevo</button>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
 
   <script>
-    function checkAnswer(inputId, correct, feedbackId) {
-      const input = document.getElementById(inputId);
-      const feedback = document.getElementById(feedbackId);
-      const value = Number(input.value);
-      feedback.className = 'feedback';
+    const sections = [
+      {name:'Sección 1', range:'1-10', title:'Fracción simple', detail:'x arriba y un número abajo'},
+      {name:'Sección 2', range:'11-20', title:'Números más grandes', detail:'misma regla con productos mayores'},
+      {name:'Sección 3', range:'21-30', title:'Suma arriba', detail:'todo lo de arriba se divide'},
+      {name:'Sección 4', range:'31-40', title:'Resta arriba', detail:'todo el grupo se divide'},
+      {name:'Sección 5', range:'41-50', title:'Número fuera', detail:'primero quitar suma o resta externa'}
+    ];
 
-      if (input.value.trim() === '') {
-        feedback.textContent = 'Escribe una respuesta primero.';
-        feedback.classList.add('no');
+    const exercises = [
+      {s:1,t:'simple',d:2,r:3,a:6},{s:1,t:'simple',d:3,r:4,a:12},{s:1,t:'simple',d:4,r:5,a:20},{s:1,t:'simple',d:5,r:6,a:30},{s:1,t:'simple',d:6,r:7,a:42},
+      {s:1,t:'simple',d:7,r:8,a:56},{s:1,t:'simple',d:8,r:9,a:72},{s:1,t:'simple',d:9,r:5,a:45},{s:1,t:'simple',d:10,r:11,a:110},{s:1,t:'simple',d:12,r:6,a:72},
+
+      {s:2,t:'simple',d:4,r:13,a:52},{s:2,t:'simple',d:5,r:14,a:70},{s:2,t:'simple',d:6,r:15,a:90},{s:2,t:'simple',d:7,r:12,a:84},{s:2,t:'simple',d:8,r:16,a:128},
+      {s:2,t:'simple',d:9,r:14,a:126},{s:2,t:'simple',d:11,r:9,a:99},{s:2,t:'simple',d:12,r:13,a:156},{s:2,t:'simple',d:15,r:8,a:120},{s:2,t:'simple',d:20,r:7,a:140},
+
+      {s:3,t:'numPlus',d:3,c:2,r:5,a:13},{s:3,t:'numPlus',d:4,c:4,r:6,a:20},{s:3,t:'numPlus',d:5,c:5,r:7,a:30},{s:3,t:'numPlus',d:6,c:6,r:8,a:42},{s:3,t:'numPlus',d:7,c:3,r:6,a:39},
+      {s:3,t:'numPlus',d:8,c:8,r:9,a:64},{s:3,t:'numPlus',d:9,c:9,r:10,a:81},{s:3,t:'numPlus',d:10,c:10,r:12,a:110},{s:3,t:'numPlus',d:12,c:12,r:11,a:120},{s:3,t:'numPlus',d:15,c:15,r:10,a:135},
+
+      {s:4,t:'numMinus',d:3,c:2,r:5,a:17},{s:4,t:'numMinus',d:4,c:4,r:6,a:28},{s:4,t:'numMinus',d:5,c:5,r:7,a:40},{s:4,t:'numMinus',d:6,c:6,r:8,a:54},{s:4,t:'numMinus',d:7,c:7,r:9,a:70},
+      {s:4,t:'numMinus',d:8,c:8,r:10,a:88},{s:4,t:'numMinus',d:9,c:9,r:11,a:108},{s:4,t:'numMinus',d:10,c:10,r:12,a:130},{s:4,t:'numMinus',d:12,c:12,r:13,a:168},{s:4,t:'numMinus',d:15,c:15,r:14,a:225},
+
+      {s:5,t:'outsidePlus',d:2,c:3,r:8,a:10},{s:5,t:'outsidePlus',d:3,c:4,r:9,a:15},{s:5,t:'outsidePlus',d:4,c:5,r:11,a:24},{s:5,t:'outsidePlus',d:5,c:6,r:14,a:40},{s:5,t:'outsidePlus',d:6,c:7,r:15,a:48},
+      {s:5,t:'outsideMinus',d:7,c:2,r:8,a:70},{s:5,t:'outsideMinus',d:8,c:3,r:9,a:96},{s:5,t:'outsideMinus',d:9,c:4,r:10,a:126},{s:5,t:'outsidePlus',d:10,c:12,r:25,a:130},{s:5,t:'outsideMinus',d:12,c:5,r:10,a:180}
+    ];
+
+    let current = Number(localStorage.getItem('juanitoFraccionesCurrent') || 0);
+    if(current < 0 || current >= exercises.length) current = 0;
+
+    const equationEl = document.getElementById('equation');
+    const promptEl = document.getElementById('prompt');
+    const answerEl = document.getElementById('answer');
+    const feedbackEl = document.getElementById('feedback');
+    const counterEl = document.getElementById('counter');
+    const sectionBadgeEl = document.getElementById('sectionBadge');
+    const barEl = document.getElementById('bar');
+    const helpTextEl = document.getElementById('helpText');
+    const completeEl = document.getElementById('complete');
+    const exerciseAreaEl = document.getElementById('exerciseArea');
+
+    function frac(top,bottom){return `<span class="fraction"><span class="top">${top}</span><span class="bottom">${bottom}</span></span>`;}
+
+    function formula(e){
+      if(e.t==='simple') return `${frac('x',e.d)} <span>= ${e.r}</span>`;
+      if(e.t==='numPlus') return `${frac('x + '+e.c,e.d)} <span>= ${e.r}</span>`;
+      if(e.t==='numMinus') return `${frac('x - '+e.c,e.d)} <span>= ${e.r}</span>`;
+      if(e.t==='outsidePlus') return `${frac('x',e.d)} <span>+ ${e.c} = ${e.r}</span>`;
+      if(e.t==='outsideMinus') return `${frac('x',e.d)} <span>- ${e.c} = ${e.r}</span>`;
+    }
+
+    function promptFor(e){
+      if(e.t==='simple') return 'Lee: x entre ' + e.d + ' es igual a ' + e.r + '.';
+      if(e.t==='numPlus') return 'Cuidado: todo lo de arriba, x + ' + e.c + ', está dividido entre ' + e.d + '.';
+      if(e.t==='numMinus') return 'Cuidado: todo lo de arriba, x - ' + e.c + ', está dividido entre ' + e.d + '.';
+      if(e.t==='outsidePlus') return 'Primero quita el +' + e.c + ' que está fuera de la fracción.';
+      if(e.t==='outsideMinus') return 'Primero quita el -' + e.c + ' que está fuera de la fracción.';
+    }
+
+    function helpFor(e){
+      if(e.t==='simple') return 'El número de abajo divide a la x. Para quitarlo, usa multiplicación.';
+      if(e.t==='numPlus') return 'Primero quita el denominador multiplicando. Después elimina la suma que está arriba con la operación contraria.';
+      if(e.t==='numMinus') return 'Primero quita el denominador multiplicando. Después elimina la resta que está arriba con la operación contraria.';
+      if(e.t==='outsidePlus') return 'Antes de quitar el denominador, deja sola la fracción. Quita la suma externa con resta.';
+      if(e.t==='outsideMinus') return 'Antes de quitar el denominador, deja sola la fracción. Quita la resta externa con suma.';
+    }
+
+    function renderSections(){
+      const list = document.getElementById('sectionList');
+      list.innerHTML = sections.map((sec,i)=>{
+        const active = i+1 === exercises[current]?.s ? ' active' : '';
+        return `<div class="section-item${active}"><strong>${sec.name}: ${sec.title}</strong><span>Ejercicios ${sec.range} · ${sec.detail}</span></div>`;
+      }).join('');
+    }
+
+    function render(){
+      if(current >= exercises.length){
+        exerciseAreaEl.style.display='none';
+        completeEl.classList.add('active');
+        counterEl.textContent='50 de 50 completados';
+        sectionBadgeEl.textContent='Terminado';
+        barEl.style.width='100%';
         return;
       }
+      completeEl.classList.remove('active');
+      exerciseAreaEl.style.display='block';
+      const e = exercises[current];
+      equationEl.innerHTML = formula(e);
+      promptEl.textContent = promptFor(e);
+      helpTextEl.textContent = helpFor(e);
+      counterEl.textContent = `Ejercicio ${current+1} de ${exercises.length}`;
+      sectionBadgeEl.textContent = `Sección ${e.s}`;
+      barEl.style.width = `${(current/exercises.length)*100}%`;
+      answerEl.value = '';
+      answerEl.focus();
+      feedbackEl.className = 'feedback info';
+      feedbackEl.textContent = current === 0 ? 'Empieza con calma. Mira bien el número de abajo.' : 'Vas bien. Resuelve este para avanzar.';
+      renderSections();
+    }
 
-      if (value === correct) {
-        feedback.textContent = 'Correcto. Ahora revisa los pasos para confirmar el procedimiento.';
-        feedback.classList.add('ok');
-      } else {
-        feedback.textContent = 'Todavía no. Revisa qué número está abajo y qué operación contraria debes hacer.';
-        feedback.classList.add('no');
+    function check(){
+      const e = exercises[current];
+      const raw = answerEl.value.trim();
+      if(raw === ''){
+        feedbackEl.className='feedback no';
+        feedbackEl.textContent='Escribe un número antes de revisar.';
+        return;
+      }
+      const value = Number(raw);
+      if(value === e.a){
+        current++;
+        localStorage.setItem('juanitoFraccionesCurrent', String(current));
+        if(current >= exercises.length){
+          render();
+          return;
+        }
+        feedbackEl.className='feedback ok';
+        render();
+      }else{
+        current = 0;
+        localStorage.setItem('juanitoFraccionesCurrent', '0');
+        render();
+        feedbackEl.className='feedback no';
+        feedbackEl.textContent='Respuesta incorrecta. Regresaste al ejercicio 1.';
       }
     }
 
-    function showHint(feedbackId, text) {
-      const feedback = document.getElementById(feedbackId);
-      feedback.className = 'feedback';
-      feedback.textContent = text;
-      feedback.classList.add('no');
+    function restartGame(){
+      current = 0;
+      localStorage.setItem('juanitoFraccionesCurrent','0');
+      render();
     }
+
+    document.getElementById('checkBtn').addEventListener('click', check);
+    document.getElementById('restartBtn').addEventListener('click', restartGame);
+    answerEl.addEventListener('keydown', e=>{ if(e.key==='Enter') check(); });
+    render();
   </script>
 </body>
 </html>
