@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Guía para Juan | Ley de los signos en la suma</title>
+  <style>
+    :root{
+      --azul:#2563eb;--morado:#7c3aed;--verde:#16a34a;--rojo:#dc2626;--naranja:#ea580c;
+      --fondo:#f4f7fb;--texto:#172033;--gris:#64748b;--linea:#d8e0ee;--card:#fff;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:radial-gradient(circle at top left,#dbeafe,transparent 35%),radial-gradient(circle at top right,#ede9fe,transparent 30%),var(--fondo);color:var(--texto);line-height:1.55}
+    header,main{max-width:1120px;margin:auto;padding:24px}
+    .hero{background:linear-gradient(135deg,var(--azul),var(--morado));color:white;border-radius:30px;padding:34px;box-shadow:0 18px 40px rgba(30,41,59,.12);overflow:hidden;position:relative}
+    .hero:after{content:'+ − + −';position:absolute;right:22px;bottom:-24px;font-size:76px;font-weight:900;opacity:.13}
+    h1{font-size:clamp(2rem,5vw,4rem);line-height:1.05;margin:0 0 12px;letter-spacing:-.04em}
+    h2{font-size:1.8rem;margin:0 0 12px;letter-spacing:-.03em}h3{margin:18px 0 10px}
+    .sub{font-size:1.12rem;max-width:850px;margin:0;opacity:.95}.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:999px;font-weight:800}
+    nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}nav a{text-align:center;text-decoration:none;color:var(--texto);background:white;border:1px solid var(--linea);border-radius:16px;padding:12px;font-weight:900;box-shadow:0 8px 18px rgba(30,41,59,.06)}
+    section{background:rgba(255,255,255,.92);border:1px solid var(--linea);border-radius:24px;padding:24px;margin:18px 0;box-shadow:0 12px 28px rgba(30,41,59,.06)}
+    .nota{border-left:7px solid var(--azul);background:#dbeafe;padding:14px 16px;border-radius:16px;margin:14px 0}.alerta{border-left:7px solid var(--naranja);background:#ffedd5;padding:14px 16px;border-radius:16px;margin:14px 0}
+    .reglas,.ejemplos,.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.ejemplos{grid-template-columns:repeat(3,1fr)}.tips{grid-template-columns:repeat(3,1fr)}
+    .box,.ejemplo,.tip{background:white;border:1px solid var(--linea);border-radius:20px;padding:18px}.same{border-top:8px solid var(--verde)}.diff{border-top:8px solid var(--naranja)}
+    .formula,.eq{text-align:center;font-weight:900;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:13px;margin:10px 0}.formula{font-size:2rem}.eq{font-size:1.55rem}.pos{color:#15803d}.neg{color:#b91c1c}.tag{display:inline-block;background:#ede9fe;color:#4c1d95;border-radius:999px;padding:5px 10px;font-weight:900;font-size:.82rem}
+    ol{padding-left:22px}.pasos li{margin:8px 0}.practice-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.score{border:1px solid var(--linea);background:white;border-radius:15px;padding:10px 13px;font-weight:900}
+    .nivel{border:1px solid var(--linea);border-radius:22px;margin:18px 0;overflow:hidden;background:white}.nivel h3{margin:0;background:#f8fafc;border-bottom:1px solid var(--linea);padding:14px 18px}
+    .lista{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px}.ej{border:1px solid var(--linea);border-radius:18px;padding:14px;min-height:190px;display:flex;flex-direction:column;gap:9px;background:white}.ej.ok{border-color:#86efac;background:linear-gradient(#fff,#f0fdf4)}.ej.mal{border-color:#fecaca;background:linear-gradient(#fff,#fef2f2)}
+    .num{font-weight:900;color:var(--gris);font-size:.85rem}.pregunta{text-align:center;background:#f8fafc;border-radius:14px;padding:12px 6px;font-size:1.32rem;font-weight:900;white-space:nowrap}.fila{display:flex;gap:7px;margin-top:auto}input{width:100%;min-width:0;border:1px solid #cbd5e1;border-radius:12px;padding:10px;font-size:1rem;font-weight:800}input:focus{outline:3px solid #dbeafe;border-color:var(--azul)}button{border:0;border-radius:12px;padding:10px;cursor:pointer;background:var(--azul);color:white;font-weight:900}.secondary{background:#475569}.ghost{background:white;color:var(--texto);border:1px solid var(--linea)}.fb{min-height:42px;font-weight:800;font-size:.9rem;color:var(--gris)}.sol{display:none;border-top:1px dashed #cbd5e1;padding-top:8px;font-size:.88rem;color:#334155}.sol.show{display:block}.acciones{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+    @media(max-width:980px){nav,.reglas,.ejemplos,.tips{grid-template-columns:1fr}.lista{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){header,main{padding:14px}.hero,section{padding:20px}.lista{grid-template-columns:1fr}.pregunta{font-size:1.2rem}}
+    @media print{body{background:white}nav,button{display:none!important}.sol{display:block!important}section,.hero{box-shadow:none;break-inside:avoid}.ej{min-height:auto}}
+  </style>
+</head>
+<body>
+<header>
+  <div class='hero'>
+    <h1>Ley de los signos en la suma</h1>
+    <p class='sub'>Guía paso a paso para que Juan aprenda a sumar números positivos y negativos sin confundirse con el signo del resultado.</p>
+    <div class='pills'><span class='pill'>Mismo signo: se suman</span><span class='pill'>Signos diferentes: se restan</span><span class='pill'>30 ejercicios</span><span class='pill'>Con cajas de respuesta</span></div>
+  </div>
+</header>
+<main>
+<nav><a href='#tema'>1. Tema</a><a href='#mismo'>2. Mismo signo</a><a href='#diferente'>3. Signos diferentes</a><a href='#practica'>4. Práctica</a></nav>
+<section id='tema'>
+  <h2>1. Explicación del tema</h2>
+  <p>Cuando sumamos números con signo, no empezamos haciendo cuentas al azar. Primero preguntamos: <strong>¿los dos números tienen el mismo signo o tienen signos diferentes?</strong></p>
+  <div class='reglas'>
+    <div class='box same'><h3>Regla A: mismo signo</h3><p>Si los dos números tienen el mismo signo, <strong>se suman sus valores</strong> y el resultado conserva ese mismo signo.</p><div class='formula'><span class='pos'>+8</span> + <span class='pos'>+5</span> = <span class='pos'>+13</span></div><div class='formula'><span class='neg'>−8</span> + <span class='neg'>−5</span> = <span class='neg'>−13</span></div></div>
+    <div class='box diff'><h3>Regla B: signos diferentes</h3><p>Si los números tienen signos diferentes, <strong>se restan sus valores</strong> y el resultado toma el signo del número con mayor valor absoluto.</p><div class='formula'><span class='pos'>+12</span> + <span class='neg'>−7</span> = <span class='pos'>+5</span></div><div class='formula'><span class='neg'>−12</span> + <span class='pos'>+7</span> = <span class='neg'>−5</span></div></div>
+  </div>
+  <div class='nota'><strong>Idea de profesor:</strong> Juan debe mirar primero los signos, no los números. La pregunta clave es: ¿son iguales o diferentes?</div>
+  <div class='alerta'><strong>Error común:</strong> creer que siempre se suman los números. No. Con signos diferentes se resta y gana el signo del número más grande.</div>
+</section>
+<section id='mismo'>
+  <h2>2. Bloque 1: números con el mismo signo</h2>
+  <p>Cuando los signos son iguales, los números están caminando hacia el mismo lado. Por eso se suman.</p>
+  <div class='ejemplos'>
+    <article class='ejemplo'><span class='tag'>Ejemplo 1</span><div class='eq'><span class='pos'>+4</span> + <span class='pos'>+3</span> = <span class='pos'>+7</span></div><ol class='pasos'><li>Los dos signos son positivos.</li><li>Como son iguales, se suman: 4 + 3 = 7.</li><li>El resultado queda positivo: +7.</li></ol></article>
+    <article class='ejemplo'><span class='tag'>Ejemplo 2</span><div class='eq'><span class='neg'>−6</span> + <span class='neg'>−5</span> = <span class='neg'>−11</span></div><ol class='pasos'><li>Los dos signos son negativos.</li><li>Como son iguales, se suman: 6 + 5 = 11.</li><li>El resultado queda negativo: −11.</li></ol></article>
+    <article class='ejemplo'><span class='tag'>Ejemplo 3</span><div class='eq'><span class='neg'>−12</span> + <span class='neg'>−8</span> = <span class='neg'>−20</span></div><ol class='pasos'><li>Ambos números tienen signo negativo.</li><li>Se suman los valores: 12 + 8 = 20.</li><li>Se conserva el signo negativo: −20.</li></ol></article>
+  </div>
+</section>
+<section id='diferente'>
+  <h2>3. Bloque 2: números con signos diferentes</h2>
+  <p>Cuando los signos son diferentes, los números jalan hacia lados contrarios. Por eso se restan.</p>
+  <div class='ejemplos'>
+    <article class='ejemplo'><span class='tag'>Ejemplo 1</span><div class='eq'><span class='pos'>+9</span> + <span class='neg'>−4</span> = <span class='pos'>+5</span></div><ol class='pasos'><li>Los signos son diferentes.</li><li>Se restan los valores: 9 − 4 = 5.</li><li>Gana el 9, que es positivo. Resultado: +5.</li></ol></article>
+    <article class='ejemplo'><span class='tag'>Ejemplo 2</span><div class='eq'><span class='neg'>−15</span> + <span class='pos'>+6</span> = <span class='neg'>−9</span></div><ol class='pasos'><li>Los signos son diferentes.</li><li>Se restan los valores: 15 − 6 = 9.</li><li>Gana el 15, que es negativo. Resultado: −9.</li></ol></article>
+    <article class='ejemplo'><span class='tag'>Ejemplo 3</span><div class='eq'><span class='pos'>+25</span> + <span class='neg'>−40</span> = <span class='neg'>−15</span></div><ol class='pasos'><li>Los signos son diferentes.</li><li>Se restan los valores: 40 − 25 = 15.</li><li>Gana el 40, que es negativo. Resultado: −15.</li></ol></article>
+  </div>
+</section>
+<section id='practica'>
+  <div class='practice-head'><div><h2>4. Ejercicios para Juan</h2><p>Escribe el resultado en la caja. Puedes ponerlo con signo, por ejemplo <strong>-8</strong> o <strong>+8</strong>.</p></div><div class='score'>Correctas: <span id='score'>0</span> / 30</div></div>
+  <div class='nivel'><h3>Bloque A — Mismo signo | 5 sencillos</h3><div class='lista'>
+    <article class='ej' data-answer='7' data-solution='Mismo signo: 3 + 4 = 7. Resultado: +7.'><div class='num'>A1</div><div class='pregunta'><span class='pos'>+3</span> + <span class='pos'>+4</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-9' data-solution='Mismo signo: 5 + 4 = 9. Se conserva negativo. Resultado: -9.'><div class='num'>A2</div><div class='pregunta'><span class='neg'>−5</span> + <span class='neg'>−4</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='10' data-solution='Mismo signo: 6 + 4 = 10. Resultado: +10.'><div class='num'>A3</div><div class='pregunta'><span class='pos'>+6</span> + <span class='pos'>+4</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-12' data-solution='Mismo signo: 7 + 5 = 12. Se conserva negativo. Resultado: -12.'><div class='num'>A4</div><div class='pregunta'><span class='neg'>−7</span> + <span class='neg'>−5</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='15' data-solution='Mismo signo: 8 + 7 = 15. Resultado: +15.'><div class='num'>A5</div><div class='pregunta'><span class='pos'>+8</span> + <span class='pos'>+7</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='nivel'><h3>Bloque A — Mismo signo | 5 intermedios</h3><div class='lista'>
+    <article class='ej' data-answer='22' data-solution='Mismo signo: 13 + 9 = 22. Resultado: +22.'><div class='num'>A6</div><div class='pregunta'><span class='pos'>+13</span> + <span class='pos'>+9</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-30' data-solution='Mismo signo: 18 + 12 = 30. Se conserva negativo. Resultado: -30.'><div class='num'>A7</div><div class='pregunta'><span class='neg'>−18</span> + <span class='neg'>−12</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='41' data-solution='Mismo signo: 24 + 17 = 41. Resultado: +41.'><div class='num'>A8</div><div class='pregunta'><span class='pos'>+24</span> + <span class='pos'>+17</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-57' data-solution='Mismo signo: 31 + 26 = 57. Se conserva negativo. Resultado: -57.'><div class='num'>A9</div><div class='pregunta'><span class='neg'>−31</span> + <span class='neg'>−26</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='83' data-solution='Mismo signo: 45 + 38 = 83. Resultado: +83.'><div class='num'>A10</div><div class='pregunta'><span class='pos'>+45</span> + <span class='pos'>+38</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='nivel'><h3>Bloque A — Mismo signo | 5 avanzados</h3><div class='lista'>
+    <article class='ej' data-answer='150' data-solution='Mismo signo: 80 + 70 = 150. Resultado: +150.'><div class='num'>A11</div><div class='pregunta'><span class='pos'>+80</span> + <span class='pos'>+70</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-225' data-solution='Mismo signo: 120 + 105 = 225. Se conserva negativo. Resultado: -225.'><div class='num'>A12</div><div class='pregunta'><span class='neg'>−120</span> + <span class='neg'>−105</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='457' data-solution='Mismo signo: 230 + 227 = 457. Resultado: +457.'><div class='num'>A13</div><div class='pregunta'><span class='pos'>+230</span> + <span class='pos'>+227</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-700' data-solution='Mismo signo: 350 + 350 = 700. Se conserva negativo. Resultado: -700.'><div class='num'>A14</div><div class='pregunta'><span class='neg'>−350</span> + <span class='neg'>−350</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='1000' data-solution='Mismo signo: 640 + 360 = 1000. Resultado: +1000.'><div class='num'>A15</div><div class='pregunta'><span class='pos'>+640</span> + <span class='pos'>+360</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='nivel'><h3>Bloque B — Signos diferentes | 5 sencillos</h3><div class='lista'>
+    <article class='ej' data-answer='2' data-solution='Signos diferentes: 5 - 3 = 2. Gana el 5, que es positivo. Resultado: +2.'><div class='num'>B1</div><div class='pregunta'><span class='pos'>+5</span> + <span class='neg'>−3</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-2' data-solution='Signos diferentes: 6 - 4 = 2. Gana el 6, que es negativo. Resultado: -2.'><div class='num'>B2</div><div class='pregunta'><span class='neg'>−6</span> + <span class='pos'>+4</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='3' data-solution='Signos diferentes: 10 - 7 = 3. Gana el 10, que es positivo. Resultado: +3.'><div class='num'>B3</div><div class='pregunta'><span class='pos'>+10</span> + <span class='neg'>−7</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-5' data-solution='Signos diferentes: 9 - 4 = 5. Gana el 9, que es negativo. Resultado: -5.'><div class='num'>B4</div><div class='pregunta'><span class='neg'>−9</span> + <span class='pos'>+4</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-6' data-solution='Signos diferentes: 11 - 5 = 6. Gana el 11, que es negativo. Resultado: -6.'><div class='num'>B5</div><div class='pregunta'><span class='pos'>+5</span> + <span class='neg'>−11</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='nivel'><h3>Bloque B — Signos diferentes | 5 intermedios</h3><div class='lista'>
+    <article class='ej' data-answer='-6' data-solution='Signos diferentes: 18 - 12 = 6. Gana el 18, que es negativo. Resultado: -6.'><div class='num'>B6</div><div class='pregunta'><span class='neg'>−18</span> + <span class='pos'>+12</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='15' data-solution='Signos diferentes: 24 - 9 = 15. Gana el 24, que es positivo. Resultado: +15.'><div class='num'>B7</div><div class='pregunta'><span class='pos'>+24</span> + <span class='neg'>−9</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-13' data-solution='Signos diferentes: 30 - 17 = 13. Gana el 30, que es negativo. Resultado: -13.'><div class='num'>B8</div><div class='pregunta'><span class='neg'>−30</span> + <span class='pos'>+17</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-8' data-solution='Signos diferentes: 50 - 42 = 8. Gana el 50, que es negativo. Resultado: -8.'><div class='num'>B9</div><div class='pregunta'><span class='pos'>+42</span> + <span class='neg'>−50</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-35' data-solution='Signos diferentes: 60 - 25 = 35. Gana el 60, que es negativo. Resultado: -35.'><div class='num'>B10</div><div class='pregunta'><span class='neg'>−60</span> + <span class='pos'>+25</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='nivel'><h3>Bloque B — Signos diferentes | 5 avanzados</h3><div class='lista'>
+    <article class='ej' data-answer='45' data-solution='Signos diferentes: 125 - 80 = 45. Gana el 125, que es positivo. Resultado: +45.'><div class='num'>B11</div><div class='pregunta'><span class='pos'>+125</span> + <span class='neg'>−80</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-125' data-solution='Signos diferentes: 200 - 75 = 125. Gana el 200, que es negativo. Resultado: -125.'><div class='num'>B12</div><div class='pregunta'><span class='neg'>−200</span> + <span class='pos'>+75</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-140' data-solution='Signos diferentes: 450 - 310 = 140. Gana el 450, que es negativo. Resultado: -140.'><div class='num'>B13</div><div class='pregunta'><span class='pos'>+310</span> + <span class='neg'>−450</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='-315' data-solution='Signos diferentes: 540 - 225 = 315. Gana el 540, que es negativo. Resultado: -315.'><div class='num'>B14</div><div class='pregunta'><span class='neg'>−540</span> + <span class='pos'>+225</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+    <article class='ej' data-answer='350' data-solution='Signos diferentes: 1000 - 650 = 350. Gana el 1000, que es positivo. Resultado: +350.'><div class='num'>B15</div><div class='pregunta'><span class='pos'>+1000</span> + <span class='neg'>−650</span></div><div class='fila'><input placeholder='Resultado'><button onclick='checkOne(this)'>Revisar</button></div><div class='fb'></div><div class='sol'></div></article>
+  </div></div>
+  <div class='acciones'><button onclick='checkAll()'>Revisar todo</button><button class='secondary' onclick='showAll()'>Mostrar soluciones</button><button class='ghost' onclick='resetAll()'>Reiniciar</button><button class='ghost' onclick='window.print()'>Imprimir / PDF</button></div>
+</section>
+</main>
+<script>
+function n(v){return Number(String(v||'').trim().replace(/−/g,'-').replace(/\s+/g,'').replace(/,/g,'').replace(/^\+/,''));}
+function score(){document.getElementById('score').textContent=document.querySelectorAll('.ej.ok').length;}
+function check(card){const exp=n(card.dataset.answer),val=n(card.querySelector('input').value),fb=card.querySelector('.fb'),sol=card.querySelector('.sol');card.classList.remove('ok','mal');sol.textContent=card.dataset.solution;if(Number.isNaN(val)){fb.textContent='Escribe un número antes de revisar.';fb.style.color='#64748b';score();return;}if(val===exp){card.classList.add('ok');fb.textContent='Correcto. El signo y el valor están bien.';fb.style.color='#15803d';sol.classList.remove('show');}else{card.classList.add('mal');fb.textContent='Revisa la regla: ¿signos iguales o diferentes?';fb.style.color='#b91c1c';}score();}
+function checkOne(b){check(b.closest('.ej'));}function checkAll(){document.querySelectorAll('.ej').forEach(check);}function showAll(){document.querySelectorAll('.ej').forEach(c=>{const s=c.querySelector('.sol');s.textContent=c.dataset.solution;s.classList.add('show');});}
+function resetAll(){document.querySelectorAll('.ej').forEach(c=>{c.classList.remove('ok','mal');c.querySelector('input').value='';c.querySelector('.fb').textContent='';c.querySelector('.sol').textContent='';c.querySelector('.sol').classList.remove('show');});score();}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter')check(i.closest('.ej'));}));
+</script>
+</body>
+</html>
