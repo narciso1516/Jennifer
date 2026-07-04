@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de Binomios al Cuadrado</title>
+  <style>
+    :root{
+      --blue:#4285F4;--red:#DB4437;--yellow:#F4B400;--green:#0F9D58;
+      --ink:#202124;--muted:#5f6368;--paper:#ffffff;--line:#dadce0;
+      --soft-blue:#e8f0fe;--soft-red:#fce8e6;--soft-yellow:#fef7e0;--soft-green:#e6f4ea;
+      --shadow:0 18px 42px rgba(60,64,67,.16);--radius:24px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.6;background:radial-gradient(circle at 14% 10%,rgba(66,133,244,.18),transparent 28%),radial-gradient(circle at 90% 8%,rgba(244,180,0,.18),transparent 26%),radial-gradient(circle at 92% 88%,rgba(15,157,88,.14),transparent 26%),#f8fafd}
+    header,main{max-width:1120px;margin:auto}
+    header{margin-top:28px;padding:42px 34px;background:var(--paper);border-radius:32px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    header:before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--blue),var(--red),var(--yellow),var(--green))}
+    main{padding:18px 16px 60px}
+    h1{font-size:clamp(2.2rem,5vw,4.4rem);line-height:1.03;margin:0 0 14px;letter-spacing:-.04em}
+    h2{font-size:clamp(1.45rem,3vw,2.1rem);margin:0 0 16px;letter-spacing:-.02em}
+    h3{margin:0 0 8px;font-size:1.2rem}
+    p{margin:0 0 13px}.lead{max-width:870px;color:var(--muted);font-size:1.15rem}
+    .eyebrow{display:flex;gap:8px;align-items:center;text-transform:uppercase;font-weight:800;letter-spacing:.05em;color:var(--muted);font-size:.88rem;margin-bottom:10px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.b{background:var(--blue)}.r{background:var(--red)}.y{background:var(--yellow)}.g{background:var(--green)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 8px 24px rgba(60,64,67,.08)}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}@media(max-width:820px){.span-8,.span-6,.span-4{grid-column:span 12}header{margin:12px;padding:34px 22px}main{padding:0 12px 42px}}
+    .formula-hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}@media(max-width:720px){.formula-hero{grid-template-columns:1fr}}.formula-box{border-radius:22px;padding:22px;border:2px solid transparent}.formula-box.plus{background:var(--soft-blue);border-color:rgba(66,133,244,.32)}.formula-box.minus{background:var(--soft-red);border-color:rgba(219,68,55,.28)}.formula{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.6rem,4vw,2.35rem);font-weight:900;letter-spacing:-.03em;margin:8px 0 12px}
+    .rule-list{display:grid;gap:12px;padding:0;margin:16px 0 0;list-style:none}.rule-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:16px;border-radius:18px;background:#f8fafd;border:1px solid var(--line)}.num{width:44px;height:44px;border-radius:14px;color:white;font-weight:900;display:grid;place-items:center}.num.blue{background:var(--blue)}.num.red{background:var(--red)}.num.yellow{background:var(--yellow);color:var(--ink)}.num.green{background:var(--green)}
+    .math-line{font-family:Georgia,'Times New Roman',serif;font-size:1.35rem;font-weight:800;background:#f8fafd;border-left:6px solid var(--blue);border-radius:14px;padding:14px 18px;margin:12px 0;overflow-x:auto;white-space:nowrap}.step{padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;margin:12px 0}.step strong{color:var(--blue)}
+    .note{border-radius:18px;padding:18px 20px;margin-top:16px;border:1px solid var(--line);border-left:8px solid}.teacher{background:var(--soft-yellow);border-left-color:var(--yellow)}.success{background:var(--soft-green);border-left-color:var(--green)}.warning{background:var(--soft-red);border-left-color:var(--red)}
+    details{border:1px solid var(--line);border-radius:18px;background:#fff;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:18px 20px;font-weight:900;background:#f8fafd}details[open] summary{border-bottom:1px solid var(--line)}.details-body{padding:18px 20px 20px}
+    .exercise-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}@media(max-width:720px){.exercise-grid{grid-template-columns:1fr}}.exercise{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.tag{display:inline-block;padding:6px 10px;border-radius:999px;font-size:.78rem;font-weight:900;margin-bottom:10px;text-transform:uppercase}.easy{background:var(--soft-green);color:#137333}.medium{background:var(--soft-yellow);color:#8a5b00}.hard{background:var(--soft-red);color:#a50e0e}.answer-line{height:42px;border:2px dashed #c7c9cc;border-radius:12px;margin-top:12px;display:flex;align-items:center;padding:0 12px;color:#8b8f94;font-size:.9rem}
+    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;overflow:hidden;border:1px solid var(--line);border-radius:16px}th,td{padding:14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}th{background:#f1f3f4}
+    button{border:0;border-radius:999px;background:var(--blue);color:white;font-weight:900;padding:12px 18px;cursor:pointer;box-shadow:0 8px 18px rgba(66,133,244,.26);margin:8px 8px 0 0}.secondary{background:var(--green);box-shadow:0 8px 18px rgba(15,157,88,.22)}.hidden{display:none}.result{margin-top:16px;padding:16px;border-radius:16px;background:var(--soft-blue);border:1px solid rgba(66,133,244,.28)}.footer-card{text-align:center;background:#202124;color:white;border-radius:28px;padding:28px;margin-top:24px}.strip{display:grid;grid-template-columns:repeat(4,1fr);height:8px;border-radius:999px;overflow:hidden;margin:22px 0 6px}.strip div:nth-child(1){background:var(--blue)}.strip div:nth-child(2){background:var(--red)}.strip div:nth-child(3){background:var(--yellow)}.strip div:nth-child(4){background:var(--green)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow"><span class="dot b"></span><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>Guía paso a paso de álgebra</div>
+    <h1>Binomios al cuadrado</h1>
+    <p class="lead">Aprende a resolver un binomio al cuadrado sin memorizar de forma mecánica: identificando sus partes, aplicando la regla y cuidando el signo del término de en medio.</p>
+    <div class="strip"><div></div><div></div><div></div><div></div></div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card span-12">
+        <h2>1. ¿Qué es un binomio?</h2>
+        <p>Un <strong>binomio</strong> es una expresión algebraica que tiene dos términos separados por un signo de suma o resta.</p>
+        <div class="math-line">x + 5</div>
+        <div class="math-line">3a − 2</div>
+        <div class="note teacher"><strong>Idea clave:</strong> cuando un binomio está al cuadrado, significa que se multiplica por sí mismo. No significa que solo se eleven los dos términos y ya.</div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>2. Fórmulas principales</h2>
+        <div class="formula-hero">
+          <div class="formula-box plus">
+            <h3>Binomio con suma</h3>
+            <div class="formula">(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></div>
+            <p>El término de en medio queda <strong>positivo</strong>.</p>
+          </div>
+          <div class="formula-box minus">
+            <h3>Binomio con resta</h3>
+            <div class="formula">(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup></div>
+            <p>El término de en medio queda <strong>negativo</strong>, pero el último término sigue siendo positivo.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>3. Método docente: tres partes</h2>
+        <ol class="rule-list">
+          <li><span class="num blue">1</span><div><strong>Eleva el primer término.</strong><br>Si el primer término es 3x, entonces (3x)<sup>2</sup> = 9x<sup>2</sup>.</div></li>
+          <li><span class="num red">2</span><div><strong>Calcula el doble producto.</strong><br>Multiplica 2 por el primer término y por el segundo término.</div></li>
+          <li><span class="num yellow">3</span><div><strong>Eleva el segundo término.</strong><br>Si el segundo término es 5, entonces 5<sup>2</sup> = 25.</div></li>
+          <li><span class="num green">4</span><div><strong>Cuida el signo.</strong><br>Si el binomio es suma, el término de en medio es positivo. Si es resta, el término de en medio es negativo.</div></li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <h2>4. Ejemplo 1: (x + 5)<sup>2</sup></h2>
+        <div class="step"><strong>Paso 1.</strong> Identificamos: primer término = <strong>x</strong>, segundo término = <strong>5</strong>.</div>
+        <div class="step"><strong>Paso 2.</strong> Como es suma, usamos: <strong>(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></strong>.</div>
+        <div class="math-line">(x + 5)<sup>2</sup> = x<sup>2</sup> + 2(x)(5) + 5<sup>2</sup></div>
+        <div class="step"><strong>Paso 3.</strong> Multiplicamos: 2(x)(5) = 10x y 5<sup>2</sup> = 25.</div>
+        <div class="math-line">(x + 5)<sup>2</sup> = x<sup>2</sup> + 10x + 25</div>
+      </article>
+
+      <article class="card span-6">
+        <h2>5. Ejemplo 2: (x − 7)<sup>2</sup></h2>
+        <div class="step"><strong>Paso 1.</strong> Identificamos: primer término = <strong>x</strong>, segundo término = <strong>7</strong>.</div>
+        <div class="step"><strong>Paso 2.</strong> Como es resta, usamos: <strong>(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup></strong>.</div>
+        <div class="math-line">(x − 7)<sup>2</sup> = x<sup>2</sup> − 2(x)(7) + 7<sup>2</sup></div>
+        <div class="step"><strong>Paso 3.</strong> Multiplicamos: 2(x)(7) = 14x y 7<sup>2</sup> = 49.</div>
+        <div class="math-line">(x − 7)<sup>2</sup> = x<sup>2</sup> − 14x + 49</div>
+        <div class="note warning"><strong>Ojo:</strong> el último término es positivo porque (−7)(−7) = +49.</div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <h2>6. Ejemplo 3: (3x + 2)<sup>2</sup></h2>
+        <div class="step"><strong>Paso 1.</strong> Primer término = <strong>3x</strong>. Segundo término = <strong>2</strong>.</div>
+        <div class="math-line">(3x + 2)<sup>2</sup> = (3x)<sup>2</sup> + 2(3x)(2) + 2<sup>2</sup></div>
+        <div class="step"><strong>Paso 2.</strong> Elevamos: (3x)<sup>2</sup> = 9x<sup>2</sup>.</div>
+        <div class="step"><strong>Paso 3.</strong> Doble producto: 2(3x)(2) = 12x.</div>
+        <div class="step"><strong>Paso 4.</strong> Último cuadrado: 2<sup>2</sup> = 4.</div>
+        <div class="math-line">(3x + 2)<sup>2</sup> = 9x<sup>2</sup> + 12x + 4</div>
+      </article>
+
+      <article class="card span-6">
+        <h2>7. Ejemplo 4: (4a − 3)<sup>2</sup></h2>
+        <div class="step"><strong>Paso 1.</strong> Primer término = <strong>4a</strong>. Segundo término = <strong>3</strong>.</div>
+        <div class="math-line">(4a − 3)<sup>2</sup> = (4a)<sup>2</sup> − 2(4a)(3) + 3<sup>2</sup></div>
+        <div class="step"><strong>Paso 2.</strong> Elevamos: (4a)<sup>2</sup> = 16a<sup>2</sup>.</div>
+        <div class="step"><strong>Paso 3.</strong> Doble producto: 2(4a)(3) = 24a.</div>
+        <div class="step"><strong>Paso 4.</strong> Último cuadrado: 3<sup>2</sup> = 9.</div>
+        <div class="math-line">(4a − 3)<sup>2</sup> = 16a<sup>2</sup> − 24a + 9</div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <h2>8. Plantilla rápida</h2>
+        <table>
+          <thead><tr><th>Parte</th><th>Qué hago</th><th>Ejemplo con (2x − 6)<sup>2</sup></th></tr></thead>
+          <tbody>
+            <tr><td>Primera</td><td>Elevo el primer término</td><td>(2x)<sup>2</sup> = 4x<sup>2</sup></td></tr>
+            <tr><td>Segunda</td><td>Hago el doble producto</td><td>2(2x)(6) = 24x</td></tr>
+            <tr><td>Tercera</td><td>Elevo el segundo término</td><td>6<sup>2</sup> = 36</td></tr>
+          </tbody>
+        </table>
+        <div class="math-line">(2x − 6)<sup>2</sup> = 4x<sup>2</sup> − 24x + 36</div>
+      </article>
+      <article class="card span-4">
+        <h2>9. Error común</h2>
+        <div class="note warning">
+          <p><strong>Error:</strong></p>
+          <div class="math-line" style="border-left-color:var(--red)">(x + 4)<sup>2</sup> = x<sup>2</sup> + 16</div>
+          <p><strong>Por qué está mal:</strong> faltó el doble producto: 2(x)(4) = 8x.</p>
+          <p><strong>Correcto:</strong></p>
+          <div class="math-line" style="border-left-color:var(--green)">x<sup>2</sup> + 8x + 16</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>10. Práctica guiada</h2>
+        <p>Resuelve primero en tu cuaderno. Luego abre la respuesta para comparar tu procedimiento.</p>
+        <details><summary>Ejercicio guiado A: (x + 9)<sup>2</sup></summary><div class="details-body"><div class="math-line">(x + 9)<sup>2</sup> = x<sup>2</sup> + 2(x)(9) + 9<sup>2</sup></div><div class="math-line">= x<sup>2</sup> + 18x + 81</div></div></details>
+        <details><summary>Ejercicio guiado B: (5x − 4)<sup>2</sup></summary><div class="details-body"><div class="math-line">(5x − 4)<sup>2</sup> = (5x)<sup>2</sup> − 2(5x)(4) + 4<sup>2</sup></div><div class="math-line">= 25x<sup>2</sup> − 40x + 16</div></div></details>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>11. Ejercicios para resolver</h2>
+        <p>Escribe el resultado desarrollado de cada binomio.</p>
+        <div class="exercise-grid">
+          <div class="exercise"><span class="tag easy">Sencillo</span><h3>1. (x + 2)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag easy">Sencillo</span><h3>2. (x − 3)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag easy">Sencillo</span><h3>3. (a + 6)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag easy">Sencillo</span><h3>4. (m − 8)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag medium">Intermedio</span><h3>5. (2x + 5)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag medium">Intermedio</span><h3>6. (3x − 4)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag medium">Intermedio</span><h3>7. (7a + 2)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag medium">Intermedio</span><h3>8. (6m − 5)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag hard">Avanzado</span><h3>9. (4x + 3y)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag hard">Avanzado</span><h3>10. (5a − 2b)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag hard">Avanzado</span><h3>11. (2p + 7q)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+          <div class="exercise"><span class="tag hard">Avanzado</span><h3>12. (9r − 4s)<sup>2</sup></h3><div class="answer-line">Respuesta:</div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>12. Respuestas</h2>
+        <p>Usa esta sección solo después de intentar resolverlos.</p>
+        <button onclick="toggleAnswers()">Mostrar / ocultar respuestas</button>
+        <div id="answers" class="hidden result">
+          <ol>
+            <li>(x + 2)<sup>2</sup> = x<sup>2</sup> + 4x + 4</li>
+            <li>(x − 3)<sup>2</sup> = x<sup>2</sup> − 6x + 9</li>
+            <li>(a + 6)<sup>2</sup> = a<sup>2</sup> + 12a + 36</li>
+            <li>(m − 8)<sup>2</sup> = m<sup>2</sup> − 16m + 64</li>
+            <li>(2x + 5)<sup>2</sup> = 4x<sup>2</sup> + 20x + 25</li>
+            <li>(3x − 4)<sup>2</sup> = 9x<sup>2</sup> − 24x + 16</li>
+            <li>(7a + 2)<sup>2</sup> = 49a<sup>2</sup> + 28a + 4</li>
+            <li>(6m − 5)<sup>2</sup> = 36m<sup>2</sup> − 60m + 25</li>
+            <li>(4x + 3y)<sup>2</sup> = 16x<sup>2</sup> + 24xy + 9y<sup>2</sup></li>
+            <li>(5a − 2b)<sup>2</sup> = 25a<sup>2</sup> − 20ab + 4b<sup>2</sup></li>
+            <li>(2p + 7q)<sup>2</sup> = 4p<sup>2</sup> + 28pq + 49q<sup>2</sup></li>
+            <li>(9r − 4s)<sup>2</sup> = 81r<sup>2</sup> − 72rs + 16s<sup>2</sup></li>
+          </ol>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>13. Mini evaluación</h2>
+        <p>Elige la opción correcta para verificar la regla.</p>
+        <div class="step">
+          <h3>¿Cuál es el desarrollo correcto de (x − 10)<sup>2</sup>?</h3>
+          <button onclick="checkQuiz(false)">x<sup>2</sup> − 100</button>
+          <button onclick="checkQuiz(true)" class="secondary">x<sup>2</sup> − 20x + 100</button>
+          <button onclick="checkQuiz(false)">x<sup>2</sup> + 20x + 100</button>
+          <div id="quizResult" class="result hidden"></div>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer-card">
+      <h2>Resumen final</h2>
+      <p>Un binomio al cuadrado siempre tiene tres partes: <strong>cuadrado del primero</strong>, <strong>doble producto</strong> y <strong>cuadrado del segundo</strong>. El signo del término de en medio depende del signo que esté dentro del paréntesis.</p>
+    </div>
+  </main>
+
+  <script>
+    function toggleAnswers(){document.getElementById('answers').classList.toggle('hidden')}
+    function checkQuiz(isCorrect){
+      const box=document.getElementById('quizResult');box.classList.remove('hidden');
+      box.innerHTML=isCorrect?'<strong>Correcto.</strong> Como es una resta, el término de en medio es negativo: 2(x)(10)=20x. El último término es positivo: 10²=100.':'<strong>Revisa la regla.</strong> No basta elevar x y 10. Falta el doble producto: 2(x)(10)=20x. Además, como es resta, queda −20x.';
+    }
+  </script>
+</body>
+</html>
