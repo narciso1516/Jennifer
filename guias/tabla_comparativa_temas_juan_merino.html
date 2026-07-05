@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla comparativa de temas - Juan Merino</title>
+<style>
+:root{--blue:#4285F4;--red:#DB4437;--yellow:#F4B400;--green:#0F9D58;--ink:#202124;--muted:#5f6368;--line:#dadce0;--bg:#f8fafd;--paper:#fff;--soft-blue:#e8f0fe;--soft-red:#fce8e6;--soft-yellow:#fef7e0;--soft-green:#e6f4ea}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 10% 8%,rgba(66,133,244,.18),transparent 28%),radial-gradient(circle at 90% 8%,rgba(244,180,0,.18),transparent 28%),radial-gradient(circle at 90% 92%,rgba(15,157,88,.14),transparent 30%),var(--bg);color:var(--ink);line-height:1.55}.wrap{max-width:1120px;margin:auto;padding:24px 16px 60px}header,.card{background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:0 16px 38px rgba(60,64,67,.13);padding:28px;margin-bottom:18px}header{position:relative;overflow:hidden}header:before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:linear-gradient(90deg,var(--blue),var(--red),var(--yellow),var(--green))}h1{font-size:clamp(2rem,5vw,4rem);line-height:1.03;margin:10px 0 12px;letter-spacing:-.04em}h2{margin:0 0 14px;font-size:clamp(1.35rem,3vw,2rem)}p{margin:0 0 12px}.lead{font-size:1.12rem;color:var(--muted);max-width:850px}.eyebrow{font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-size:.84rem}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}@media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}.stat{border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px}.stat strong{display:block;font-size:2rem;line-height:1}.stat span{color:var(--muted);font-weight:800}.done{border-left:8px solid var(--green);background:var(--soft-green)}.partial{border-left:8px solid var(--yellow);background:var(--soft-yellow)}.missing{border-left:8px solid var(--red);background:var(--soft-red)}.total{border-left:8px solid var(--blue);background:var(--soft-blue)}table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:white}th,td{padding:15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}tr:last-child td{border-bottom:0}th{background:#f1f3f4;font-weight:900}.badge{display:inline-block;border-radius:999px;padding:7px 11px;font-weight:900;font-size:.82rem;white-space:nowrap}.b-done{background:var(--soft-green);color:#137333}.b-partial{background:var(--soft-yellow);color:#8a5b00}.b-missing{background:var(--soft-red);color:#a50e0e}.priority{font-weight:900}.alto{color:#a50e0e}.medio{color:#8a5b00}.ok{color:#137333}.order{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(max-width:760px){.order{grid-template-columns:1fr}table{font-size:.92rem}th,td{padding:12px}}.item{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fff}.num{width:42px;height:42px;border-radius:14px;background:var(--blue);color:white;display:grid;place-items:center;font-weight:900}.note{border-radius:20px;padding:18px;background:#202124;color:white}.btn{border:0;border-radius:999px;background:var(--blue);color:white;font-weight:900;padding:12px 18px;cursor:pointer;margin-top:12px}@media print{body{background:#fff}.btn{display:none}header,.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="eyebrow">Seguimiento de temas de matemáticas</div>
+<h1>Tabla comparativa para Juan Merino</h1>
+<p class="lead">Esta tabla muestra qué temas ya trabajamos, cuáles están parcialmente vistos y cuáles faltan para completar el bloque de álgebra.</p>
+<button class="btn" onclick="window.print()">Imprimir o guardar como PDF</button>
+<div class="stats">
+<div class="stat total"><strong>8</strong><span>temas revisados en la lista</span></div>
+<div class="stat done"><strong>2</strong><span>ya hechos</span></div>
+<div class="stat partial"><strong>2</strong><span>parciales</span></div>
+<div class="stat missing"><strong>4</strong><span>faltan completos</span></div>
+</div>
+</header>
+<section class="card">
+<h2>Comparativa general</h2>
+<table>
+<thead><tr><th>Bloque</th><th>Tema</th><th>Estado</th><th>Qué debe aprender Juan</th><th>Prioridad</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Suma de polinomios</strong></td><td><span class="badge b-done">Hecho</span></td><td>Juntar términos semejantes: x² con x², x con x y números con números.</td><td class="priority ok">Completado</td></tr>
+<tr><td>2</td><td><strong>Resta de polinomios</strong></td><td><span class="badge b-missing">Falta</span></td><td>Cambiar signos cuando hay un signo negativo antes del paréntesis y luego reducir términos semejantes.</td><td class="priority alto">Alta</td></tr>
+<tr><td>3</td><td><strong>Multiplicación de polinomios</strong></td><td><span class="badge b-missing">Falta</span></td><td>Multiplicar término por término y después juntar términos semejantes.</td><td class="priority alto">Alta</td></tr>
+<tr><td>4</td><td><strong>División de polinomios</strong></td><td><span class="badge b-missing">Falta</span></td><td>Dividir coeficientes, restar exponentes y ordenar el procedimiento.</td><td class="priority medio">Media</td></tr>
+<tr><td>5</td><td><strong>Productos notables</strong></td><td><span class="badge b-partial">Parcial</span></td><td>Reconocer fórmulas rápidas como binomio al cuadrado, diferencia de cuadrados y binomios conjugados.</td><td class="priority alto">Alta</td></tr>
+<tr><td>6</td><td><strong>Binomio al cuadrado</strong></td><td><span class="badge b-done">Hecho</span></td><td>Aplicar: cuadrado del primero, doble producto y cuadrado del segundo.</td><td class="priority ok">Completado</td></tr>
+<tr><td>7</td><td><strong>Factorización</strong></td><td><span class="badge b-missing">Falta</span></td><td>Convertir una expresión desarrollada en multiplicación de factores.</td><td class="priority alto">Alta</td></tr>
+<tr><td>8</td><td><strong>Ecuaciones lineales</strong></td><td><span class="badge b-partial">Parcial</span></td><td>Despejar la incógnita, pasar términos, eliminar paréntesis y resolver paso a paso.</td><td class="priority alto">Alta</td></tr>
+</tbody>
+</table>
+</section>
+<section class="card">
+<h2>Orden recomendado de estudio</h2>
+<div class="order">
+<div class="item"><span class="num">1</span><div><strong>Resta de polinomios</strong><br>Es el siguiente paso después de la suma.</div></div>
+<div class="item"><span class="num">2</span><div><strong>Multiplicación de polinomios</strong><br>Sirve para productos notables y factorización.</div></div>
+<div class="item"><span class="num">3</span><div><strong>Productos notables completos</strong><br>Ayudan a resolver más rápido.</div></div>
+<div class="item"><span class="num">4</span><div><strong>Factorización</strong><br>Es el proceso contrario a desarrollar.</div></div>
+<div class="item"><span class="num">5</span><div><strong>División de polinomios</strong><br>Requiere controlar exponentes y signos.</div></div>
+<div class="item"><span class="num">6</span><div><strong>Ecuaciones lineales</strong><br>Integra signos, operaciones y despejes.</div></div>
+</div>
+</section>
+<section class="note">
+<h2>Mensaje para Juan</h2>
+<p>Juan, no necesitas aprender todo al mismo tiempo. Ya tienes una base con suma de polinomios y binomios al cuadrado. Ahora sigue la resta, porque se parece mucho a la suma, pero debes cuidar el cambio de signos.</p>
+</section>
+</div>
+</body>
+</html>
