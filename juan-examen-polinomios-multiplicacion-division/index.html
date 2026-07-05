@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Examen interactivo: multiplicación y división de polinomios</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --primary:#2563eb;
+      --primary-dark:#1d4ed8;
+      --good:#15803d;
+      --bad:#b91c1c;
+      --line:#dbe3ef;
+      --soft:#eef4ff;
+      --gold:#f59e0b;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#eff6ff 0%,#f8fafc 45%,#eef2ff 100%);
+      color:var(--ink);
+      min-height:100vh;
+    }
+    header{
+      background:#0f172a;
+      color:white;
+      padding:28px 18px;
+      text-align:center;
+      border-bottom:6px solid var(--primary);
+    }
+    header h1{margin:0 0 8px;font-size:clamp(1.55rem,4vw,2.45rem);}
+    header p{margin:0;color:#cbd5e1;font-size:1rem;}
+    main{max-width:980px;margin:0 auto;padding:22px 14px 44px;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      box-shadow:0 18px 48px rgba(15,23,42,.10);
+      padding:24px;
+      margin:18px 0;
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .mini{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+    }
+    .mini strong{display:block;margin-bottom:6px;color:#0f172a;}
+    .note{
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+      border-radius:14px;
+      padding:14px;
+      margin-top:16px;
+      line-height:1.55;
+    }
+    .rules{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .rule{
+      border-left:5px solid var(--primary);
+      background:var(--soft);
+      padding:12px 14px;
+      border-radius:12px;
+      line-height:1.5;
+    }
+    label{font-weight:700;display:block;margin-bottom:8px;}
+    input[type='text']{
+      width:100%;
+      padding:13px 14px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      font-size:1rem;
+      outline:none;
+    }
+    input[type='text']:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+    button{
+      border:0;
+      border-radius:14px;
+      padding:13px 18px;
+      font-weight:800;
+      font-size:1rem;
+      cursor:pointer;
+      transition:transform .08s ease, box-shadow .15s ease, background .15s ease;
+    }
+    button:active{transform:scale(.98);}
+    .primary{background:var(--primary);color:white;box-shadow:0 10px 22px rgba(37,99,235,.28);}
+    .primary:hover{background:var(--primary-dark);}
+    .secondary{background:#e5e7eb;color:#111827;}
+    .danger{background:#fee2e2;color:#7f1d1d;}
+    .questionTop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+    .badge{display:inline-flex;align-items:center;border-radius:999px;padding:8px 12px;font-weight:800;font-size:.88rem;}
+    .basic{background:#dcfce7;color:#14532d;}
+    .intermediate{background:#fef3c7;color:#78350f;}
+    .advanced{background:#fee2e2;color:#7f1d1d;}
+    .progressWrap{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:14px 0 20px;}
+    .progressBar{height:100%;background:linear-gradient(90deg,#2563eb,#22c55e);width:0%;transition:width .25s ease;}
+    .questionText{
+      font-size:clamp(1.25rem,3vw,1.8rem);
+      font-weight:900;
+      line-height:1.35;
+      margin:10px 0 10px;
+      color:#0f172a;
+    }
+    .instruction{color:var(--muted);line-height:1.55;margin:0 0 16px;}
+    .options{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px;}
+    .option{
+      background:#f8fafc;
+      color:#111827;
+      border:2px solid #dbe3ef;
+      text-align:left;
+      font-size:1.06rem;
+      line-height:1.45;
+      padding:15px 16px;
+      border-radius:16px;
+    }
+    .option:hover{border-color:#93c5fd;background:#eff6ff;}
+    .feedback{
+      margin-top:16px;
+      padding:14px;
+      border-radius:14px;
+      font-weight:800;
+      display:none;
+    }
+    .feedback.ok{display:block;background:#dcfce7;color:#14532d;border:1px solid #86efac;}
+    .feedback.no{display:block;background:#fee2e2;color:#7f1d1d;border:1px solid #fca5a5;}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    .stat{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center;}
+    .stat span{display:block;color:var(--muted);font-size:.86rem;margin-bottom:5px;}
+    .stat strong{font-size:1.35rem;color:#0f172a;}
+    .resultTitle{font-size:2rem;margin:0 0 8px;color:#0f172a;}
+    .score{
+      font-size:clamp(2rem,7vw,4rem);
+      font-weight:1000;
+      color:var(--good);
+      margin:12px 0;
+    }
+    .hidden{display:none !important;}
+    .footerNote{color:var(--muted);font-size:.92rem;margin-top:18px;line-height:1.55;}
+    .formula{font-family:Georgia, 'Times New Roman', serif;}
+    .small{font-size:.92rem;color:var(--muted);}
+    .pillRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+    .pill{background:#f1f5f9;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-weight:700;color:#334155;font-size:.88rem;}
+    @media(max-width:760px){
+      .grid,.rules,.stats{grid-template-columns:1fr;}
+      .card{padding:18px;}
+      header{padding:24px 14px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Examen interactivo de polinomios</h1>
+    <p>Multiplicación y división · Modo estricto para Juan</p>
+  </header>
+  <main>
+    <section id='intro' class='card'>
+      <h2>Instrucciones del examen</h2>
+      <p class='instruction'>Este examen contiene <strong>20 preguntas</strong> de multiplicación y división de polinomios. Está diseñado para que Juan practique con disciplina matemática: primero identifica términos semejantes, aplica signos, multiplica coeficientes y usa exponentes correctamente.</p>
+      <div class='grid'>
+        <div class='mini'><strong>Básico</strong>7 preguntas para dominar productos simples, binomios y división entre monomio.</div>
+        <div class='mini'><strong>Intermedio</strong>7 preguntas con binomios, productos notables y divisiones exactas.</div>
+        <div class='mini'><strong>Avanzado</strong>6 preguntas con polinomios de mayor grado y división algebraica.</div>
+      </div>
+      <div class='note'>
+        <strong>Regla principal:</strong> si Juan responde bien, avanza a la siguiente pregunta. Si responde mal, el examen regresa automáticamente a la pregunta 1. No se mostrará la respuesta correcta ni se revelará cuál opción debía elegir.
+      </div>
+      <div class='rules'>
+        <div class='rule'><strong>Multiplicación:</strong> multiplica coeficientes, suma exponentes de la misma letra y cuida la ley de signos.</div>
+        <div class='rule'><strong>División:</strong> divide coeficientes, resta exponentes de la misma letra y verifica que al multiplicar el divisor por el cociente se recupere el dividendo.</div>
+      </div>
+      <div style='margin-top:18px;'>
+        <label for='studentName'>Nombre del alumno</label>
+        <input id='studentName' type='text' value='Juan' autocomplete='off'>
+      </div>
+      <div class='pillRow'>
+        <span class='pill'>20 reactivos</span>
+        <span class='pill'>Sin pistas</span>
+        <span class='pill'>Sin mostrar respuesta correcta</span>
+        <span class='pill'>Reinicio al fallar</span>
+      </div>
+      <div style='margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;'>
+        <button class='primary' onclick='startExam()'>Iniciar examen</button>
+        <button class='secondary' onclick='showTeacherRules()'>Ver criterios docentes</button>
+      </div>
+      <p id='teacherRules' class='footerNote hidden'>Criterio docente: el objetivo no es adivinar, sino sostener una cadena de razonamiento. Por eso el examen reinicia con cada error. La calificación final mide dominio completo; los reinicios sirven como evidencia de práctica y perseverancia.</p>
+    </section>
+
+    <section id='exam' class='card hidden' aria-live='polite'>
+      <div class='questionTop'>
+        <div>
+          <span id='levelBadge' class='badge basic'>Básico</span>
+          <span class='small' id='questionCounter'>Pregunta 1 de 20</span>
+        </div>
+        <button class='danger' onclick='restartByStudent()'>Reiniciar examen</button>
+      </div>
+      <div class='progressWrap'><div id='progressBar' class='progressBar'></div></div>
+      <p class='instruction' id='topicText'>Tema: multiplicación de polinomios</p>
+      <div id='questionText' class='questionText formula'></div>
+      <p class='instruction'>Elige la respuesta que consideres correcta. Revisa signos, coeficientes y exponentes antes de contestar.</p>
+      <div id='options' class='options'></div>
+      <div id='feedback' class='feedback'></div>
+      <div class='stats'>
+        <div class='stat'><span>Avance actual</span><strong id='currentRun'>0/20</strong></div>
+        <div class='stat'><span>Intentos totales</span><strong id='attempts'>0</strong></div>
+        <div class='stat'><span>Reinicios por error</span><strong id='resets'>0</strong></div>
+        <div class='stat'><span>Tiempo</span><strong id='timer'>00:00</strong></div>
+      </div>
+    </section>
+
+    <section id='result' class='card hidden'>
+      <h2 class='resultTitle'>Resultado final</h2>
+      <p id='resultName' class='instruction'></p>
+      <div class='score'>100%</div>
+      <p class='instruction'><strong>Calificación:</strong> 10/10. En modo estricto, esta calificación significa que el alumno logró contestar correctamente las 20 preguntas en una corrida completa, sin fallar durante el recorrido final.</p>
+      <div class='stats'>
+        <div class='stat'><span>Reactivos correctos finales</span><strong>20/20</strong></div>
+        <div class='stat'><span>Intentos totales</span><strong id='finalAttempts'>0</strong></div>
+        <div class='stat'><span>Reinicios por error</span><strong id='finalResets'>0</strong></div>
+        <div class='stat'><span>Tiempo total</span><strong id='finalTime'>00:00</strong></div>
+      </div>
+      <div class='note'>
+        <strong>Lectura docente:</strong> Juan domina multiplicación y división de polinomios cuando puede mantener correctos los signos, exponentes, términos semejantes y procesos de división durante todo el examen.
+      </div>
+      <div style='margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;'>
+        <button class='primary' onclick='downloadReport()'>Descargar reporte</button>
+        <button class='secondary' onclick='restartAll()'>Volver a practicar</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        level:'Básico', levelClass:'basic', topic:'Multiplicación de monomios',
+        q:'Resuelve: <span class="formula">(2x)(3x)</span>',
+        options:[
+          {k:'6x2', t:'<span class="formula">6x<sup>2</sup></span>'},
+          {k:'5x2', t:'<span class="formula">5x<sup>2</sup></span>'},
+          {k:'6x', t:'<span class="formula">6x</span>'},
+          {k:'5x', t:'<span class="formula">5x</span>'}
+        ], answer:'6x2'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'Multiplicación de binomios',
+        q:'Resuelve: <span class="formula">(x + 3)(x + 2)</span>',
+        options:[
+          {k:'x2+5x+6', t:'<span class="formula">x<sup>2</sup> + 5x + 6</span>'},
+          {k:'x2+6x+5', t:'<span class="formula">x<sup>2</sup> + 6x + 5</span>'},
+          {k:'x2+5', t:'<span class="formula">x<sup>2</sup> + 5</span>'},
+          {k:'2x2+5x+6', t:'<span class="formula">2x<sup>2</sup> + 5x + 6</span>'}
+        ], answer:'x2+5x+6'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'Propiedad distributiva',
+        q:'Resuelve: <span class="formula">x(4x + 5)</span>',
+        options:[
+          {k:'4x2+5x', t:'<span class="formula">4x<sup>2</sup> + 5x</span>'},
+          {k:'4x+5', t:'<span class="formula">4x + 5</span>'},
+          {k:'4x2+5', t:'<span class="formula">4x<sup>2</sup> + 5</span>'},
+          {k:'5x2+4x', t:'<span class="formula">5x<sup>2</sup> + 4x</span>'}
+        ], answer:'4x2+5x'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'División entre monomio',
+        q:'Resuelve: <span class="formula">(6x<sup>2</sup> + 9x) ÷ 3x</span>',
+        options:[
+          {k:'2x+3', t:'<span class="formula">2x + 3</span>'},
+          {k:'2x2+3x', t:'<span class="formula">2x<sup>2</sup> + 3x</span>'},
+          {k:'3x+2', t:'<span class="formula">3x + 2</span>'},
+          {k:'2x-3', t:'<span class="formula">2x - 3</span>'}
+        ], answer:'2x+3'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'División entre monomio',
+        q:'Resuelve: <span class="formula">(10x<sup>3</sup> - 15x<sup>2</sup>) ÷ 5x</span>',
+        options:[
+          {k:'2x2-3x', t:'<span class="formula">2x<sup>2</sup> - 3x</span>'},
+          {k:'2x3-3x2', t:'<span class="formula">2x<sup>3</sup> - 3x<sup>2</sup></span>'},
+          {k:'2x2+3x', t:'<span class="formula">2x<sup>2</sup> + 3x</span>'},
+          {k:'5x2-10x', t:'<span class="formula">5x<sup>2</sup> - 10x</span>'}
+        ], answer:'2x2-3x'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'Producto notable',
+        q:'Resuelve: <span class="formula">(x + 1)(x - 1)</span>',
+        options:[
+          {k:'x2-1', t:'<span class="formula">x<sup>2</sup> - 1</span>'},
+          {k:'x2+1', t:'<span class="formula">x<sup>2</sup> + 1</span>'},
+          {k:'x2-2x+1', t:'<span class="formula">x<sup>2</sup> - 2x + 1</span>'},
+          {k:'x2+2x-1', t:'<span class="formula">x<sup>2</sup> + 2x - 1</span>'}
+        ], answer:'x2-1'
+      },
+      {
+        level:'Básico', levelClass:'basic', topic:'Multiplicación de binomios',
+        q:'Resuelve: <span class="formula">(y + 4)(y + 3)</span>',
+        options:[
+          {k:'y2+7y+12', t:'<span class="formula">y<sup>2</sup> + 7y + 12</span>'},
+          {k:'y2+12y+7', t:'<span class="formula">y<sup>2</sup> + 12y + 7</span>'},
+          {k:'y2+y+12', t:'<span class="formula">y<sup>2</sup> + y + 12</span>'},
+          {k:'2y+7', t:'<span class="formula">2y + 7</span>'}
+        ], answer:'y2+7y+12'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'Multiplicación de binomios',
+        q:'Resuelve: <span class="formula">(2x + 3)(x + 5)</span>',
+        options:[
+          {k:'2x2+13x+15', t:'<span class="formula">2x<sup>2</sup> + 13x + 15</span>'},
+          {k:'2x2+10x+15', t:'<span class="formula">2x<sup>2</sup> + 10x + 15</span>'},
+          {k:'2x2+8x+15', t:'<span class="formula">2x<sup>2</sup> + 8x + 15</span>'},
+          {k:'3x2+13x+10', t:'<span class="formula">3x<sup>2</sup> + 13x + 10</span>'}
+        ], answer:'2x2+13x+15'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'Ley de signos en productos',
+        q:'Resuelve: <span class="formula">(3x - 2)(2x + 7)</span>',
+        options:[
+          {k:'6x2+17x-14', t:'<span class="formula">6x<sup>2</sup> + 17x - 14</span>'},
+          {k:'6x2+21x-14', t:'<span class="formula">6x<sup>2</sup> + 21x - 14</span>'},
+          {k:'6x2-17x-14', t:'<span class="formula">6x<sup>2</sup> - 17x - 14</span>'},
+          {k:'5x2+17x-14', t:'<span class="formula">5x<sup>2</sup> + 17x - 14</span>'}
+        ], answer:'6x2+17x-14'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'División de polinomio entre binomio',
+        q:'Resuelve: <span class="formula">(x<sup>2</sup> + 5x + 6) ÷ (x + 2)</span>',
+        options:[
+          {k:'x+3', t:'<span class="formula">x + 3</span>'},
+          {k:'x+2', t:'<span class="formula">x + 2</span>'},
+          {k:'x-3', t:'<span class="formula">x - 3</span>'},
+          {k:'x2+3', t:'<span class="formula">x<sup>2</sup> + 3</span>'}
+        ], answer:'x+3'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'División exacta',
+        q:'Resuelve: <span class="formula">(2x<sup>2</sup> + 7x + 3) ÷ (2x + 1)</span>',
+        options:[
+          {k:'x+3', t:'<span class="formula">x + 3</span>'},
+          {k:'2x+3', t:'<span class="formula">2x + 3</span>'},
+          {k:'x+1', t:'<span class="formula">x + 1</span>'},
+          {k:'x-3', t:'<span class="formula">x - 3</span>'}
+        ], answer:'x+3'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'Producto de conjugados',
+        q:'Resuelve: <span class="formula">(x - y)(x + y)</span>',
+        options:[
+          {k:'x2-y2', t:'<span class="formula">x<sup>2</sup> - y<sup>2</sup></span>'},
+          {k:'x2+2xy+y2', t:'<span class="formula">x<sup>2</sup> + 2xy + y<sup>2</sup></span>'},
+          {k:'x2+y2', t:'<span class="formula">x<sup>2</sup> + y<sup>2</sup></span>'},
+          {k:'x2-2xy+y2', t:'<span class="formula">x<sup>2</sup> - 2xy + y<sup>2</sup></span>'}
+        ], answer:'x2-y2'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'Cuadrado de binomio',
+        q:'Resuelve: <span class="formula">(2a + 3b)<sup>2</sup></span>',
+        options:[
+          {k:'4a2+12ab+9b2', t:'<span class="formula">4a<sup>2</sup> + 12ab + 9b<sup>2</sup></span>'},
+          {k:'4a2+9b2', t:'<span class="formula">4a<sup>2</sup> + 9b<sup>2</sup></span>'},
+          {k:'2a2+6ab+3b2', t:'<span class="formula">2a<sup>2</sup> + 6ab + 3b<sup>2</sup></span>'},
+          {k:'4a2+6ab+9b2', t:'<span class="formula">4a<sup>2</sup> + 6ab + 9b<sup>2</sup></span>'}
+        ], answer:'4a2+12ab+9b2'
+      },
+      {
+        level:'Intermedio', levelClass:'intermediate', topic:'División usando factorización',
+        q:'Resuelve: <span class="formula">(x<sup>2</sup> - 9) ÷ (x - 3)</span>',
+        options:[
+          {k:'x+3', t:'<span class="formula">x + 3</span>'},
+          {k:'x-3', t:'<span class="formula">x - 3</span>'},
+          {k:'x2+3', t:'<span class="formula">x<sup>2</sup> + 3</span>'},
+          {k:'1', t:'<span class="formula">1</span>'}
+        ], answer:'x+3'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'Multiplicación de trinomio por binomio',
+        q:'Resuelve: <span class="formula">(2x<sup>2</sup> - x + 3)(x - 4)</span>',
+        options:[
+          {k:'2x3-9x2+7x-12', t:'<span class="formula">2x<sup>3</sup> - 9x<sup>2</sup> + 7x - 12</span>'},
+          {k:'2x3-8x2+7x-12', t:'<span class="formula">2x<sup>3</sup> - 8x<sup>2</sup> + 7x - 12</span>'},
+          {k:'2x3-9x2-7x-12', t:'<span class="formula">2x<sup>3</sup> - 9x<sup>2</sup> - 7x - 12</span>'},
+          {k:'2x3+9x2+7x-12', t:'<span class="formula">2x<sup>3</sup> + 9x<sup>2</sup> + 7x - 12</span>'}
+        ], answer:'2x3-9x2+7x-12'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'División entre monomio con tres términos',
+        q:'Resuelve: <span class="formula">(3x<sup>3</sup> - 6x<sup>2</sup> + 9x) ÷ 3x</span>',
+        options:[
+          {k:'x2-2x+3', t:'<span class="formula">x<sup>2</sup> - 2x + 3</span>'},
+          {k:'x3-2x2+3x', t:'<span class="formula">x<sup>3</sup> - 2x<sup>2</sup> + 3x</span>'},
+          {k:'x2+2x+3', t:'<span class="formula">x<sup>2</sup> + 2x + 3</span>'},
+          {k:'3x2-6x+9', t:'<span class="formula">3x<sup>2</sup> - 6x + 9</span>'}
+        ], answer:'x2-2x+3'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'División de polinomios',
+        q:'Resuelve: <span class="formula">(x<sup>3</sup> + 2x<sup>2</sup> - x - 2) ÷ (x + 2)</span>',
+        options:[
+          {k:'x2-1', t:'<span class="formula">x<sup>2</sup> - 1</span>'},
+          {k:'x2+1', t:'<span class="formula">x<sup>2</sup> + 1</span>'},
+          {k:'x2-2', t:'<span class="formula">x<sup>2</sup> - 2</span>'},
+          {k:'x2+x-1', t:'<span class="formula">x<sup>2</sup> + x - 1</span>'}
+        ], answer:'x2-1'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'División de polinomio cúbico',
+        q:'Resuelve: <span class="formula">(2x<sup>3</sup> + 3x<sup>2</sup> - 8x - 12) ÷ (x + 2)</span>',
+        options:[
+          {k:'2x2-x-6', t:'<span class="formula">2x<sup>2</sup> - x - 6</span>'},
+          {k:'2x2+x-6', t:'<span class="formula">2x<sup>2</sup> + x - 6</span>'},
+          {k:'2x2-x+6', t:'<span class="formula">2x<sup>2</sup> - x + 6</span>'},
+          {k:'x2-x-6', t:'<span class="formula">x<sup>2</sup> - x - 6</span>'}
+        ], answer:'2x2-x-6'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'Multiplicación con dos variables',
+        q:'Resuelve: <span class="formula">(x + 2y)(3x - y)</span>',
+        options:[
+          {k:'3x2+5xy-2y2', t:'<span class="formula">3x<sup>2</sup> + 5xy - 2y<sup>2</sup></span>'},
+          {k:'3x2-5xy-2y2', t:'<span class="formula">3x<sup>2</sup> - 5xy - 2y<sup>2</sup></span>'},
+          {k:'3x2+6xy-2y2', t:'<span class="formula">3x<sup>2</sup> + 6xy - 2y<sup>2</sup></span>'},
+          {k:'3x2+5xy+2y2', t:'<span class="formula">3x<sup>2</sup> + 5xy + 2y<sup>2</sup></span>'}
+        ], answer:'3x2+5xy-2y2'
+      },
+      {
+        level:'Avanzado', levelClass:'advanced', topic:'División con diferencia de cuadrados',
+        q:'Resuelve: <span class="formula">(x<sup>4</sup> - 16) ÷ (x<sup>2</sup> - 4)</span>',
+        options:[
+          {k:'x2+4', t:'<span class="formula">x<sup>2</sup> + 4</span>'},
+          {k:'x2-4', t:'<span class="formula">x<sup>2</sup> - 4</span>'},
+          {k:'x2+8', t:'<span class="formula">x<sup>2</sup> + 8</span>'},
+          {k:'x4+4', t:'<span class="formula">x<sup>4</sup> + 4</span>'}
+        ], answer:'x2+4'
+      }
+    ];
+
+    let current = 0;
+    let attempts = 0;
+    let resets = 0;
+    let startedAt = null;
+    let timerId = null;
+    let studentName = 'Juan';
+
+    function showTeacherRules(){
+      document.getElementById('teacherRules').classList.toggle('hidden');
+    }
+
+    function shuffle(arr){
+      const copy = [...arr];
+      for(let i = copy.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startExam(){
+      studentName = document.getElementById('studentName').value.trim() || 'Juan';
+      current = 0;
+      attempts = 0;
+      resets = 0;
+      startedAt = Date.now();
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('result').classList.add('hidden');
+      document.getElementById('exam').classList.remove('hidden');
+      if(timerId){ clearInterval(timerId); }
+      timerId = setInterval(updateTimer, 1000);
+      updateTimer();
+      renderQuestion();
+    }
+
+    function renderQuestion(){
+      const item = questions[current];
+      const badge = document.getElementById('levelBadge');
+      badge.textContent = item.level;
+      badge.className = 'badge ' + item.levelClass;
+      document.getElementById('questionCounter').textContent = 'Pregunta ' + (current + 1) + ' de ' + questions.length;
+      document.getElementById('topicText').textContent = 'Tema: ' + item.topic;
+      document.getElementById('questionText').innerHTML = item.q;
+      document.getElementById('progressBar').style.width = ((current) / questions.length * 100) + '%';
+      document.getElementById('currentRun').textContent = current + '/' + questions.length;
+      document.getElementById('attempts').textContent = attempts;
+      document.getElementById('resets').textContent = resets;
+      const feedback = document.getElementById('feedback');
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+      const optionsBox = document.getElementById('options');
+      optionsBox.innerHTML = '';
+      const options = shuffle(item.options);
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.innerHTML = opt.t;
+        btn.onclick = () => checkAnswer(opt.k);
+        optionsBox.appendChild(btn);
+      });
+    }
+
+    function disableOptions(){
+      document.querySelectorAll('.option').forEach(btn => btn.disabled = true);
+    }
+
+    function checkAnswer(key){
+      attempts++;
+      disableOptions();
+      const item = questions[current];
+      const feedback = document.getElementById('feedback');
+      document.getElementById('attempts').textContent = attempts;
+      if(key === item.answer){
+        feedback.className = 'feedback ok';
+        feedback.textContent = 'Correcto. Avanzas a la siguiente pregunta.';
+        current++;
+        document.getElementById('currentRun').textContent = current + '/' + questions.length;
+        document.getElementById('progressBar').style.width = ((current) / questions.length * 100) + '%';
+        setTimeout(() => {
+          if(current >= questions.length){ finishExam(); }
+          else{ renderQuestion(); }
+        }, 750);
+      }else{
+        feedback.className = 'feedback no';
+        feedback.textContent = 'Respuesta incorrecta. El examen regresa a la pregunta 1. No se muestra la respuesta correcta.';
+        resets++;
+        document.getElementById('resets').textContent = resets;
+        setTimeout(() => {
+          current = 0;
+          renderQuestion();
+        }, 1700);
+      }
+    }
+
+    function updateTimer(){
+      if(!startedAt){ return; }
+      const total = Math.floor((Date.now() - startedAt) / 1000);
+      const min = String(Math.floor(total / 60)).padStart(2, '0');
+      const sec = String(total % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = min + ':' + sec;
+    }
+
+    function getElapsed(){
+      if(!startedAt){ return '00:00'; }
+      const total = Math.floor((Date.now() - startedAt) / 1000);
+      const min = String(Math.floor(total / 60)).padStart(2, '0');
+      const sec = String(total % 60).padStart(2, '0');
+      return min + ':' + sec;
+    }
+
+    function finishExam(){
+      if(timerId){ clearInterval(timerId); }
+      document.getElementById('exam').classList.add('hidden');
+      document.getElementById('result').classList.remove('hidden');
+      document.getElementById('resultName').textContent = 'Alumno: ' + studentName + '. Examen completado en modo estricto.';
+      document.getElementById('finalAttempts').textContent = attempts;
+      document.getElementById('finalResets').textContent = resets;
+      document.getElementById('finalTime').textContent = getElapsed();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function restartByStudent(){
+      current = 0;
+      resets++;
+      renderQuestion();
+    }
+
+    function restartAll(){
+      document.getElementById('result').classList.add('hidden');
+      document.getElementById('intro').classList.remove('hidden');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function downloadReport(){
+      const today = new Date();
+      const lines = [
+        'REPORTE DE EXAMEN INTERACTIVO',
+        'Tema: Multiplicación y división de polinomios',
+        'Alumno: ' + studentName,
+        'Fecha: ' + today.toLocaleString('es-MX'),
+        'Calificación final: 10/10 = 100%',
+        'Reactivos correctos finales: 20/20',
+        'Intentos totales: ' + attempts,
+        'Reinicios por error: ' + resets,
+        'Tiempo total: ' + getElapsed(),
+        '',
+        'Criterio: modo estricto. El alumno solo termina si contesta correctamente las 20 preguntas en una corrida completa. Las respuestas correctas no se muestran cuando hay error.'
+      ];
+      const blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'reporte_examen_polinomios_' + studentName.replaceAll(' ', '_').toLowerCase() + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
