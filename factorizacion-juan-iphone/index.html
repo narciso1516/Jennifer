@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3d91" />
+  <title>Factorización para Juan | iPhone</title>
+  <style>
+    :root{
+      --azul:#0f3d91;
+      --azul2:#1d4ed8;
+      --azul-suave:#eaf2ff;
+      --verde:#047857;
+      --verde-suave:#dcfce7;
+      --naranja:#c2410c;
+      --naranja-suave:#ffedd5;
+      --morado:#6d28d9;
+      --morado-suave:#ede9fe;
+      --rojo:#b91c1c;
+      --rojo-suave:#fee2e2;
+      --gris:#f4f7fb;
+      --texto:#172033;
+      --muted:#607086;
+      --borde:#d8e0ea;
+      --card:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      background:var(--gris);
+      color:var(--texto);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Arial,sans-serif;
+      line-height:1.62;
+      -webkit-text-size-adjust:100%;
+      padding-bottom:calc(86px + env(safe-area-inset-bottom));
+    }
+
+    header{
+      color:white;
+      background:linear-gradient(145deg,#0f3d91,#1d4ed8,#60a5fa);
+      padding:calc(28px + env(safe-area-inset-top)) 18px 28px;
+      border-bottom-left-radius:28px;
+      border-bottom-right-radius:28px;
+      box-shadow:0 12px 28px rgba(15,61,145,.22);
+    }
+
+    header .pill{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+      font-size:.85rem;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+
+    h1{
+      margin:0;
+      font-size:2rem;
+      line-height:1.12;
+      letter-spacing:-.5px;
+    }
+
+    header p{
+      margin:12px 0 0;
+      color:rgba(255,255,255,.94);
+      font-size:1.03rem;
+    }
+
+    main{
+      width:min(100%,760px);
+      margin:0 auto;
+      padding:18px 14px 36px;
+    }
+
+    section{
+      background:var(--card);
+      border:1px solid var(--borde);
+      border-radius:22px;
+      padding:18px;
+      margin:16px 0;
+      box-shadow:0 8px 22px rgba(15,23,42,.06);
+    }
+
+    h2{
+      margin:0 0 12px;
+      color:var(--azul);
+      font-size:1.38rem;
+      line-height:1.22;
+      letter-spacing:-.25px;
+    }
+
+    h3{
+      margin:16px 0 10px;
+      font-size:1.12rem;
+      line-height:1.25;
+      color:#111827;
+    }
+
+    p{margin:10px 0}
+
+    .intro{
+      background:var(--azul-suave);
+      border-left:6px solid var(--azul2);
+      border-radius:16px;
+      padding:14px;
+      font-weight:650;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .type-card{
+      border:1px solid var(--borde);
+      border-radius:18px;
+      padding:15px;
+      background:#fbfdff;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 11px;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+
+    .t1{background:var(--verde-suave);color:var(--verde)}
+    .t2{background:var(--naranja-suave);color:var(--naranja)}
+    .t3{background:var(--morado-suave);color:var(--morado)}
+
+    .math{
+      font-family:"Times New Roman","Cambria Math",serif;
+      font-size:1.28rem;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      padding:12px;
+      margin:10px 0;
+      overflow-x:auto;
+      white-space:nowrap;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .smallmath{
+      font-family:"Times New Roman","Cambria Math",serif;
+      font-size:1.12rem;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:9px 10px;
+      display:inline-block;
+      margin:4px 0;
+    }
+
+    .steps{
+      counter-reset:paso;
+      padding:0;
+      margin:12px 0;
+    }
+
+    .steps li{
+      list-style:none;
+      counter-increment:paso;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-left:6px solid var(--azul2);
+      border-radius:16px;
+      padding:13px 13px;
+      margin:10px 0;
+    }
+
+    .steps li::before{
+      content:"Paso " counter(paso) ": ";
+      color:var(--azul);
+      font-weight:950;
+    }
+
+    .example{
+      border:1px solid var(--borde);
+      border-radius:20px;
+      padding:15px;
+      margin:16px 0;
+      background:white;
+    }
+
+    .result{
+      background:var(--verde-suave);
+      border-left:6px solid var(--verde);
+      border-radius:16px;
+      padding:13px;
+      font-weight:900;
+      margin-top:12px;
+    }
+
+    .note{
+      background:#fef9c3;
+      border-left:6px solid #ca8a04;
+      border-radius:16px;
+      padding:13px;
+      margin:14px 0;
+    }
+
+    .warning{
+      background:var(--rojo-suave);
+      border-left:6px solid var(--rojo);
+      border-radius:16px;
+      padding:13px;
+      margin:14px 0;
+    }
+
+    .checklist{
+      margin:8px 0;
+      padding-left:21px;
+    }
+
+    .checklist li{margin:8px 0}
+
+    details{
+      border:1px solid var(--borde);
+      border-radius:18px;
+      padding:13px 14px;
+      margin:12px 0;
+      background:#fbfdff;
+    }
+
+    summary{
+      cursor:pointer;
+      color:var(--azul);
+      font-weight:950;
+      min-height:44px;
+      display:flex;
+      align-items:center;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:12px 0;
+      font-size:.96rem;
+    }
+
+    th,td{
+      border:1px solid var(--borde);
+      padding:10px;
+      vertical-align:top;
+      text-align:left;
+    }
+
+    th{
+      background:var(--azul-suave);
+      color:#1e3a8a;
+    }
+
+    .nav{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:20;
+      padding:9px 10px calc(9px + env(safe-area-inset-bottom));
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-top:1px solid var(--borde);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+    }
+
+    .nav a{
+      min-height:48px;
+      text-decoration:none;
+      color:var(--azul);
+      background:var(--azul-suave);
+      border:1px solid #c7dcff;
+      border-radius:15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:.78rem;
+      font-weight:900;
+      padding:6px;
+    }
+
+    .top-btn{
+      display:inline-block;
+      margin-top:8px;
+      color:white;
+      background:var(--azul);
+      text-decoration:none;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:900;
+      min-height:44px;
+    }
+
+    @media (min-width:720px){
+      main{padding:24px 18px 50px}
+      .grid{grid-template-columns:repeat(3,1fr)}
+      header{padding-left:calc((100vw - 760px)/2 + 18px);padding-right:calc((100vw - 760px)/2 + 18px)}
+    }
+
+    @media print{
+      body{background:white;padding-bottom:0}
+      header{border-radius:0;box-shadow:none}
+      section{box-shadow:none;page-break-inside:avoid}
+      .example, details{page-break-inside:avoid}
+      .nav{display:none}
+    }
+  </style>
+</head>
+<body id="inicio">
+  <header>
+    <span class="pill">Guía para iPhone</span>
+    <h1>Factorización para Juan</h1>
+    <p>3 tipos principales con 6 ejemplos resueltos paso a paso.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Objetivo</h2>
+      <div class="intro">
+        Juan aprenderá a reconocer y resolver tres tipos de factorización:
+        <strong>factor común</strong>, <strong>diferencia de cuadrados</strong> y
+        <strong>trinomios donde se buscan dos números que sumen y multipliquen</strong>.
+      </div>
+      <p>
+        La regla más importante es esta: <strong>antes de resolver, primero se identifica el tipo de factorización.</strong>
+      </p>
+    </section>
+
+    <section id="tipos">
+      <h2>Los 3 tipos</h2>
+      <div class="grid">
+        <article class="type-card">
+          <span class="badge t1">Tipo 1</span>
+          <h3>Factor común</h3>
+          <div class="math">ab + ac = a(b + c)</div>
+          <p>Se usa cuando todos los términos tienen algo repetido.</p>
+        </article>
+
+        <article class="type-card">
+          <span class="badge t2">Tipo 2</span>
+          <h3>Diferencia de cuadrados</h3>
+          <div class="math">a² − b² = (a + b)(a − b)</div>
+          <p>Se usa cuando hay dos cuadrados perfectos separados por una resta.</p>
+        </article>
+
+        <article class="type-card">
+          <span class="badge t3">Tipo 3</span>
+          <h3>Dos números</h3>
+          <div class="math">x² + bx + c = (x + m)(x + n)</div>
+          <p>Se buscan dos números que sumen <strong>b</strong> y multipliquen <strong>c</strong>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tipo1">
+      <h2>Tipo 1: Factor común</h2>
+      <p>
+        El factor común es el número, letra o combinación que aparece en todos los términos.
+        Para factorizar, se saca ese factor afuera del paréntesis.
+      </p>
+
+      <div class="note">
+        Juan debe preguntar: ¿qué tienen en común todos los términos?
+      </div>
+
+      <div class="example">
+        <span class="badge t1">Ejemplo 1</span>
+        <h3>Factoriza:</h3>
+        <div class="math">6x + 18</div>
+
+        <ol class="steps">
+          <li>
+            Observamos los términos:
+            <div class="math">6x</div>
+            <div class="math">18</div>
+          </li>
+          <li>
+            Buscamos el número que divide a ambos. El número 6 divide a los dos:
+            <div class="math">6x ÷ 6 = x</div>
+            <div class="math">18 ÷ 6 = 3</div>
+          </li>
+          <li>
+            Sacamos el 6 como factor común:
+            <div class="math">6x + 18 = 6(x + 3)</div>
+          </li>
+          <li>
+            Verificamos:
+            <div class="math">6(x + 3) = 6x + 18</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">6x + 18 = 6(x + 3)</span></div>
+      </div>
+
+      <div class="example">
+        <span class="badge t1">Ejemplo 2</span>
+        <h3>Factoriza:</h3>
+        <div class="math">12x² + 8x</div>
+
+        <ol class="steps">
+          <li>
+            Observamos los términos:
+            <div class="math">12x²</div>
+            <div class="math">8x</div>
+          </li>
+          <li>
+            Buscamos el mayor número que divide a 12 y 8:
+            <div class="math">4</div>
+          </li>
+          <li>
+            Revisamos la letra. Ambos términos tienen:
+            <div class="math">x</div>
+          </li>
+          <li>
+            Entonces el factor común completo es:
+            <div class="math">4x</div>
+          </li>
+          <li>
+            Dividimos cada término entre 4x:
+            <div class="math">12x² ÷ 4x = 3x</div>
+            <div class="math">8x ÷ 4x = 2</div>
+          </li>
+          <li>
+            Escribimos la factorización:
+            <div class="math">12x² + 8x = 4x(3x + 2)</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">12x² + 8x = 4x(3x + 2)</span></div>
+      </div>
+    </section>
+
+    <section id="tipo2">
+      <h2>Tipo 2: Diferencia de cuadrados</h2>
+      <p>
+        Una diferencia de cuadrados tiene dos términos, una resta y ambos términos son cuadrados perfectos.
+      </p>
+
+      <div class="math">a² − b² = (a + b)(a − b)</div>
+
+      <ul class="checklist">
+        <li>Debe haber dos términos.</li>
+        <li>Debe haber signo menos.</li>
+        <li>Ambos términos deben tener raíz cuadrada exacta.</li>
+      </ul>
+
+      <div class="example">
+        <span class="badge t2">Ejemplo 3</span>
+        <h3>Factoriza:</h3>
+        <div class="math">x² − 25</div>
+
+        <ol class="steps">
+          <li>
+            Revisamos si hay dos términos:
+            <div class="math">x²</div>
+            <div class="math">25</div>
+          </li>
+          <li>
+            Hay una resta:
+            <div class="math">x² − 25</div>
+          </li>
+          <li>
+            Revisamos si ambos son cuadrados perfectos:
+            <div class="math">x² = (x)²</div>
+            <div class="math">25 = 5²</div>
+          </li>
+          <li>
+            Identificamos:
+            <div class="math">a = x</div>
+            <div class="math">b = 5</div>
+          </li>
+          <li>
+            Aplicamos la fórmula:
+            <div class="math">x² − 25 = (x + 5)(x − 5)</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">x² − 25 = (x + 5)(x − 5)</span></div>
+      </div>
+
+      <div class="example">
+        <span class="badge t2">Ejemplo 4</span>
+        <h3>Factoriza:</h3>
+        <div class="math">9x² − 49</div>
+
+        <ol class="steps">
+          <li>
+            Revisamos los términos:
+            <div class="math">9x²</div>
+            <div class="math">49</div>
+          </li>
+          <li>
+            Hay una resta:
+            <div class="math">9x² − 49</div>
+          </li>
+          <li>
+            Revisamos los cuadrados perfectos:
+            <div class="math">9x² = (3x)²</div>
+            <div class="math">49 = 7²</div>
+          </li>
+          <li>
+            Identificamos:
+            <div class="math">a = 3x</div>
+            <div class="math">b = 7</div>
+          </li>
+          <li>
+            Sustituimos:
+            <div class="math">9x² − 49 = (3x + 7)(3x − 7)</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">9x² − 49 = (3x + 7)(3x − 7)</span></div>
+      </div>
+
+      <div class="warning">
+        Esta fórmula no se usa con suma. Por ejemplo:
+        <div class="math">x² + 25</div>
+        no se factoriza como diferencia de cuadrados.
+      </div>
+    </section>
+
+    <section id="tipo3">
+      <h2>Tipo 3: Dos números que sumen y multipliquen</h2>
+      <p>
+        Este método se usa cuando el trinomio empieza con:
+      </p>
+
+      <div class="math">x²</div>
+
+      <p>
+        La forma general es:
+      </p>
+
+      <div class="math">x² + bx + c</div>
+
+      <p>
+        Juan debe encontrar dos números que cumplan:
+      </p>
+
+      <div class="math">m + n = b</div>
+      <div class="math">m · n = c</div>
+
+      <div class="example">
+        <span class="badge t3">Ejemplo 5</span>
+        <h3>Factoriza:</h3>
+        <div class="math">x² + 7x + 12</div>
+
+        <ol class="steps">
+          <li>
+            Identificamos los valores:
+            <div class="math">b = 7</div>
+            <div class="math">c = 12</div>
+          </li>
+          <li>
+            Buscamos dos números que sumen 7 y multipliquen 12:
+            <div class="math">3 + 4 = 7</div>
+            <div class="math">3 · 4 = 12</div>
+          </li>
+          <li>
+            Los números son:
+            <div class="math">3 y 4</div>
+          </li>
+          <li>
+            Escribimos los factores:
+            <div class="math">(x + 3)(x + 4)</div>
+          </li>
+          <li>
+            Verificamos:
+            <div class="math">(x + 3)(x + 4) = x² + 4x + 3x + 12</div>
+            <div class="math">= x² + 7x + 12</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">x² + 7x + 12 = (x + 3)(x + 4)</span></div>
+      </div>
+
+      <div class="example">
+        <span class="badge t3">Ejemplo 6</span>
+        <h3>Factoriza:</h3>
+        <div class="math">x² − x − 12</div>
+
+        <ol class="steps">
+          <li>
+            Identificamos los valores:
+            <div class="math">b = −1</div>
+            <div class="math">c = −12</div>
+          </li>
+          <li>
+            Necesitamos dos números que sumen −1 y multipliquen −12.
+          </li>
+          <li>
+            Probamos con 3 y −4:
+            <div class="math">3 + (−4) = −1</div>
+            <div class="math">3 · (−4) = −12</div>
+          </li>
+          <li>
+            Los números son:
+            <div class="math">3 y −4</div>
+          </li>
+          <li>
+            Escribimos los factores:
+            <div class="math">(x + 3)(x − 4)</div>
+          </li>
+          <li>
+            Verificamos:
+            <div class="math">(x + 3)(x − 4) = x² − 4x + 3x − 12</div>
+            <div class="math">= x² − x − 12</div>
+          </li>
+        </ol>
+
+        <div class="result">Resultado: <span class="smallmath">x² − x − 12 = (x + 3)(x − 4)</span></div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <h2>Práctica para Juan</h2>
+
+      <details>
+        <summary>Ejercicios de factor común</summary>
+        <div class="math">1) 10x + 30</div>
+        <div class="math">2) 15x² + 20x</div>
+      </details>
+
+      <details>
+        <summary>Ejercicios de diferencia de cuadrados</summary>
+        <div class="math">3) x² − 81</div>
+        <div class="math">4) 4x² − 121</div>
+      </details>
+
+      <details>
+        <summary>Ejercicios de dos números</summary>
+        <div class="math">5) x² + 9x + 20</div>
+        <div class="math">6) x² + 2x − 15</div>
+      </details>
+
+      <details>
+        <summary>Ver respuestas</summary>
+        <div class="math">1) 10x + 30 = 10(x + 3)</div>
+        <div class="math">2) 15x² + 20x = 5x(3x + 4)</div>
+        <div class="math">3) x² − 81 = (x + 9)(x − 9)</div>
+        <div class="math">4) 4x² − 121 = (2x + 11)(2x − 11)</div>
+        <div class="math">5) x² + 9x + 20 = (x + 4)(x + 5)</div>
+        <div class="math">6) x² + 2x − 15 = (x + 5)(x − 3)</div>
+      </details>
+    </section>
+
+    <section>
+      <h2>Mini evaluación</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nivel</th>
+            <th>Ejercicio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Básico</td>
+            <td><span class="smallmath">14x + 21</span></td>
+          </tr>
+          <tr>
+            <td>Intermedio</td>
+            <td><span class="smallmath">25x² − 36</span></td>
+          </tr>
+          <tr>
+            <td>Avanzado</td>
+            <td><span class="smallmath">x² − 3x − 10</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <details>
+        <summary>Ver respuestas de la mini evaluación</summary>
+        <div class="math">14x + 21 = 7(2x + 3)</div>
+        <p><strong>Tipo:</strong> factor común.</p>
+
+        <div class="math">25x² − 36 = (5x + 6)(5x − 6)</div>
+        <p><strong>Tipo:</strong> diferencia de cuadrados.</p>
+
+        <div class="math">x² − 3x − 10 = (x − 5)(x + 2)</div>
+        <p><strong>Tipo:</strong> dos números que sumen y multipliquen.</p>
+      </details>
+
+      <a class="top-btn" href="#inicio">Volver arriba</a>
+    </section>
+  </main>
+
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="#tipo1">Factor<br>común</a>
+    <a href="#tipo2">Cuadrados</a>
+    <a href="#tipo3">Dos<br>números</a>
+    <a href="#practica">Práctica</a>
+  </nav>
+</body>
+</html>
