@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen de práctica - Polinomios, productos notables, factorización y ecuaciones lineales</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #d1d5db;
+      --soft: #f3f4f6;
+      --accent: #1f5f8b;
+      --hint-bg: #fff8df;
+      --hint-border: #e2b84b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e5e7eb;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 24px auto;
+      padding: 0.65in 0.7in;
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .topbar {
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .institution {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    h1 {
+      font-size: 21px;
+      text-align: center;
+      margin: 18px 0 6px;
+      letter-spacing: 0.01em;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin: 24px 0 10px;
+      color: var(--accent);
+      border-left: 5px solid var(--accent);
+      padding-left: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .student-data {
+      display: grid;
+      grid-template-columns: 1.3fr 0.8fr 0.8fr;
+      gap: 10px 16px;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+
+    .field {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .blank {
+      border-bottom: 1.5px solid #111827;
+      flex: 1;
+      height: 18px;
+    }
+
+    .instructions {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      font-size: 13px;
+      margin: 14px 0 20px;
+    }
+
+    .score-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0 18px;
+      font-size: 12px;
+    }
+
+    .score-box div {
+      border: 1px solid var(--line);
+      padding: 7px;
+      min-height: 34px;
+    }
+
+    .exercise {
+      break-inside: avoid;
+      border-bottom: 1px dashed #cbd5e1;
+      padding: 13px 0 16px;
+    }
+
+    .exercise:last-child {
+      border-bottom: 0;
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .points {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .problem {
+      font-size: 18px;
+      margin: 9px 0 8px;
+      text-align: left;
+    }
+
+    .hint {
+      background: var(--hint-bg);
+      border-left: 4px solid var(--hint-border);
+      padding: 7px 9px;
+      font-size: 12.5px;
+      margin: 8px 0;
+    }
+
+    .answer-lines {
+      margin-top: 8px;
+    }
+
+    .line {
+      border-bottom: 1px solid #9ca3af;
+      height: 27px;
+      margin-bottom: 5px;
+    }
+
+    .frac {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 1.05;
+      margin: 0 2px;
+    }
+
+    .frac .top {
+      display: block;
+      border-bottom: 1.6px solid currentColor;
+      padding: 0 5px 2px;
+    }
+
+    .frac .bottom {
+      display: block;
+      padding: 2px 5px 0;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .teacher-key {
+      break-before: page;
+      margin-top: 30px;
+      border: 2px solid var(--accent);
+      padding: 14px;
+      background: #f8fafc;
+    }
+
+    .teacher-key h2 {
+      margin-top: 0;
+    }
+
+    .key-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+      font-size: 13px;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        box-shadow: none;
+        padding: 0.45in 0.55in;
+      }
+
+      .exercise {
+        break-inside: avoid;
+      }
+
+      .teacher-key {
+        break-before: page;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="topbar">
+      <div class="institution">
+        <span>Examen de práctica tipo parcial</span>
+        <span class="badge">Pensamiento Matemático 2</span>
+      </div>
+      <h1>Operaciones con polinomios, productos notables, factorización y ecuaciones lineales</h1>
+      <div class="subtitle">Práctica para Juan Miguel Merino Cristóbal</div>
+    </section>
+
+    <section class="student-data">
+      <div class="field"><strong>Nombre:</strong><span class="blank"></span></div>
+      <div class="field"><strong>Grupo:</strong><span class="blank"></span></div>
+      <div class="field"><strong>Fecha:</strong><span class="blank"></span></div>
+    </section>
+
+    <section class="instructions">
+      <strong>Instrucción general:</strong> Lee cuidadosamente cada reactivo. Resuelve de manera ordenada, escribe todos los procedimientos y encierra tu resultado final. No uses calculadora. Cada ejercicio incluye una pista para ayudarte a recordar el procedimiento correcto.
+    </section>
+
+    <section class="score-box">
+      <div><strong>Aciertos:</strong></div>
+      <div><strong>Calificación:</strong></div>
+      <div><strong>Observaciones:</strong></div>
+    </section>
+
+    <h2>Contenido: operaciones básicas con polinomios</h2>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">1. Suma los siguientes polinomios.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(3x<sup>2</sup> + 2x − 5) + (4x<sup>2</sup> − 7x + 9)</div>
+      <div class="hint"><strong>Pista:</strong> Junta términos semejantes: x<sup>2</sup> con x<sup>2</sup>, x con x y números con números.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">2. Suma los polinomios con varias letras.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(2x<sup>2</sup>y + 3xy − z) + (5x<sup>2</sup>y − xy + 4z)</div>
+      <div class="hint"><strong>Pista:</strong> Dos términos son semejantes solo si tienen exactamente las mismas letras con los mismos exponentes.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">3. Resta los siguientes polinomios.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(6x<sup>2</sup> − 3x + 8) − (2x<sup>2</sup> + 5x − 4)</div>
+      <div class="hint"><strong>Pista:</strong> El signo menos antes del segundo paréntesis cambia todos los signos de ese polinomio.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">4. Resta y reduce términos semejantes.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(4a<sup>2</sup>b − 2ab + 7) − (a<sup>2</sup>b + 6ab − 3)</div>
+      <div class="hint"><strong>Pista:</strong> Primero elimina paréntesis. Después acomoda los términos semejantes en columnas o por grupos.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">5. Multiplica el monomio por el polinomio.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">3x(2x<sup>2</sup> − 5x + 4)</div>
+      <div class="hint"><strong>Pista:</strong> Multiplica 3x por cada término dentro del paréntesis. Recuerda: x · x<sup>2</sup> = x<sup>3</sup>.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">6. Multiplica los binomios.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(x + 5)(x − 2)</div>
+      <div class="hint"><strong>Pista:</strong> Multiplica todos contra todos: primero x por ambos términos, luego 5 por ambos términos.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">7. Multiplica un binomio por un trinomio.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(2x − 3)(x<sup>2</sup> + 4x − 1)</div>
+      <div class="hint"><strong>Pista:</strong> Distribuye 2x sobre todo el segundo paréntesis y luego distribuye −3 sobre todo el segundo paréntesis.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">8. Divide el polinomio entre el monomio.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem"><span class="frac"><span class="top">12x<sup>3</sup> − 8x<sup>2</sup> + 4x</span><span class="bottom">4x</span></span></div>
+      <div class="hint"><strong>Pista:</strong> Divide término por término. Divide coeficientes y resta exponentes: x<sup>3</sup> ÷ x = x<sup>2</sup>.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">9. Divide y simplifica.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem"><span class="frac"><span class="top">15a<sup>3</sup>b<sup>2</sup> + 10a<sup>2</sup>b − 5ab</span><span class="bottom">5ab</span></span></div>
+      <div class="hint"><strong>Pista:</strong> Cada término del numerador se divide entre 5ab. Observa qué letras se cancelan.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <h2>Contenido: productos notables</h2>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">10. Desarrolla el cuadrado del binomio.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(x + 6)<sup>2</sup></div>
+      <div class="hint"><strong>Pista:</strong> Usa la regla: (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup>. No olvides el término de en medio.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">11. Desarrolla binomios conjugados.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(3x + 2)(3x − 2)</div>
+      <div class="hint"><strong>Pista:</strong> Es de la forma (a + b)(a − b) = a<sup>2</sup> − b<sup>2</sup>.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">12. Desarrolla el cuadrado de una resta.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">(2x − 5)<sup>2</sup></div>
+      <div class="hint"><strong>Pista:</strong> Usa la regla: (a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup>. El último término queda positivo.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <h2>Contenido: factorización</h2>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">13. Factoriza por factor común.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">8x<sup>3</sup> + 12x<sup>2</sup> − 4x</div>
+      <div class="hint"><strong>Pista:</strong> Busca el número y la letra que aparecen en todos los términos. El factor común es 4x.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">14. Factoriza el trinomio.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">x<sup>2</sup> + 9x + 20</div>
+      <div class="hint"><strong>Pista:</strong> Busca dos números que multiplicados den 20 y sumados den 9.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <h2>Contenido: ecuaciones lineales de primer grado</h2>
+
+    <article class="exercise">
+      <div class="exercise-header">
+        <div class="exercise-title">15. Resuelve la ecuación lineal.</div>
+        <div class="points">1 punto</div>
+      </div>
+      <div class="problem">3x + 4(2x − 1) = 18 − 2(x + 3)</div>
+      <div class="hint"><strong>Pista:</strong> Primero distribuye los paréntesis. Después junta las x de un lado y los números del otro lado.</div>
+      <div class="answer-lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </article>
+
+    <section class="teacher-key">
+      <h2>Clave de respuestas para revisión del profesor o tutor</h2>
+      <p class="small">Esta sección puede imprimirse aparte o retirarse antes de entregarle el examen a Juan.</p>
+      <div class="key-grid">
+        <div><strong>1.</strong> 7x<sup>2</sup> − 5x + 4</div>
+        <div><strong>2.</strong> 7x<sup>2</sup>y + 2xy + 3z</div>
+        <div><strong>3.</strong> 4x<sup>2</sup> − 8x + 12</div>
+        <div><strong>4.</strong> 3a<sup>2</sup>b − 8ab + 10</div>
+        <div><strong>5.</strong> 6x<sup>3</sup> − 15x<sup>2</sup> + 12x</div>
+        <div><strong>6.</strong> x<sup>2</sup> + 3x − 10</div>
+        <div><strong>7.</strong> 2x<sup>3</sup> + 5x<sup>2</sup> − 14x + 3</div>
+        <div><strong>8.</strong> 3x<sup>2</sup> − 2x + 1</div>
+        <div><strong>9.</strong> 3a<sup>2</sup>b + 2a − 1</div>
+        <div><strong>10.</strong> x<sup>2</sup> + 12x + 36</div>
+        <div><strong>11.</strong> 9x<sup>2</sup> − 4</div>
+        <div><strong>12.</strong> 4x<sup>2</sup> − 20x + 25</div>
+        <div><strong>13.</strong> 4x(2x<sup>2</sup> + 3x − 1)</div>
+        <div><strong>14.</strong> (x + 4)(x + 5)</div>
+        <div><strong>15.</strong> x = <span class="frac"><span class="top">16</span><span class="bottom">13</span></span></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
